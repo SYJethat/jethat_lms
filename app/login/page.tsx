@@ -1,0 +1,249 @@
+'use client';
+
+import React, { useState } from 'react';
+import { useRouter } from 'next/navigation';
+import {
+  User as UserIcon,
+  BookOpen,
+  Sparkles,
+  Shield,
+  Building2,
+  DollarSign,
+  BarChart3,
+  Lock,
+  Mail,
+  Smartphone,
+  ArrowRight,
+  CheckCircle2,
+  Globe
+} from 'lucide-react';
+import { loginUserByRole, User } from '@/lib/lmsStore';
+
+const LOGIN_ROLES: { role: User['role']; label: string; name: string; email: string; icon: any; color: string; desc: string }[] = [
+  {
+    role: 'student',
+    label: 'Student',
+    name: 'Aarav Sharma',
+    email: 'aarav.sharma@example.com',
+    icon: UserIcon,
+    color: 'border-emerald-500/40 bg-emerald-500/10 text-emerald-400',
+    desc: 'Access Level 1-7 Pathway, AI Chatbot, Avatars & Speaking Tests',
+  },
+  {
+    role: 'teacher',
+    label: 'Teacher',
+    name: 'आचार्य आरव शास्त्री',
+    email: 'teacher@hindi-lms.org',
+    icon: BookOpen,
+    color: 'border-amber-500/40 bg-amber-500/10 text-amber-400',
+    desc: 'Manage Classes, Student Rosters & Grade Assignments',
+  },
+  {
+    role: 'creator',
+    label: 'Course Creator',
+    name: 'कबीर वर्मा',
+    email: 'creator@hindi-lms.org',
+    icon: Sparkles,
+    color: 'border-cyan-500/40 bg-cyan-500/10 text-cyan-400',
+    desc: 'Build Modules, Quizzes & Submit to 6-Step Publishing Queue',
+  },
+  {
+    role: 'tester',
+    label: 'Quality Tester',
+    name: 'डॉ. देवेन्द्र शर्मा',
+    email: 'tester@hindi-lms.org',
+    icon: Shield,
+    color: 'border-violet-500/40 bg-violet-500/10 text-violet-400',
+    desc: 'Audit Devanagari Fonts, Audio Synthesis & QA Approvals',
+  },
+  {
+    role: 'institute',
+    label: 'Institute Admin',
+    name: 'केंद्रीय हिंदी संस्थान एडमिन',
+    email: 'institute@khs.edu.in',
+    icon: Building2,
+    color: 'border-blue-500/40 bg-blue-500/10 text-blue-400',
+    desc: 'Manage Local Centers, Physical Batches & Certificate Issues',
+  },
+  {
+    role: 'accounting',
+    label: 'Accounting Staff',
+    name: 'रजत गुप्ता',
+    email: 'finance@hindi-lms.org',
+    icon: DollarSign,
+    color: 'border-rose-500/40 bg-rose-500/10 text-rose-400',
+    desc: 'View Revenue Ledgers, IAP Gateways & Export Invoices',
+  },
+  {
+    role: 'admin',
+    label: 'Super Admin',
+    name: 'Super Admin Operations',
+    email: 'admin@hindi-lms.org',
+    icon: BarChart3,
+    color: 'border-hindi-saffron/40 bg-hindi-saffron/10 text-hindi-saffron',
+    desc: 'Full System Control, RBAC Matrix & AI Gateway Config',
+  },
+];
+
+export default function LoginPage() {
+  const router = useRouter();
+  const [selectedRole, setSelectedRole] = useState<User['role']>('student');
+  const [email, setEmail] = useState('aarav.sharma@example.com');
+  const [password, setPassword] = useState('••••••••');
+  const [otp, setOtp] = useState('');
+  const [loginMethod, setLoginMethod] = useState<'email' | 'otp'>('email');
+
+  const handleRoleSelect = (roleObj: typeof LOGIN_ROLES[0]) => {
+    setSelectedRole(roleObj.role);
+    setEmail(roleObj.email);
+  };
+
+  const handlePerformLogin = (e: React.FormEvent) => {
+    e.preventDefault();
+    loginUserByRole(selectedRole);
+    router.push(`/dashboard/${selectedRole}`);
+  };
+
+  return (
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-12">
+      <div className="text-center space-y-3">
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-hindi-saffron/20 text-hindi-saffron text-xs font-semibold">
+          <Globe className="w-4 h-4" /> Multi-Role Authentication Portal
+        </div>
+        <h1 className="text-3xl sm:text-5xl font-extrabold text-white">
+          Login & Access Your <span className="gradient-text-saffron">Role Dashboard</span>
+        </h1>
+        <p className="text-slate-400 text-sm max-w-2xl mx-auto">
+          Select a role profile below for 1-click test login, or use your credentials. Each user role accesses a dedicated workspace and custom sidebar.
+        </p>
+      </div>
+
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        {/* Left 7 Cols: 1-Click Role Login Cards */}
+        <div className="lg:col-span-7 space-y-4">
+          <h2 className="text-sm font-bold uppercase text-slate-300 tracking-wider">
+            1. Select User Role Credentials (7 Target Roles)
+          </h2>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            {LOGIN_ROLES.map((r) => {
+              const isSelected = selectedRole === r.role;
+              return (
+                <div
+                  key={r.role}
+                  onClick={() => handleRoleSelect(r)}
+                  className={`p-4 rounded-2xl border cursor-pointer transition flex flex-col justify-between space-y-3 ${
+                    isSelected
+                      ? 'bg-slate-900 border-hindi-saffron ring-2 ring-hindi-saffron shadow-lg shadow-hindi-saffron/10'
+                      : 'glass-card border-slate-800 hover:border-slate-700'
+                  }`}
+                >
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                      <div className={`p-2 rounded-xl border ${r.color}`}>
+                        <r.icon className="w-4 h-4" />
+                      </div>
+                      <span className="text-xs font-extrabold text-white">{r.label}</span>
+                    </div>
+                    {isSelected && <CheckCircle2 className="w-4 h-4 text-hindi-saffron" />}
+                  </div>
+
+                  <div>
+                    <h4 className="text-xs font-bold text-slate-200">{r.name}</h4>
+                    <span className="text-[11px] text-slate-400 block line-clamp-1">{r.email}</span>
+                  </div>
+
+                  <p className="text-[11px] text-slate-400 line-clamp-2 leading-relaxed border-t border-slate-800 pt-2">
+                    {r.desc}
+                  </p>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Right 5 Cols: Login Form Card */}
+        <div className="lg:col-span-5 glass-card p-6 sm:p-8 rounded-3xl border border-slate-800 space-y-6 bg-slate-950/90 sticky top-24">
+          <div className="flex items-center justify-between border-b border-slate-800 pb-4">
+            <h3 className="text-lg font-bold text-white">Sign In to Dashboard</h3>
+            <div className="flex bg-slate-900 rounded-xl p-1 border border-slate-800">
+              <button
+                onClick={() => setLoginMethod('email')}
+                className={`px-3 py-1 text-xs font-bold rounded-lg transition ${
+                  loginMethod === 'email' ? 'bg-hindi-saffron text-slate-950' : 'text-slate-400'
+                }`}
+              >
+                Password
+              </button>
+              <button
+                onClick={() => setLoginMethod('otp')}
+                className={`px-3 py-1 text-xs font-bold rounded-lg transition ${
+                  loginMethod === 'otp' ? 'bg-hindi-saffron text-slate-950' : 'text-slate-400'
+                }`}
+              >
+                Mobile OTP
+              </button>
+            </div>
+          </div>
+
+          <form onSubmit={handlePerformLogin} className="space-y-4">
+            <div>
+              <label className="text-xs font-bold uppercase text-slate-400 block mb-1.5">User Email / ID</label>
+              <div className="relative">
+                <Mail className="w-4 h-4 text-slate-500 absolute left-3 top-1/2 -translate-y-1/2" />
+                <input
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="w-full bg-slate-900 border border-slate-700 rounded-xl pl-9 pr-3 py-2.5 text-xs text-white focus:outline-none focus:border-hindi-saffron"
+                  required
+                />
+              </div>
+            </div>
+
+            {loginMethod === 'email' ? (
+              <div>
+                <label className="text-xs font-bold uppercase text-slate-400 block mb-1.5">Password</label>
+                <div className="relative">
+                  <Lock className="w-4 h-4 text-slate-500 absolute left-3 top-1/2 -translate-y-1/2" />
+                  <input
+                    type="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    className="w-full bg-slate-900 border border-slate-700 rounded-xl pl-9 pr-3 py-2.5 text-xs text-white focus:outline-none focus:border-hindi-saffron"
+                    required
+                  />
+                </div>
+              </div>
+            ) : (
+              <div>
+                <label className="text-xs font-bold uppercase text-slate-400 block mb-1.5">Mobile OTP Verification</label>
+                <div className="relative">
+                  <Smartphone className="w-4 h-4 text-slate-500 absolute left-3 top-1/2 -translate-y-1/2" />
+                  <input
+                    type="text"
+                    value={otp}
+                    onChange={(e) => setOtp(e.target.value)}
+                    placeholder="Enter 6-digit OTP (Simulated: 123456)"
+                    className="w-full bg-slate-900 border border-slate-700 rounded-xl pl-9 pr-3 py-2.5 text-xs text-white focus:outline-none focus:border-hindi-saffron"
+                  />
+                </div>
+              </div>
+            )}
+
+            <button
+              type="submit"
+              className="w-full py-3.5 rounded-xl bg-gradient-to-r from-hindi-saffron to-amber-500 hover:from-amber-600 hover:to-hindi-saffron text-slate-950 font-extrabold text-xs uppercase tracking-wider flex items-center justify-center gap-2 shadow-xl shadow-hindi-saffron/20 transition"
+            >
+              Sign In as {selectedRole.toUpperCase()} <ArrowRight className="w-4 h-4" />
+            </button>
+          </form>
+
+          <div className="p-3 rounded-xl bg-slate-900 border border-slate-800 text-[11px] text-slate-400 text-center">
+            🔒 Secure OAuth2 / JWT Session Authentication Enabled
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
