@@ -1,3 +1,7 @@
+# mingit portable git
+/.mingit/
+mingit.zip
+
 # dependencies
 /node_modules
 /.pnp
