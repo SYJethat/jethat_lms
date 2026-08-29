@@ -38,7 +38,7 @@ import {
 import { getStoredUser, enrollInCourse, unenrollFromCourse } from '@/lib/lmsStore';
 import { User } from '@/lib/mockData';
 
-export interface IndianLanguageOption {
+interface IndianLanguageOption {
   code: string;
   nameEng: string;
   nameNative: string;
@@ -47,7 +47,7 @@ export interface IndianLanguageOption {
   sampleAudioText: string;
 }
 
-export const INDIAN_LANGUAGES_22: IndianLanguageOption[] = [
+const INDIAN_LANGUAGES_22: IndianLanguageOption[] = [
   { code: 'hi', nameEng: 'Hindi', nameNative: 'हिंदी', script: 'Devanagari', sampleGreeting: 'नमस्ते! (Namaste)', sampleAudioText: 'नमस्ते! आपका भारत में स्वागत है।' },
   { code: 'ta', nameEng: 'Tamil', nameNative: 'தமிழ்', script: 'Tamil', sampleGreeting: 'வணக்கம்! (Vanakkam)', sampleAudioText: 'வணக்கம்! உங்களை வரவேற்கிறோம்.' },
   { code: 'te', nameEng: 'Telugu', nameNative: 'తెలుగు', script: 'Telugu', sampleGreeting: 'నమస్కారం! (Namaskaram)', sampleAudioText: 'నమస్కారం! స్వాగతం.' },
@@ -72,7 +72,7 @@ export const INDIAN_LANGUAGES_22: IndianLanguageOption[] = [
   { code: 'sat', nameEng: 'Santali', nameNative: 'ᱥᱟᱱᱛᱟᱲᱤ', script: 'Ol Chiki', sampleGreeting: 'ᱡᱚᱦᱟᱨ! (Johar)', sampleAudioText: 'ᱡᱚᱦᱟᱨ! ᱟᱢᱟᱜ ᱥᱟᱹᱜᱩᱱ ᱫᱟᱨᱟᱢ᱾' }
 ];
 
-export interface ForeignLanguageCourse {
+interface ForeignLanguageCourse {
   id: string;
   foreignLangEng: string;
   foreignLangNative: string;
@@ -93,7 +93,7 @@ export interface ForeignLanguageCourse {
   };
 }
 
-export const FOREIGN_LANGUAGE_COURSES: ForeignLanguageCourse[] = [
+const FOREIGN_LANGUAGE_COURSES: ForeignLanguageCourse[] = [
   {
     id: 'course_en_all',
     foreignLangEng: 'English',

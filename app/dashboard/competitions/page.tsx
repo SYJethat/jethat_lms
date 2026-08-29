@@ -23,7 +23,7 @@ import {
   Medal
 } from 'lucide-react';
 
-export interface CompetitionEvent {
+interface CompetitionEvent {
   id: string;
   titleHindi: string;
   titleEng: string;
@@ -38,7 +38,7 @@ export interface CompetitionEvent {
   rounds: string[];
 }
 
-export const GLOBAL_COMPETITIONS: CompetitionEvent[] = [
+const GLOBAL_COMPETITIONS: CompetitionEvent[] = [
   {
     id: 'comp_1',
     titleHindi: 'अंतर्राष्ट्रीय हिंदी ओलंपियाड २०२६ (Global Hindi Olympiad)',

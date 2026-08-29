@@ -23,7 +23,7 @@ import {
 import { getStoredUser } from '@/lib/lmsStore';
 import { User } from '@/lib/mockData';
 
-export interface PaymentTransaction {
+interface PaymentTransaction {
   id: string;
   invoiceNumber: string;
   itemTitle: string;

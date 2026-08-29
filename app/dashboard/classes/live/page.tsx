@@ -24,7 +24,7 @@ import {
   FileText
 } from 'lucide-react';
 
-export interface LiveClassItem {
+interface LiveClassItem {
   id: string;
   titleHindi: string;
   titleEng: string;
@@ -39,7 +39,7 @@ export interface LiveClassItem {
   agenda: string[];
 }
 
-export const MOCK_LIVE_CLASSES: LiveClassItem[] = [
+const MOCK_LIVE_CLASSES: LiveClassItem[] = [
   {
     id: 'class_1',
     titleHindi: 'उच्च स्तरीय देवनागरी वाक्य रचना व क्रिया रूप',
@@ -98,7 +98,7 @@ export const MOCK_LIVE_CLASSES: LiveClassItem[] = [
   }
 ];
 
-export interface ChatMessage {
+interface ChatMessage {
   id: string;
   sender: string;
   text: string;

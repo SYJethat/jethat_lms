@@ -22,7 +22,7 @@ import {
   Check
 } from 'lucide-react';
 
-export interface ExamModule {
+interface ExamModule {
   id: string;
   titleHindi: string;
   titleEng: string;
@@ -39,7 +39,7 @@ export interface ExamModule {
   }[];
 }
 
-export const ALL_EXAMS: ExamModule[] = [
+const ALL_EXAMS: ExamModule[] = [
   {
     id: 'exam_1',
     titleHindi: 'हिंदी संघ राजभाषा एवं सर्वनाम व्याकरणीय परीक्षा',

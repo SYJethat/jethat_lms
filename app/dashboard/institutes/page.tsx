@@ -27,7 +27,7 @@ import {
   ArrowRight
 } from 'lucide-react';
 
-export interface UniversityInstitute {
+interface UniversityInstitute {
   id: string;
   nameHindi: string;
   nameEng: string;
@@ -44,7 +44,7 @@ export interface UniversityInstitute {
   feeStructure: string;
 }
 
-export const INDIAN_UNIVERSITIES: UniversityInstitute[] = [
+const INDIAN_UNIVERSITIES: UniversityInstitute[] = [
   {
     id: 'uni_khs_agra',
     nameHindi: 'केंद्रीय हिंदी संस्थान (Kendriya Hindi Sansthan)',
@@ -175,7 +175,7 @@ export const INDIAN_UNIVERSITIES: UniversityInstitute[] = [
   }
 ];
 
-export interface UniversityRegistration {
+interface UniversityRegistration {
   regNumber: string;
   universityId: string;
   universityName: string;

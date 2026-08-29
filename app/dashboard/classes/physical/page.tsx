@@ -21,7 +21,7 @@ import {
   Mail
 } from 'lucide-react';
 
-export interface PhysicalCampusCenter {
+interface PhysicalCampusCenter {
   id: string;
   nameHindi: string;
   nameEng: string;
@@ -37,7 +37,7 @@ export interface PhysicalCampusCenter {
   bannerGradient: string;
 }
 
-export const REGION_PHYSICAL_CENTERS: PhysicalCampusCenter[] = [
+const REGION_PHYSICAL_CENTERS: PhysicalCampusCenter[] = [
   {
     id: 'pc_1',
     nameHindi: 'केंद्रीय हिंदी संस्थान मुख्य परिसर, आगरा',
@@ -145,7 +145,7 @@ export const REGION_PHYSICAL_CENTERS: PhysicalCampusCenter[] = [
   }
 ];
 
-export interface PhysicalRegistrationPass {
+interface PhysicalRegistrationPass {
   passId: string;
   centerName: string;
   city: string;

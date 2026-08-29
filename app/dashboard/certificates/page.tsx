@@ -25,7 +25,7 @@ import {
 import { getStoredUser } from '@/lib/lmsStore';
 import { User } from '@/lib/mockData';
 
-export interface UserCertificate {
+interface UserCertificate {
   id: string;
   certificateId: string;
   category: '22 Indian Languages' | 'International Foreign Diplomas' | 'NIOS Academic Boards' | 'AI & Skill Badges';
@@ -41,7 +41,7 @@ export interface UserCertificate {
   status: 'Verified & Issued ✓';
 }
 
-export const ALL_MY_CERTIFICATES: UserCertificate[] = [
+const ALL_MY_CERTIFICATES: UserCertificate[] = [
   {
     id: 'cert_1',
     certificateId: 'HLMS-2026-IND-981240',

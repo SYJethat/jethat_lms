@@ -25,7 +25,7 @@ import {
   Camera
 } from 'lucide-react';
 
-export interface ChatMessage {
+interface ChatMessage {
   id: string;
   sender: 'ai' | 'user';
   text: string;
@@ -33,7 +33,7 @@ export interface ChatMessage {
   transcriptSubtitle?: string;
 }
 
-export interface AITeacherAvatar {
+interface AITeacherAvatar {
   id: string;
   nameHindi: string;
   nameEng: string;
@@ -44,7 +44,7 @@ export interface AITeacherAvatar {
   greeting: string;
 }
 
-export const AI_TEACHERS: AITeacherAvatar[] = [
+const AI_TEACHERS: AITeacherAvatar[] = [
   {
     id: 't_devendra',
     nameHindi: 'आचार्य देवेन्द्र प्रसाद (Acharya Devendra AI)',
