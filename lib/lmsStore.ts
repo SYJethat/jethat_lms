@@ -65,3 +65,20 @@ export function addXpToUser(xpAmount: number): User {
   return user;
 }
 
+export function enrollInCourse(courseId: string): User {
+  const user = getStoredUser();
+  if (!user.enrolledCourses.includes(courseId)) {
+    user.enrolledCourses = [...user.enrolledCourses, courseId];
+    saveStoredUser(user);
+  }
+  return user;
+}
+
+export function unenrollFromCourse(courseId: string): User {
+  const user = getStoredUser();
+  user.enrolledCourses = user.enrolledCourses.filter((id) => id !== courseId);
+  saveStoredUser(user);
+  return user;
+}
+
+

@@ -21,6 +21,32 @@ body {
   overflow-x: hidden;
 }
 
+/* GIGW 3.0 High Contrast Accessibility Mode */
+body.gigw-high-contrast {
+  background-color: #000000 !important;
+  color: #ffff00 !important;
+}
+
+body.gigw-high-contrast a,
+body.gigw-high-contrast button,
+body.gigw-high-contrast h1,
+body.gigw-high-contrast h2,
+body.gigw-high-contrast h3,
+body.gigw-high-contrast p,
+body.gigw-high-contrast span {
+  color: #ffff00 !important;
+  border-color: #ffff00 !important;
+}
+
+body.gigw-high-contrast div,
+body.gigw-high-contrast section,
+body.gigw-high-contrast nav,
+body.gigw-high-contrast footer,
+body.gigw-high-contrast aside {
+  background-color: #000000 !important;
+  border-color: #ffff00 !important;
+}
+
 /* White Clean Cards */
 .clean-card {
   background: #ffffff;
@@ -49,6 +75,15 @@ body {
   background: linear-gradient(135deg, #1d4ed8 0%, #3b82f6 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+}
+
+@keyframes marqueeUp {
+  0% {
+    transform: translateY(0%);
+  }
+  100% {
+    transform: translateY(-50%);
+  }
 }
 
 /* Custom Scrollbars */

@@ -23,21 +23,16 @@ import {
   CheckCircle2,
   Menu,
   X,
-  LogIn
+  LogIn,
+  ShieldCheck,
+  Download,
+  HelpCircle,
+  Home,
+  FileText
 } from 'lucide-react';
 import NotificationCenter from './NotificationCenter';
 import SearchModal from './SearchModal';
 import { getStoredUser, getActiveRole, loginUserByRole, User } from '@/lib/lmsStore';
-
-const ROLES_SELECTION: { id: User['role']; label: string; desc: string; icon: any; color: string }[] = [
-  { id: 'student', label: 'Student', desc: 'Pathway, AI Chatbot, Avatars & Speech Tests', icon: UserIcon, color: 'bg-blue-50 text-blue-600 border-blue-200' },
-  { id: 'teacher', label: 'Teacher', desc: 'Live Classes, Roster & Assignments Evaluation', icon: BookOpen, color: 'bg-amber-50 text-amber-600 border-amber-200' },
-  { id: 'creator', label: 'Course Creator', desc: 'Curriculum Builder & Publishing Queue', icon: Sparkles, color: 'bg-cyan-50 text-cyan-600 border-cyan-200' },
-  { id: 'tester', label: 'Quality Tester', desc: 'Devanagari Font & Audio QA Audit', icon: Shield, color: 'bg-purple-50 text-purple-600 border-purple-200' },
-  { id: 'institute', label: 'Institute Admin', desc: 'Centers, Batches & Certificate Issues', icon: Building2, color: 'bg-indigo-50 text-indigo-600 border-indigo-200' },
-  { id: 'accounting', label: 'Accounting', desc: 'Revenue Ledgers, IAP Breakdown & Invoices', icon: DollarSign, color: 'bg-rose-50 text-rose-600 border-rose-200' },
-  { id: 'admin', label: 'Super Admin', desc: 'Full System RBAC & AI Gateway Setup', icon: BarChart3, color: 'bg-orange-50 text-orange-600 border-orange-200' },
-];
 
 export default function Navbar() {
   const pathname = usePathname();
@@ -45,7 +40,8 @@ export default function Navbar() {
   const [user, setUser] = useState<User | null>(null);
   const [activeRole, setActiveRole] = useState<User['role']>('student');
   const [searchOpen, setSearchOpen] = useState(false);
-  const [portalModalOpen, setPortalModalOpen] = useState(false);
+  const [certModalOpen, setCertModalOpen] = useState(false);
+  const [certIdInput, setCertIdInput] = useState('');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
@@ -53,45 +49,69 @@ export default function Navbar() {
     setActiveRole(getActiveRole());
   }, [pathname]);
 
-  // Only display global Navbar on public landing page ('/')
-  if (pathname !== '/') return null;
+  // Hide Navbar on dashboard and exam pages
+  if (pathname.startsWith('/dashboard') || pathname.startsWith('/exam')) return null;
 
-
-
-
-  const handleSelectRoleAndLogin = (roleId: User['role']) => {
-    loginUserByRole(roleId);
-    setPortalModalOpen(false);
-    router.push(`/dashboard/${roleId}`);
+  const handleVerifyCertificateAction = (e: React.FormEvent) => {
+    e.preventDefault();
+    const certCode = certIdInput.trim() || 'HLMS-2026-884920';
+    setCertModalOpen(false);
+    router.push(`/dashboard/student?tab=certificates&verify=${certCode}`);
   };
 
-  const navLinks = [
-    { href: '/', label: 'मुख्य पृष्ठ (Home)' },
-    { href: '/learn/levels', label: 'हिंदी स्तर (Pathway)' },
-    { href: '/ai-hub/chatbot', label: 'AI शिक्षक (AI Hub)' },
-    { href: '/competitions', label: 'प्रतियोगिता (Battles)' },
-    { href: '/leaderboard', label: 'लीडरबोर्ड (Ranks)' },
-    { href: '/classes/live', label: 'लाइव क्लास (Live)' },
-    { href: '/institutes', label: 'संस्थान (Institutes)' },
-    { href: '/library', label: 'पुस्तकालय (Library)' },
+  const mainNavLinks = [
+    { href: '/', label: 'Home', icon: Home },
+    { href: '/about', label: 'About Us', icon: Building2 },
+    { href: '/resources', label: 'Resources', icon: Video },
+    { href: '/how-to-use', label: 'How to Use', icon: HelpCircle },
   ];
 
   return (
     <>
       {/* Navbar Container */}
       <nav className="sticky top-0 z-40 bg-white border-b border-slate-200 shadow-xs">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between">
           {/* Logo */}
           <Link href="/" className="flex items-center group py-1">
             <img
               src="/logo.png"
-              alt="Logo"
+              alt="JetHat Cyber Security & Language LMS Logo"
               className="h-10 sm:h-12 w-auto object-contain transition group-hover:scale-105"
             />
           </Link>
 
+          {/* Desktop Navigation Page Routes (Home, About, Resources, How to Use) */}
+          <div className="hidden lg:flex items-center gap-6 text-xs font-extrabold text-slate-700">
+            {mainNavLinks.map((linkItem) => {
+              const isActiveRoute = pathname === linkItem.href;
+
+              return (
+                <Link
+                  key={linkItem.href}
+                  href={linkItem.href}
+                  className={`flex items-center gap-1.5 transition ${
+                    isActiveRoute
+                      ? 'text-orange-600 font-black border-b-2 border-orange-600 pb-0.5'
+                      : 'hover:text-orange-600'
+                  }`}
+                >
+                  <linkItem.icon className={`w-4 h-4 ${isActiveRoute ? 'text-orange-600' : 'text-slate-400'}`} />
+                  {linkItem.label}
+                </Link>
+              );
+            })}
+          </div>
+
           {/* Right Action Buttons */}
           <div className="flex items-center gap-2 sm:gap-3">
+            {/* PUBLIC CERTIFICATE VERIFICATION NAVBAR POPUP TRIGGER */}
+            <button
+              onClick={() => setCertModalOpen(true)}
+              className="px-3.5 py-2 rounded-xl bg-orange-50 hover:bg-orange-100 text-orange-700 font-extrabold text-xs flex items-center gap-1.5 transition border border-orange-200 shadow-2xs"
+            >
+              <Award className="w-4 h-4 text-orange-600 shrink-0" /> Verify Certificate
+            </button>
+
             {/* Search Trigger */}
             <button
               onClick={() => setSearchOpen(true)}
@@ -104,13 +124,13 @@ export default function Navbar() {
             {/* Notifications */}
             <NotificationCenter />
 
-            {/* PROMINENT LMS PORTAL MULTI-ROLE BUTTON MATCHING USER REQUEST */}
-            <button
-              onClick={() => setPortalModalOpen(true)}
-              className="px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-extrabold text-xs flex items-center gap-2 shadow-md shadow-blue-600/20 transition hover:scale-105"
+            {/* LMS PORTAL SIGN IN BUTTON -> DIRECT NAVIGATION ROUTE TO /login */}
+            <Link
+              href="/login"
+              className="px-4 py-2 rounded-xl bg-orange-600 hover:bg-orange-700 text-white font-extrabold text-xs flex items-center gap-2 shadow-md shadow-orange-600/20 transition hover:scale-105"
             >
               <LogIn className="w-4 h-4" /> LMS Portal Sign In
-            </button>
+            </Link>
 
             {/* Mobile Menu Button */}
             <button
@@ -124,76 +144,111 @@ export default function Navbar() {
 
         {/* Mobile Navigation Drawer */}
         {mobileMenuOpen && (
-          <div className="lg:hidden bg-white border-b border-slate-200 px-4 pt-2 pb-4 space-y-2">
-            {navLinks.map((link) => (
+          <div className="lg:hidden bg-white border-b border-slate-200 px-4 pt-2 pb-4 space-y-2 text-xs font-extrabold text-slate-700">
+            {mainNavLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
                 onClick={() => setMobileMenuOpen(false)}
-                className="block px-3 py-2 rounded-lg text-sm font-medium text-slate-700 hover:bg-slate-100"
+                className="block px-3 py-2 rounded-lg hover:bg-orange-50 hover:text-orange-600"
               >
                 {link.label}
               </Link>
             ))}
+            <Link
+              href="/login"
+              onClick={() => setMobileMenuOpen(false)}
+              className="block px-3 py-2 rounded-lg bg-orange-600 text-white font-bold text-center"
+            >
+              🔑 LMS Portal Sign In
+            </Link>
           </div>
         )}
       </nav>
 
-      {/* Global LMS Portal Role Selection Modal */}
-      {portalModalOpen && (
+      {/* PUBLIC CERTIFICATE VERIFICATION POPUP MODAL */}
+      {certModalOpen && (
         <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-          <div className="w-full max-w-2xl bg-white border border-slate-200 rounded-3xl p-6 sm:p-8 space-y-6 shadow-2xl animate-in fade-in zoom-in-95 duration-200 text-left">
+          <div className="w-full max-w-lg bg-white border border-slate-200 rounded-3xl p-6 sm:p-8 space-y-6 shadow-2xl animate-in fade-in zoom-in-95 duration-200 text-left">
             <div className="flex items-center justify-between border-b border-slate-100 pb-4">
-              <div>
-                <span className="text-[10px] font-black uppercase tracking-widest text-blue-600 block">
-                  AI-POWERED HINDI LMS PORTAL
-                </span>
-                <h2 className="text-xl sm:text-2xl font-black text-slate-900">
-                  Select Role to Access Dashboard
-                </h2>
+              <div className="flex items-center gap-2.5">
+                <div className="w-10 h-10 rounded-2xl bg-orange-50 text-orange-600 flex items-center justify-center font-bold">
+                  <Award className="w-5 h-5" />
+                </div>
+                <div>
+                  <span className="text-[10px] font-black uppercase tracking-widest text-orange-600 block">
+                    PUBLIC DIPLOMA VERIFICATION
+                  </span>
+                  <h2 className="text-xl font-black text-slate-900">
+                    Verify Certificate (प्रमाणपत्र सत्यापन)
+                  </h2>
+                </div>
               </div>
               <button
-                onClick={() => setPortalModalOpen(false)}
+                onClick={() => setCertModalOpen(false)}
                 className="p-2 rounded-xl hover:bg-slate-100 text-slate-400 hover:text-slate-700 transition"
               >
                 <X className="w-5 h-5" />
               </button>
             </div>
 
-            <p className="text-xs text-slate-500 font-medium">
-              Choose your user role below to log in and access your dedicated console and custom sidebar tabs:
+            <p className="text-xs text-slate-600 font-medium leading-relaxed">
+              Verify official language diplomas & certificates accredited by Kendriya Hindi Sansthan Agra, CIIL Mysuru, BHU, and Delhi University with instant QR verification.
             </p>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 max-h-96 overflow-y-auto pr-1">
-              {ROLES_SELECTION.map((r) => (
-                <div
-                  key={r.id}
-                  onClick={() => handleSelectRoleAndLogin(r.id)}
-                  className={`p-4 rounded-2xl border cursor-pointer transition flex items-start gap-3 hover:scale-102 hover:shadow-md ${r.color}`}
-                >
-                  <div className="p-2.5 rounded-xl bg-white shadow-xs shrink-0">
-                    <r.icon className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <h3 className="text-sm font-extrabold text-slate-900">{r.label}</h3>
-                    <p className="text-[11px] text-slate-600 font-medium mt-0.5 line-clamp-2">{r.desc}</p>
-                    <span className="text-[10px] text-blue-600 font-bold mt-2 inline-flex items-center gap-1">
-                      Login as {r.label} →
-                    </span>
-                  </div>
-                </div>
-              ))}
-            </div>
+            <form onSubmit={handleVerifyCertificateAction} className="space-y-4">
+              <div className="space-y-1.5">
+                <label className="text-xs font-bold text-slate-800 block">
+                  Certificate Serial ID / Token:
+                </label>
+                <input
+                  type="text"
+                  value={certIdInput}
+                  onChange={(e) => setCertIdInput(e.target.value)}
+                  placeholder="e.g. HLMS-2026-884920 or KHS-DIP-2026-774910"
+                  className="w-full bg-slate-50 border border-slate-200 rounded-2xl px-4 py-3 text-xs text-slate-900 placeholder-slate-400 focus:outline-none focus:border-orange-500 font-mono font-bold"
+                  required
+                />
+              </div>
 
-            <div className="pt-2 flex justify-between items-center text-xs text-slate-500 border-t border-slate-100">
-              <span>Centralized RBAC Session Control</span>
-              <Link
-                href="/login"
-                onClick={() => setPortalModalOpen(false)}
-                className="font-bold text-blue-600 hover:underline"
-              >
-                Open Full Login Page →
-              </Link>
+              {/* Sample Quick Fill Pills */}
+              <div className="space-y-1">
+                <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">
+                  Sample Accredited Certificate IDs:
+                </span>
+                <div className="flex flex-wrap gap-1.5">
+                  {['HLMS-2026-884920', 'KHS-DIP-2026-774910', 'CIIL-LANG-2026-302911'].map((sampleId) => (
+                    <button
+                      key={sampleId}
+                      type="button"
+                      onClick={() => setCertIdInput(sampleId)}
+                      className="px-2.5 py-1 rounded-lg bg-orange-50 hover:bg-orange-100 text-orange-800 text-[10px] font-mono font-bold transition"
+                    >
+                      {sampleId}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              <div className="pt-2 flex gap-3">
+                <button
+                  type="button"
+                  onClick={() => setCertModalOpen(false)}
+                  className="w-1/3 py-3 rounded-2xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs transition"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  className="w-2/3 py-3 rounded-2xl bg-orange-600 hover:bg-orange-700 text-white font-extrabold text-xs shadow-md transition flex items-center justify-center gap-1.5"
+                >
+                  <ShieldCheck className="w-4 h-4" /> Verify Diploma Now
+                </button>
+              </div>
+            </form>
+
+            <div className="pt-2 border-t border-slate-100 text-[11px] font-bold text-emerald-600 flex items-center gap-1">
+              <CheckCircle2 className="w-3.5 h-3.5" /> 100% Cryptographic QR & Ministry Verification Engine
             </div>
           </div>
         </div>

@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import {
@@ -25,46 +25,103 @@ import {
   Zap,
   Flame,
   ChevronDown,
+  ChevronRight,
   LogIn,
   CheckCircle2,
-  History
+  History,
+  Globe,
+  Compass,
+  Bookmark,
+  FileText,
+  X,
+  Save,
+  GraduationCap
 } from 'lucide-react';
-import { getActiveRole, getStoredUser, loginUserByRole, User } from '@/lib/lmsStore';
+import { getActiveRole, getStoredUser, saveStoredUser, User } from '@/lib/lmsStore';
 
-interface SidebarGroup {
-  groupTitle: string;
-  items: {
+interface SidebarItem {
+  tabId: string;
+  label: string;
+  icon: any;
+  badge?: string;
+  subItems?: {
     tabId: string;
     label: string;
-    icon: any;
     badge?: string;
   }[];
 }
 
-const ROLES_QUICK_SWITCH: { id: User['role']; label: string; icon: any; color: string }[] = [
-  { id: 'student', label: 'Student', icon: UserIcon, color: 'text-blue-600' },
-  { id: 'teacher', label: 'Teacher', icon: BookOpen, color: 'text-amber-600' },
-  { id: 'creator', label: 'Course Creator', icon: Sparkles, color: 'text-cyan-600' },
-  { id: 'tester', label: 'Quality Tester', icon: Shield, color: 'text-purple-600' },
-  { id: 'institute', label: 'Institute Admin', icon: Building2, color: 'text-indigo-600' },
-  { id: 'accounting', label: 'Accounting', icon: DollarSign, color: 'text-rose-600' },
-  { id: 'admin', label: 'Super Admin', icon: BarChart3, color: 'text-orange-600' },
-];
+interface SidebarGroup {
+  groupTitle: string;
+  items: SidebarItem[];
+}
 
 export default function DashboardSidebar() {
   const pathname = usePathname();
-  const searchParams = useSearchParams();
   const router = useRouter();
+  const searchParams = useSearchParams();
   const role = getActiveRole();
-  const user = getStoredUser();
-  const [roleMenuOpen, setRoleMenuOpen] = useState(false);
-
   const activeTab = searchParams.get('tab') || 'overview';
 
-  const handleRoleSwitch = (newRole: User['role']) => {
-    loginUserByRole(newRole);
-    setRoleMenuOpen(false);
-    router.push(`/dashboard/${newRole}`);
+  const [user, setUser] = useState<User | null>(null);
+  const [footerMenuOpen, setFooterMenuOpen] = useState(false);
+  const [editModalOpen, setEditModalOpen] = useState(false);
+
+  // Dropdown open/close map state
+  const [openDropdowns, setOpenDropdowns] = useState<Record<string, boolean>>({
+    'courses-dropdown': true,
+    'free-dropdown': true,
+    'ai-dropdown': true,
+  });
+
+  // Editable Student Profile Form State
+  const [editName, setEditName] = useState('');
+  const [editEmail, setEditEmail] = useState('');
+  const [editBio, setEditBio] = useState('');
+
+  useEffect(() => {
+    const cur = getStoredUser();
+    setUser(cur);
+    setEditName(cur.name || 'Aarav Sharma');
+    setEditEmail(cur.email || 'aarav.sharma@lms.edu.in');
+    setEditBio('Class 10 CBSE Student • Devanagari Learner');
+
+    const handleUpdate = () => {
+      const updated = getStoredUser();
+      setUser(updated);
+    };
+
+    window.addEventListener('userStateUpdated', handleUpdate);
+    return () => window.removeEventListener('userStateUpdated', handleUpdate);
+  }, []);
+
+  const toggleDropdown = (id: string) => {
+    setOpenDropdowns((prev) => ({ ...prev, [id]: !prev[id] }));
+  };
+
+  const handleSaveProfile = () => {
+    if (!user) return;
+    const updatedUser: User = {
+      ...user,
+      name: editName,
+      email: editEmail
+    };
+
+    saveStoredUser(updatedUser);
+    setUser(updatedUser);
+    setEditModalOpen(false);
+    setFooterMenuOpen(false);
+
+    if (typeof window !== 'undefined') {
+      window.dispatchEvent(new Event('userStateUpdated'));
+    }
+
+    alert('✅ Student Profile Details updated successfully!');
+  };
+
+  const handleLogout = () => {
+    setFooterMenuOpen(false);
+    router.push('/login');
   };
 
   const roleSidebarData: Record<User['role'], { title: string; subtitle: string; groups: SidebarGroup[] }> = {
@@ -76,25 +133,53 @@ export default function DashboardSidebar() {
           groupTitle: 'MAIN WORKSPACE',
           items: [
             { tabId: 'overview', label: 'Dashboard Overview', icon: LayoutDashboard },
-            { tabId: 'levels', label: 'हिंदी स्तर (Pathway)', icon: BookOpen, badge: 'L1-L7' },
+            {
+              tabId: 'courses-dropdown',
+              label: 'Courses',
+              icon: BookOpen,
+              subItems: [
+                { tabId: 'indian-languages', label: 'Indian Languages', badge: '22' },
+                { tabId: 'foreign-languages', label: 'Foreign to Indian Languages', badge: '15' },
+              ],
+            },
+            {
+              tabId: 'free-dropdown',
+              label: 'Free Resources',
+              icon: Video,
+              badge: 'FREE',
+              subItems: [
+                { tabId: 'free-videos', label: 'Free Videos', badge: 'HD' },
+                { tabId: 'free-audio', label: 'Free Audio', badge: 'Audio' },
+                { tabId: 'guided-learning', label: 'Guided Study', badge: 'PDF' },
+              ],
+            },
+            { tabId: 'levels', label: 'Levels Pathway', icon: BookOpen, badge: 'L1-L7' },
             { tabId: 'exam', label: 'Assessments & Exams', icon: HelpCircle, badge: '3' },
-            { tabId: 'classes', label: 'लाइव क्लास (Live)', icon: Video },
-            { tabId: 'competitions', label: 'प्रतियोगिता (Battles)', icon: Trophy },
-            { tabId: 'leaderboard', label: 'लीडरबोर्ड (Ranks)', icon: BarChart3 },
-            { tabId: 'institutes', label: 'संस्थान (Institutes)', icon: Building2 },
-            { tabId: 'library', label: 'पुस्तकालय (Library)', icon: BookOpen },
+            { tabId: 'classes', label: 'Live Classes', icon: Video },
+            { tabId: 'competitions', label: 'Competitions', icon: Trophy },
+            { tabId: 'leaderboard', label: 'Leaderboard', icon: BarChart3 },
+            { tabId: 'institutes', label: 'Institutes', icon: Building2 },
+            { tabId: 'library', label: 'Library', icon: BookOpen },
           ],
         },
         {
           groupTitle: 'AI LEARNING TOOLS',
           items: [
-            { tabId: 'chatbot', label: 'AI शिक्षक (AI Hub)', icon: Bot, badge: 'Online' },
-            { tabId: 'avatar', label: 'Digital Avatars', icon: Sparkles },
-            { tabId: 'speaking-test', label: 'AI Speaking Test', icon: Mic },
-            { tabId: 'writing-test', label: 'AI Writing Test', icon: FileEdit },
-            { tabId: 'listening-test', label: 'AI Listening Test', icon: Headphones },
+            {
+              tabId: 'ai-dropdown',
+              label: 'AI Learning Tools',
+              icon: Bot,
+              subItems: [
+                { tabId: 'chatbot', label: 'AI Teacher Hub', badge: 'Online' },
+                { tabId: 'speaking-test', label: 'AI Speaking Test', badge: 'Voice' },
+                { tabId: 'writing-test', label: 'AI Writing Test', badge: 'Devanagari' },
+                { tabId: 'listening-test', label: 'AI Listening Test', badge: 'Audio' },
+                { tabId: 'avatar', label: 'Digital Avatars', badge: '3D' },
+              ],
+            },
             { tabId: 'physical', label: 'Physical Centers', icon: MapPin },
             { tabId: 'certificates', label: 'My Certificates', icon: Shield },
+            { tabId: 'account-details', label: 'Account & Payments', icon: DollarSign, badge: 'Paid' },
           ],
         },
       ],
@@ -116,10 +201,10 @@ export default function DashboardSidebar() {
         {
           groupTitle: 'ACADEMIC RESOURCES',
           items: [
-            { tabId: 'levels', label: 'हिंदी स्तर (Pathway)', icon: BookOpen },
-            { tabId: 'institutes', label: 'संस्थान (Institutes)', icon: Building2 },
-            { tabId: 'library', label: 'पुस्तकालय (Library)', icon: BookOpen },
-            { tabId: 'competitions', label: 'प्रतियोगिता (Battles)', icon: Trophy },
+            { tabId: 'levels', label: 'Levels Pathway', icon: BookOpen },
+            { tabId: 'institutes', label: 'Institutes', icon: Building2 },
+            { tabId: 'library', label: 'Library', icon: BookOpen },
+            { tabId: 'competitions', label: 'Competitions', icon: Trophy },
           ],
         },
       ],
@@ -141,8 +226,8 @@ export default function DashboardSidebar() {
         {
           groupTitle: 'RESOURCES',
           items: [
-            { tabId: 'levels', label: 'हिंदी स्तर (Pathway)', icon: BookOpen },
-            { tabId: 'library', label: 'पुस्तकालय (Library)', icon: BookOpen },
+            { tabId: 'levels', label: 'Levels Pathway', icon: BookOpen },
+            { tabId: 'library', label: 'Library', icon: BookOpen },
           ],
         },
       ],
@@ -164,8 +249,8 @@ export default function DashboardSidebar() {
         {
           groupTitle: 'PLATFORM AUDIT',
           items: [
-            { tabId: 'levels', label: 'हिंदी स्तर (Pathway)', icon: BookOpen },
-            { tabId: 'chatbot', label: 'AI शिक्षक (AI Hub)', icon: Bot },
+            { tabId: 'levels', label: 'Levels Pathway', icon: BookOpen },
+            { tabId: 'chatbot', label: 'AI Teacher Hub', icon: Bot },
           ],
         },
       ],
@@ -186,9 +271,9 @@ export default function DashboardSidebar() {
         {
           groupTitle: 'MANAGEMENT',
           items: [
-            { tabId: 'institutes', label: 'संस्थान (Institutes)', icon: Building2 },
+            { tabId: 'institutes', label: 'Institutes', icon: Building2 },
             { tabId: 'certificates', label: 'Local Certificates', icon: Award },
-            { tabId: 'classes', label: 'लाइव क्लास (Live)', icon: Video },
+            { tabId: 'classes', label: 'Live Classes', icon: Video },
           ],
         },
       ],
@@ -210,7 +295,7 @@ export default function DashboardSidebar() {
         {
           groupTitle: 'INSTITUTE AUDIT',
           items: [
-            { tabId: 'institutes', label: 'संस्थान (Institutes)', icon: Building2 },
+            { tabId: 'institutes', label: 'Institutes', icon: Building2 },
           ],
         },
       ],
@@ -232,11 +317,11 @@ export default function DashboardSidebar() {
         {
           groupTitle: 'GLOBAL PLATFORM',
           items: [
-            { tabId: 'levels', label: 'हिंदी स्तर (Pathway)', icon: BookOpen },
-            { tabId: 'competitions', label: 'प्रतियोगिता (Battles)', icon: Trophy },
-            { tabId: 'leaderboard', label: 'लीडरबोर्ड (Ranks)', icon: BarChart3 },
-            { tabId: 'institutes', label: 'संस्थान (Institutes)', icon: Building2 },
-            { tabId: 'library', label: 'पुस्तकालय (Library)', icon: BookOpen },
+            { tabId: 'levels', label: 'Levels Pathway', icon: BookOpen },
+            { tabId: 'competitions', label: 'Competitions', icon: Trophy },
+            { tabId: 'leaderboard', label: 'Leaderboard', icon: BarChart3 },
+            { tabId: 'institutes', label: 'Institutes', icon: Building2 },
+            { tabId: 'library', label: 'Library', icon: BookOpen },
           ],
         },
       ],
@@ -246,127 +331,270 @@ export default function DashboardSidebar() {
   const currentRoleData = roleSidebarData[role] || roleSidebarData.student;
 
   return (
-    <aside className="w-64 bg-white border-r border-slate-200 flex flex-col justify-between shrink-0 h-screen sticky top-0 shadow-sm z-30">
-      {/* Sidebar Header with Official Emblem / Logo */}
-      <div className="p-4 space-y-4">
-        <Link href="/" className="flex items-center group py-1">
-          <img
-            src="/logo.png"
-            alt="Logo"
-            className="h-10 w-auto object-contain transition group-hover:scale-105"
-          />
-        </Link>
+    <>
+      <aside className="w-64 bg-white border-r border-slate-200 flex flex-col justify-between shrink-0 h-screen sticky top-0 shadow-sm z-30">
+        {/* Sidebar Header with Official Emblem / Logo */}
+        <div className="p-4 space-y-4">
+          <Link href="/" className="flex items-center group py-1">
+            <img
+              src="/logo.png"
+              alt="JetHat Cyber Security & Language LMS Logo"
+              className="h-10 w-auto object-contain transition group-hover:scale-105"
+            />
+          </Link>
 
-        {/* Dynamic Role Switcher Dropdown inside Sidebar */}
-        <div className="relative">
+          {/* Grouped Sidebar Menus */}
+          <div className="space-y-5 overflow-y-auto max-h-[calc(100vh-170px)] pr-1">
+            {currentRoleData.groups.map((grp, gIdx) => (
+              <div key={gIdx} className="space-y-1">
+                <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest px-3 block">
+                  {grp.groupTitle}
+                </span>
+
+                <div className="space-y-0.5">
+                  {grp.items.map((item, iIdx) => {
+                    if (item.subItems) {
+                      const isOpen = !!openDropdowns[item.tabId];
+                      const isAnySubActive = item.subItems.some((s) => s.tabId === activeTab);
+
+                      return (
+                        <div key={iIdx} className="space-y-0.5">
+                          <button
+                            onClick={() => toggleDropdown(item.tabId)}
+                            className={`w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs font-bold transition select-none ${
+                              isAnySubActive || isOpen
+                                ? 'bg-orange-50 text-orange-700 font-extrabold'
+                                : 'text-slate-700 hover:bg-slate-50'
+                            }`}
+                          >
+                            <span className="flex items-center gap-3">
+                              <item.icon className={`w-4 h-4 ${isAnySubActive || isOpen ? 'text-orange-600' : 'text-slate-400'}`} />
+                              {item.label}
+                            </span>
+                            <div className="flex items-center gap-1.5">
+                              {item.badge && (
+                                <span className="px-2 py-0.5 rounded-full text-[9px] font-black bg-orange-100 text-orange-800">
+                                  {item.badge}
+                                </span>
+                              )}
+                              {isOpen ? (
+                                <ChevronDown className="w-3.5 h-3.5 text-orange-600" />
+                              ) : (
+                                <ChevronRight className="w-3.5 h-3.5 text-slate-400" />
+                              )}
+                            </div>
+                          </button>
+
+                          {/* Sub-items list */}
+                          {isOpen && (
+                            <div className="ml-4 pl-3 border-l-2 border-orange-200 space-y-0.5 py-1 animate-in fade-in duration-150">
+                              {item.subItems.map((sub, sIdx) => {
+                                const targetHref = `/dashboard/${role}?tab=${sub.tabId}`;
+                                const isSubActive = activeTab === sub.tabId;
+
+                                return (
+                                  <Link
+                                    key={sIdx}
+                                    href={targetHref}
+                                    className={`flex items-center justify-between px-3 py-2 rounded-xl text-xs font-bold transition ${
+                                      isSubActive
+                                        ? 'bg-orange-600 text-white font-black shadow-xs'
+                                        : 'text-slate-700 hover:bg-orange-50 hover:text-orange-700'
+                                    }`}
+                                  >
+                                    <span>{sub.label}</span>
+                                    {sub.badge && (
+                                      <span
+                                        className={`px-2 py-0.5 rounded-full text-[10px] font-black ${
+                                          isSubActive
+                                            ? 'bg-white text-orange-600'
+                                            : 'bg-orange-100 text-orange-800'
+                                        }`}
+                                      >
+                                        {sub.badge}
+                                      </span>
+                                    )}
+                                  </Link>
+                                );
+                              })}
+                            </div>
+                          )}
+                        </div>
+                      );
+                    }
+
+                    // Standard Links
+                    const targetHref = `/dashboard/${role}?tab=${item.tabId}`;
+                    const isActive = activeTab === item.tabId;
+
+                    return (
+                      <Link
+                        key={iIdx}
+                        href={targetHref}
+                        className={`flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs font-semibold transition ${
+                          isActive
+                            ? 'bg-orange-50 text-orange-600 border-l-4 border-orange-600 font-extrabold shadow-xs'
+                            : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900'
+                        }`}
+                      >
+                        <span className="flex items-center gap-3">
+                          <item.icon className={`w-4 h-4 ${isActive ? 'text-orange-600' : 'text-slate-400'}`} />
+                          {item.label}
+                        </span>
+
+                        {item.badge && (
+                          <span
+                            className={`px-2 py-0.5 rounded-full text-[10px] font-black ${
+                              isActive
+                                ? 'bg-orange-600 text-white'
+                                : 'bg-slate-100 text-slate-600 border border-slate-200'
+                            }`}
+                          >
+                            {item.badge}
+                          </span>
+                        )}
+                      </Link>
+                    );
+                  })}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* CLICKABLE INTERACTIVE SIDEBAR FOOTER CARD */}
+        <div className="p-3 border-t border-slate-200 bg-slate-50/70 relative">
           <button
-            onClick={() => setRoleMenuOpen(!roleMenuOpen)}
-            className="w-full p-2.5 rounded-xl bg-blue-50 border border-blue-200 text-blue-900 font-bold text-xs flex items-center justify-between shadow-xs hover:bg-blue-100 transition"
+            onClick={() => setFooterMenuOpen(!footerMenuOpen)}
+            className="w-full p-2 rounded-2xl bg-white border border-slate-200 hover:border-orange-300 shadow-xs flex items-center justify-between text-left transition group cursor-pointer"
           >
-            <div className="flex items-center gap-2">
-              <UserIcon className="w-4 h-4 text-blue-600" />
-              <span>Role: <span className="uppercase text-blue-700 font-black">{role}</span></span>
+            <div className="flex items-center gap-2.5 overflow-hidden">
+              <div className="w-8 h-8 rounded-xl bg-orange-600 text-white font-black flex items-center justify-center text-xs shadow-xs shrink-0 group-hover:scale-105 transition">
+                {user?.name?.charAt(0) || 'A'}
+              </div>
+              <div className="space-y-0.5 overflow-hidden">
+                <h4 className="text-xs font-extrabold text-slate-900 truncate">
+                  {user?.name || 'Aarav Sharma'}
+                </h4>
+                <span className="text-[10px] text-orange-600 font-extrabold capitalize block">
+                  {role} Console ▾
+                </span>
+              </div>
             </div>
-            <ChevronDown className="w-3.5 h-3.5 text-blue-500" />
+            <ChevronDown className="w-3.5 h-3.5 text-slate-400 shrink-0" />
           </button>
 
-          {roleMenuOpen && (
-            <div className="absolute left-0 right-0 mt-1 bg-white border border-slate-200 rounded-2xl shadow-xl z-50 p-2 space-y-1 text-xs">
-              <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest px-2 block">
-                SWITCH LOGGED IN ROLE
+          {/* Footer Popover Dropdown Menu */}
+          {footerMenuOpen && (
+            <div className="absolute bottom-full left-3 right-3 mb-2 bg-white border border-slate-200 rounded-2xl shadow-2xl z-50 p-2 space-y-1 text-xs animate-in fade-in zoom-in-95 duration-150">
+              <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest px-2.5 py-1 block">
+                STUDENT OPTIONS
               </span>
-              {ROLES_QUICK_SWITCH.map((r) => (
-                <button
-                  key={r.id}
-                  onClick={() => handleRoleSwitch(r.id)}
-                  className={`w-full text-left px-2.5 py-1.5 rounded-lg font-bold transition flex items-center justify-between ${
-                    role === r.id ? 'bg-blue-600 text-white' : 'text-slate-700 hover:bg-slate-100'
-                  }`}
-                >
-                  <span className="flex items-center gap-2">
-                    <r.icon className={`w-3.5 h-3.5 ${role === r.id ? 'text-white' : r.color}`} />
-                    {r.label}
-                  </span>
-                  {role === r.id && <CheckCircle2 className="w-3.5 h-3.5 text-white" />}
-                </button>
-              ))}
+
+              <button
+                onClick={() => {
+                  setEditModalOpen(true);
+                  setFooterMenuOpen(false);
+                }}
+                className="w-full text-left px-2.5 py-2 rounded-xl font-bold text-slate-700 hover:bg-orange-50 hover:text-orange-700 flex items-center gap-2 transition"
+              >
+                <FileEdit className="w-4 h-4 text-orange-600" /> Edit Profile Details
+              </button>
+
+              <Link
+                href={`/dashboard/${role}?tab=certificates`}
+                onClick={() => setFooterMenuOpen(false)}
+                className="w-full text-left px-2.5 py-2 rounded-xl font-bold text-slate-700 hover:bg-amber-50 hover:text-amber-800 flex items-center gap-2 transition"
+              >
+                <Award className="w-4 h-4 text-amber-500" /> My Certificates
+              </Link>
+
+              <button
+                onClick={handleLogout}
+                className="w-full text-left px-2.5 py-2 rounded-xl font-bold text-rose-600 hover:bg-rose-50 flex items-center gap-2 transition border-t border-slate-100 pt-2"
+              >
+                <LogOut className="w-4 h-4" /> Logout / Sign Out
+              </button>
             </div>
           )}
         </div>
+      </aside>
 
-        {/* Grouped Sidebar Menus */}
-        <div className="space-y-5 overflow-y-auto max-h-[calc(100vh-270px)] pr-1">
-          {currentRoleData.groups.map((grp, gIdx) => (
-            <div key={gIdx} className="space-y-1">
-              <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest px-3 block">
-                {grp.groupTitle}
-              </span>
+      {/* EDITABLE STUDENT PROFILE MODAL */}
+      {editModalOpen && (
+        <div className="fixed inset-0 bg-slate-900/75 backdrop-blur-xs z-50 flex items-center justify-center p-4 overflow-y-auto">
+          <div className="w-full max-w-md bg-white border border-slate-200 rounded-3xl p-6 space-y-5 shadow-2xl animate-in fade-in zoom-in-95 duration-200 text-left my-8">
+            <div className="flex items-center justify-between border-b border-slate-100 pb-3">
+              <div className="flex items-center gap-2.5">
+                <div className="w-9 h-9 rounded-xl bg-orange-50 text-orange-600 flex items-center justify-center font-bold">
+                  <UserIcon className="w-5 h-5" />
+                </div>
+                <div>
+                  <span className="text-[10px] font-black uppercase text-orange-600 tracking-wider block">STUDENT PROFILE EDITOR</span>
+                  <h3 className="text-lg font-black text-slate-900">Edit Student Details</h3>
+                </div>
+              </div>
+              <button
+                onClick={() => setEditModalOpen(false)}
+                className="p-1.5 rounded-xl hover:bg-slate-100 text-slate-400 hover:text-slate-700 transition"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
 
-              <div className="space-y-0.5">
-                {grp.items.map((item, iIdx) => {
-                  const targetHref = `/dashboard/${role}?tab=${item.tabId}`;
-                  const isActive = activeTab === item.tabId;
+            <div className="space-y-4 text-xs font-semibold">
+              <div className="space-y-1">
+                <label className="text-slate-700 font-bold block">Student Full Name:</label>
+                <input
+                  type="text"
+                  value={editName}
+                  onChange={(e) => setEditName(e.target.value)}
+                  className="w-full p-3 rounded-xl bg-slate-50 border border-slate-300 font-bold focus:outline-none focus:ring-2 focus:ring-orange-500"
+                />
+              </div>
 
-                  return (
-                    <Link
-                      key={iIdx}
-                      href={targetHref}
-                      className={`flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs font-semibold transition ${
-                        isActive
-                          ? 'bg-blue-50 text-blue-600 border-l-4 border-blue-600 font-bold shadow-xs'
-                          : 'text-slate-600 hover:text-blue-600 hover:bg-slate-50'
-                      }`}
-                    >
-                      <div className="flex items-center gap-3">
-                        <item.icon className={`w-4 h-4 ${isActive ? 'text-blue-600' : 'text-slate-400'}`} />
-                        <span>{item.label}</span>
-                      </div>
-                      {item.badge && (
-                        <span
-                          className={`px-1.5 py-0.5 rounded-full text-[10px] font-bold ${
-                            isActive
-                              ? 'bg-blue-600 text-white'
-                              : 'bg-blue-100 text-blue-700'
-                          }`}
-                        >
-                          {item.badge}
-                        </span>
-                      )}
-                    </Link>
-                  );
-                })}
+              <div className="space-y-1">
+                <label className="text-slate-700 font-bold block">Email Address:</label>
+                <input
+                  type="email"
+                  value={editEmail}
+                  onChange={(e) => setEditEmail(e.target.value)}
+                  className="w-full p-3 rounded-xl bg-slate-50 border border-slate-300 font-bold focus:outline-none focus:ring-2 focus:ring-orange-500"
+                />
+              </div>
+
+              <div className="space-y-1">
+                <label className="text-slate-700 font-bold block">Academic Stream / Bio:</label>
+                <input
+                  type="text"
+                  value={editBio}
+                  onChange={(e) => setEditBio(e.target.value)}
+                  className="w-full p-3 rounded-xl bg-slate-50 border border-slate-300 font-bold focus:outline-none focus:ring-2 focus:ring-orange-500"
+                />
+              </div>
+
+              <div className="p-3.5 rounded-2xl bg-orange-50 border border-orange-200 text-[11px] text-orange-950 font-medium">
+                💡 Profile updates will instantly sync across your certificates, topbar header, and student dashboard console.
               </div>
             </div>
-          ))}
-        </div>
-      </div>
 
-      {/* Bottom User Card Matching Screenshot */}
-      <div className="p-4 border-t border-slate-200 bg-slate-50/80">
-        <div className="p-2.5 rounded-xl bg-white border border-slate-200 flex items-center justify-between shadow-xs">
-          <div className="flex items-center gap-2.5 overflow-hidden">
-            <img
-              src={user?.avatar || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80'}
-              alt=""
-              className="w-8 h-8 rounded-full object-cover ring-2 ring-blue-500 shrink-0"
-            />
-            <div className="overflow-hidden">
-              <span className="text-xs font-bold text-slate-800 block line-clamp-1">{user?.name}</span>
-              <span className="text-[10px] text-blue-600 font-semibold block uppercase line-clamp-1">
-                {role.toUpperCase()} • CLASS 10
-              </span>
+            <div className="pt-2 flex items-center justify-end gap-2">
+              <button
+                onClick={() => setEditModalOpen(false)}
+                className="px-4 py-2.5 rounded-xl bg-slate-100 text-slate-700 font-bold text-xs"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={handleSaveProfile}
+                className="px-6 py-2.5 rounded-xl bg-orange-600 hover:bg-orange-700 text-white font-black text-xs shadow-md flex items-center gap-1.5"
+              >
+                <Save className="w-4 h-4" /> Save Profile Changes
+              </button>
             </div>
           </div>
-
-          <Link
-            href="/login"
-            className="p-1.5 rounded-lg text-slate-400 hover:text-rose-600 hover:bg-rose-50 transition"
-            title="Logout / Login Portal"
-          >
-            <LogOut className="w-4 h-4" />
-          </Link>
         </div>
-      </div>
-    </aside>
+      )}
+    </>
   );
 }
