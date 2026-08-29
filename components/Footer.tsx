@@ -17,14 +17,13 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 mb-12">
         {/* Col 1: Brand Info & Government Compliance */}
         <div className="lg:col-span-2 space-y-4">
-          <div className="flex items-center gap-3">
-            <div className="w-9 h-9 rounded-xl bg-blue-600 text-white flex items-center justify-center font-black text-lg shadow-sm">
-              हि
-            </div>
-            <span className="text-lg font-black text-slate-900">
-              केंद्रीय हिंदी <span className="text-blue-600">LMS PORTAL</span>
-            </span>
-          </div>
+          <Link href="/" className="inline-block group py-1">
+            <img
+              src="/logo.png"
+              alt="Logo"
+              className="h-10 w-auto object-contain transition group-hover:scale-105"
+            />
+          </Link>
           <p className="text-xs text-slate-500 leading-relaxed max-w-md font-medium">
             Autonomous Hindi Language Learning Management System powering global students, accredited Indian universities, AI speech assessment, live classrooms, and verified certifications.
           </p>

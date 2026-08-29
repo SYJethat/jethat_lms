@@ -82,18 +82,12 @@ export default function Navbar() {
       <nav className="sticky top-0 z-40 bg-white border-b border-slate-200 shadow-xs">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-3 group">
-            <div className="w-10 h-10 rounded-xl bg-blue-600 text-white flex items-center justify-center font-black text-xl shadow-md group-hover:scale-105 transition">
-              हि
-            </div>
-            <div>
-              <span className="text-base font-black tracking-tight text-slate-900 flex items-center gap-1">
-                हिंदी <span className="text-blue-600">LMS PORTAL</span>
-              </span>
-              <span className="text-[10px] text-slate-500 block -mt-1 font-semibold">
-                Centralized Hindi Academy
-              </span>
-            </div>
+          <Link href="/" className="flex items-center group py-1">
+            <img
+              src="/logo.png"
+              alt="Logo"
+              className="h-10 sm:h-12 w-auto object-contain transition group-hover:scale-105"
+            />
           </Link>
 
           {/* Right Action Buttons */}

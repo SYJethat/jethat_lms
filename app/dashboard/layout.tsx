@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, Suspense } from 'react';
 import DashboardSidebar from '@/components/DashboardSidebar';
 import NotificationCenter from '@/components/NotificationCenter';
 import SearchModal from '@/components/SearchModal';
@@ -46,7 +46,9 @@ export default function DashboardLayout({
   return (
     <div className="min-h-screen flex bg-[#F8FAFC] text-slate-800 antialiased">
       {/* 1. Dedicated Left Sidebar */}
-      <DashboardSidebar />
+      <Suspense fallback={<div className="w-64 bg-white border-r border-slate-200 h-screen shrink-0" />}>
+        <DashboardSidebar />
+      </Suspense>
 
       {/* 2. Main Workspace Right Pane */}
       <div className="flex-1 flex flex-col min-w-0">
@@ -143,7 +145,9 @@ export default function DashboardLayout({
 
         {/* Main Dashboard Content Window */}
         <main className="flex-1 p-6 sm:p-8 overflow-y-auto">
-          {children}
+          <Suspense fallback={<div className="p-8 font-bold text-slate-400">Loading Console...</div>}>
+            {children}
+          </Suspense>
         </main>
       </div>
 

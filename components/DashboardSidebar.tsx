@@ -249,18 +249,12 @@ export default function DashboardSidebar() {
     <aside className="w-64 bg-white border-r border-slate-200 flex flex-col justify-between shrink-0 h-screen sticky top-0 shadow-sm z-30">
       {/* Sidebar Header with Official Emblem / Logo */}
       <div className="p-4 space-y-4">
-        <Link href="/" className="flex items-center gap-3 group">
-          <div className="w-10 h-10 rounded-xl bg-blue-600 text-white flex items-center justify-center font-black text-xl shadow-md group-hover:scale-105 transition">
-            हि
-          </div>
-          <div>
-            <h2 className="text-xs font-black uppercase text-blue-900 leading-tight tracking-tight">
-              केंद्रीय हिंदी संस्थान
-            </h2>
-            <span className="text-[9px] font-semibold text-slate-500 block">
-              AI-POWERED HINDI LMS PORTAL
-            </span>
-          </div>
+        <Link href="/" className="flex items-center group py-1">
+          <img
+            src="/logo.png"
+            alt="Logo"
+            className="h-10 w-auto object-contain transition group-hover:scale-105"
+          />
         </Link>
 
         {/* Dynamic Role Switcher Dropdown inside Sidebar */}
