@@ -257,8 +257,8 @@ export default function HomePage() {
             alt={currentSlide.titleEng}
             className="w-full h-full object-cover object-center opacity-85 transition-all duration-1000"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/80 to-transparent w-full md:w-3/4" />
-          <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-slate-950/30" />
+          <div className="absolute inset-0 bg-gradient-to-r from-slate-950/80 via-slate-950/30 to-transparent w-full md:w-3/4" />
+          {/* <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-slate-950/30" /> */}
         </div>
 
         <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-12 relative z-10 w-full">
