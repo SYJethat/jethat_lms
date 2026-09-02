@@ -54,6 +54,7 @@ import DashboardInstitutesPage from '../institutes/page';
 import DashboardCertificatesPage from '../certificates/page';
 import DashboardAccountDetailsPage from '../account-details/page';
 import DashboardExamPage from '../exam/page';
+import DashboardLessonView from '@/components/DashboardLessonView';
 
 export default function StudentDashboard() {
   const searchParams = useSearchParams();
@@ -65,6 +66,7 @@ export default function StudentDashboard() {
   }, []);
 
   // Render specific tab view on the right pane if selected
+  if (activeTab === 'lesson') return <DashboardLessonView />;
   if (activeTab === 'indian-languages') return <DashboardIndianLanguagesPage />;
   if (activeTab === 'foreign-languages') return <DashboardForeignLanguagesPage />;
   if (activeTab === 'free-videos') return <DashboardFreeVideosPage />;

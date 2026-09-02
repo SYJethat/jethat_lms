@@ -86,7 +86,7 @@ export default function DashboardLevelsPage() {
                       {lvl.lessons.map((les) => (
                         <Link
                           key={les.id}
-                          href={`/dashboard/lesson/${les.id}`}
+                          href={`/dashboard/student?tab=lesson&id=${les.id}`}
                           className="p-2.5 rounded-xl bg-slate-50 hover:bg-blue-50/70 border border-slate-200/60 flex items-center justify-between group transition"
                         >
                           <div className="truncate pr-2">
@@ -108,7 +108,7 @@ export default function DashboardLevelsPage() {
               {/* Primary CTA Button */}
               {lvl.unlocked ? (
                 <Link
-                  href={`/dashboard/lesson/${firstLessonId}`}
+                  href={`/dashboard/student?tab=lesson&id=${firstLessonId}`}
                   className="w-full py-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-extrabold text-xs text-center flex items-center justify-center gap-2 transition shadow-sm"
                 >
                   <Play className="w-4 h-4 fill-white" /> Start Level {lvl.id} Player <ArrowRight className="w-4 h-4" />
