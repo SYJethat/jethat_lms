@@ -32,7 +32,7 @@ const GUIDED_STUDY_MODULES: StudyModuleItem[] = [
     titleEng: 'Introduction to Devanagari Script, Vowels & Phonetic Rules',
     pages: 42,
     fileSize: '4.2 MB',
-    author: 'National Faculty • NIOS & Kendriya Hindi Sansthan'
+    author: 'National Faculty • LMS & Kendriya Hindi Sansthan'
   },
   {
     id: 'mod_2',
@@ -83,7 +83,7 @@ const GUIDED_STUDY_MODULES: StudyModuleItem[] = [
     id: 'mod_7',
     moduleNumber: 7,
     titleHindi: 'माध्यमिक एवं उच्चतर माध्यमिक मॉडल (Class 10/12 Model Exam Papers)',
-    titleEng: 'NIOS Class 10 & 12 Previous Year Solved Model Question Papers',
+    titleEng: 'LMS Class 10 & 12 Previous Year Solved Model Question Papers',
     pages: 80,
     fileSize: '8.2 MB',
     author: 'Board of Secondary & Higher Secondary Education'
@@ -120,7 +120,7 @@ export default function DashboardGuidedLearningPage() {
   });
 
   return (
-    <div className="space-y-8 max-w-7xl mx-auto pb-16">
+    <div className="space-y-8 max-w-8xl mx-auto pb-16">
       {/* Top Banner */}
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 p-6 sm:p-8 rounded-3xl bg-white border border-slate-200 shadow-xs">
         <div>
@@ -152,10 +152,10 @@ export default function DashboardGuidedLearningPage() {
         {/* Left Side Feature Card */}
         <div className="lg:col-span-4 space-y-6">
           <div className="bg-slate-900 text-white rounded-3xl p-6 sm:p-8 shadow-xl space-y-6 text-center border border-slate-800 relative overflow-hidden">
-            {/* NIOS Logo Badge */}
+            {/* LMS Logo Badge */}
             <div className="w-20 h-20 mx-auto rounded-2xl bg-white p-2 flex items-center justify-center shadow-md">
               <div className="text-center">
-                <span className="font-black text-blue-900 text-xl block leading-none">NIOS</span>
+                <span className="font-black text-blue-900 text-xl block leading-none">LMS</span>
                 <span className="text-[8px] font-bold text-slate-600 block uppercase mt-0.5">National Institute</span>
               </div>
             </div>

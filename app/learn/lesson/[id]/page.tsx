@@ -86,7 +86,7 @@ export default function LessonPlayerPage({ params }: { params: { id: string } })
   };
 
   return (
-    <div className="max-w-5xl mx-auto px-4 sm:px-6 py-10 space-y-8">
+    <div className="max-w-8xl mx-auto px-4 sm:px-6 py-10 space-y-8">
       {/* Top Navigation Bar */}
       <div className="flex flex-wrap items-center justify-between gap-4">
         <div className="flex items-center gap-3">

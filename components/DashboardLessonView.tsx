@@ -89,7 +89,7 @@ export default function DashboardLessonView({ lessonIdProp }: { lessonIdProp?: s
   };
 
   return (
-    <div className="max-w-6xl mx-auto space-y-6 animate-in fade-in duration-200">
+    <div className="max-w-8xl mx-auto space-y-6 animate-in fade-in duration-200">
       {/* Top Navigation Bar within Dashboard */}
       <div className="flex flex-wrap items-center justify-between gap-4 p-4 rounded-2xl bg-white border border-slate-200 shadow-xs">
         <div className="flex items-center gap-3">

@@ -72,10 +72,10 @@ export default function DashboardSidebar() {
 
   // Dropdown open/close map state
   const [openDropdowns, setOpenDropdowns] = useState<Record<string, boolean>>({
-    'courses-dropdown': false,
-    'classes-dropdown': false,
-    'free-dropdown': false,
-    'ai-dropdown': false,
+    'courses-dropdown': true,
+    'classes-dropdown': true,
+    'free-dropdown': true,
+    'ai-dropdown': true,
   });
 
   // Editable Student Profile Form State
