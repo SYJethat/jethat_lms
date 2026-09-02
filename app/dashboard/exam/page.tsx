@@ -202,7 +202,7 @@ export default function DashboardExamPage() {
   };
 
   return (
-    <div className="space-y-8 max-w-7xl mx-auto pb-16">
+    <div className="space-y-8 max-w-8xl mx-auto pb-16">
       {/* 1. STUDENT LEARNING FLOW PROGRESS HEADER */}
       <div className="p-6 sm:p-8 rounded-3xl bg-white border border-slate-200 shadow-xs space-y-6">
         <div>

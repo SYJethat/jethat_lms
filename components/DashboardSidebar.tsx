@@ -35,7 +35,9 @@ import {
   FileText,
   X,
   Save,
-  GraduationCap
+  GraduationCap,
+  PanelLeftClose,
+  PanelLeftOpen
 } from 'lucide-react';
 import { getActiveRole, getStoredUser, saveStoredUser, User } from '@/lib/lmsStore';
 
@@ -64,14 +66,16 @@ export default function DashboardSidebar() {
   const activeTab = searchParams.get('tab') || 'overview';
 
   const [user, setUser] = useState<User | null>(null);
+  const [isCollapsed, setIsCollapsed] = useState(false);
   const [footerMenuOpen, setFooterMenuOpen] = useState(false);
   const [editModalOpen, setEditModalOpen] = useState(false);
 
   // Dropdown open/close map state
   const [openDropdowns, setOpenDropdowns] = useState<Record<string, boolean>>({
-    'courses-dropdown': true,
-    'free-dropdown': true,
-    'ai-dropdown': true,
+    'courses-dropdown': false,
+    'classes-dropdown': false,
+    'free-dropdown': false,
+    'ai-dropdown': false,
   });
 
   // Editable Student Profile Form State
@@ -155,7 +159,16 @@ export default function DashboardSidebar() {
             },
             { tabId: 'levels', label: 'Levels Pathway', icon: BookOpen, badge: 'L1-L7' },
             { tabId: 'exam', label: 'Assessments & Exams', icon: HelpCircle, badge: '3' },
-            { tabId: 'classes', label: 'Live Classes', icon: Video },
+            {
+              tabId: 'classes-dropdown',
+              label: 'Classes & Training',
+              icon: Video,
+              badge: '2',
+              subItems: [
+                { tabId: 'classes', label: 'Live Classes (Online)' },
+                { tabId: 'physical', label: 'Physical Classes (Offline)'},
+              ],
+            },
             { tabId: 'competitions', label: 'Competitions', icon: Trophy },
             { tabId: 'leaderboard', label: 'Leaderboard', icon: BarChart3 },
             { tabId: 'institutes', label: 'Institutes', icon: Building2 },
@@ -177,7 +190,6 @@ export default function DashboardSidebar() {
                 { tabId: 'avatar', label: 'Digital Avatars', badge: '3D' },
               ],
             },
-            { tabId: 'physical', label: 'Physical Centers', icon: MapPin },
             { tabId: 'certificates', label: 'My Certificates', icon: Shield },
             { tabId: 'account-details', label: 'Account & Payments', icon: DollarSign, badge: 'Paid' },
           ],
@@ -332,30 +344,95 @@ export default function DashboardSidebar() {
 
   return (
     <>
-      <aside className="w-64 bg-white border-r border-slate-200 flex flex-col justify-between shrink-0 h-screen sticky top-0 shadow-sm z-30">
-        {/* Sidebar Header with Official Emblem / Logo */}
-        <div className="p-4 space-y-4">
-          <Link href="/" className="flex items-center group py-1">
-            <img
-              src="/logo.png"
-              alt="JetHat Cyber Security & Language LMS Logo"
-              className="h-10 w-auto object-contain transition group-hover:scale-105"
-            />
-          </Link>
+      <aside className={`bg-white border-r border-slate-200 flex flex-col justify-between shrink-0 h-screen sticky top-0 shadow-sm z-30 transition-all duration-300 ${isCollapsed ? 'w-20' : 'w-64'}`}>
+        {/* Sidebar Header with Official Emblem / Logo & Toggle Icon */}
+        <div className="p-3 space-y-4">
+          <div className="flex items-center justify-between py-1 px-1">
+            <Link href="/" className="flex items-center group overflow-hidden">
+              {!isCollapsed ? (
+                <img
+                  src="/logo.png"
+                  alt="JetHat Cyber Security & Language LMS Logo"
+                  className="h-9 w-auto object-contain transition group-hover:scale-105"
+                />
+              ) : (
+                <div className="w-10 h-10 rounded-2xl bg-gradient-to-tr from-orange-600 to-amber-500 text-white font-black flex items-center justify-center text-xs shadow-md">
+                  JH
+                </div>
+              )}
+            </Link>
+
+            <button
+              onClick={() => setIsCollapsed(!isCollapsed)}
+              title={isCollapsed ? "Expand Sidebar Menu" : "Collapse Sidebar to Icons"}
+              className="p-2 rounded-xl bg-slate-100 hover:bg-orange-50 hover:text-orange-600 text-slate-500 transition border border-slate-200 shrink-0"
+            >
+              {isCollapsed ? <PanelLeftOpen className="w-4 h-4" /> : <PanelLeftClose className="w-4 h-4" />}
+            </button>
+          </div>
 
           {/* Grouped Sidebar Menus */}
-          <div className="space-y-5 overflow-y-auto max-h-[calc(100vh-170px)] pr-1">
+          <div className="space-y-4 overflow-y-auto max-h-[calc(100vh-170px)] pr-0.5 scrollbar-none">
             {currentRoleData.groups.map((grp, gIdx) => (
               <div key={gIdx} className="space-y-1">
-                <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest px-3 block">
-                  {grp.groupTitle}
-                </span>
+                {!isCollapsed ? (
+                  <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest px-3 block">
+                    {grp.groupTitle}
+                  </span>
+                ) : (
+                  <div className="my-2 border-t border-slate-200" title={grp.groupTitle} />
+                )}
 
                 <div className="space-y-0.5">
                   {grp.items.map((item, iIdx) => {
                     if (item.subItems) {
                       const isOpen = !!openDropdowns[item.tabId];
                       const isAnySubActive = item.subItems.some((s) => s.tabId === activeTab);
+
+                      if (isCollapsed) {
+                        return (
+                          <div key={iIdx} className="space-y-1 my-1">
+                            <button
+                              onClick={() => toggleDropdown(item.tabId)}
+                              title={`${item.label} (${item.subItems.length})`}
+                              className={`w-12 h-12 rounded-2xl flex items-center justify-center mx-auto transition relative ${
+                                isAnySubActive || isOpen
+                                  ? 'bg-orange-600 text-white shadow-md font-bold'
+                                  : 'text-slate-700 bg-slate-50 hover:bg-orange-100 hover:text-orange-700 border border-slate-200'
+                              }`}
+                            >
+                              <item.icon className="w-5 h-5" />
+                              <span className="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-orange-600 text-white text-[9px] font-black flex items-center justify-center ring-2 ring-white">
+                                {item.subItems.length}
+                              </span>
+                            </button>
+
+                            {isOpen && (
+                              <div className="space-y-1 py-1">
+                                {item.subItems.map((sub, sIdx) => {
+                                  const targetHref = `/dashboard/${role}?tab=${sub.tabId}`;
+                                  const isSubActive = activeTab === sub.tabId;
+
+                                  return (
+                                    <Link
+                                      key={sIdx}
+                                      href={targetHref}
+                                      title={sub.label}
+                                      className={`w-9 h-9 rounded-xl flex items-center justify-center mx-auto text-[10px] font-black transition ${
+                                        isSubActive
+                                          ? 'bg-orange-600 text-white shadow-xs'
+                                          : 'bg-orange-50 text-orange-800 hover:bg-orange-200'
+                                      }`}
+                                    >
+                                      {sub.label.charAt(0)}
+                                    </Link>
+                                  );
+                                })}
+                              </div>
+                            )}
+                          </div>
+                        );
+                      }
 
                       return (
                         <div key={iIdx} className="space-y-0.5">
@@ -427,6 +504,23 @@ export default function DashboardSidebar() {
                     const targetHref = `/dashboard/${role}?tab=${item.tabId}`;
                     const isActive = activeTab === item.tabId;
 
+                    if (isCollapsed) {
+                      return (
+                        <Link
+                          key={iIdx}
+                          href={targetHref}
+                          title={item.label}
+                          className={`w-12 h-12 rounded-2xl flex items-center justify-center mx-auto transition relative ${
+                            isActive
+                              ? 'bg-orange-600 text-white shadow-md'
+                              : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900'
+                          }`}
+                        >
+                          <item.icon className="w-5 h-5" />
+                        </Link>
+                      );
+                    }
+
                     return (
                       <Link
                         key={iIdx}
@@ -463,30 +557,37 @@ export default function DashboardSidebar() {
         </div>
 
         {/* CLICKABLE INTERACTIVE SIDEBAR FOOTER CARD */}
-        <div className="p-3 border-t border-slate-200 bg-slate-50/70 relative">
+        <div className="p-2.5 border-t border-slate-200 bg-slate-50/70 relative">
           <button
             onClick={() => setFooterMenuOpen(!footerMenuOpen)}
-            className="w-full p-2 rounded-2xl bg-white border border-slate-200 hover:border-orange-300 shadow-xs flex items-center justify-between text-left transition group cursor-pointer"
+            className={`w-full rounded-2xl bg-white border border-slate-200 hover:border-orange-300 shadow-xs flex items-center justify-between text-left transition group cursor-pointer ${
+              isCollapsed ? 'p-2 justify-center' : 'p-2'
+            }`}
+            title={isCollapsed ? `${user?.name || 'Aarav Sharma'} (${role})` : undefined}
           >
-            <div className="flex items-center gap-2.5 overflow-hidden">
+            <div className={`flex items-center gap-2.5 overflow-hidden ${isCollapsed ? 'justify-center' : ''}`}>
               <div className="w-8 h-8 rounded-xl bg-orange-600 text-white font-black flex items-center justify-center text-xs shadow-xs shrink-0 group-hover:scale-105 transition">
                 {user?.name?.charAt(0) || 'A'}
               </div>
-              <div className="space-y-0.5 overflow-hidden">
-                <h4 className="text-xs font-extrabold text-slate-900 truncate">
-                  {user?.name || 'Aarav Sharma'}
-                </h4>
-                <span className="text-[10px] text-orange-600 font-extrabold capitalize block">
-                  {role} Console ▾
-                </span>
-              </div>
+              {!isCollapsed && (
+                <div className="space-y-0.5 overflow-hidden">
+                  <h4 className="text-xs font-extrabold text-slate-900 truncate">
+                    {user?.name || 'Aarav Sharma'}
+                  </h4>
+                  <span className="text-[10px] text-orange-600 font-extrabold capitalize block">
+                    {role} Console ▾
+                  </span>
+                </div>
+              )}
             </div>
-            <ChevronDown className="w-3.5 h-3.5 text-slate-400 shrink-0" />
+            {!isCollapsed && <ChevronDown className="w-3.5 h-3.5 text-slate-400 shrink-0" />}
           </button>
 
           {/* Footer Popover Dropdown Menu */}
           {footerMenuOpen && (
-            <div className="absolute bottom-full left-3 right-3 mb-2 bg-white border border-slate-200 rounded-2xl shadow-2xl z-50 p-2 space-y-1 text-xs animate-in fade-in zoom-in-95 duration-150">
+            <div className={`absolute bottom-full mb-2 bg-white border border-slate-200 rounded-2xl shadow-2xl z-50 p-2 space-y-1 text-xs animate-in fade-in zoom-in-95 duration-150 ${
+              isCollapsed ? 'left-1 w-48' : 'left-3 right-3'
+            }`}>
               <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest px-2.5 py-1 block">
                 STUDENT OPTIONS
               </span>

@@ -7,12 +7,55 @@ import { Award, Globe, ShieldCheck, CheckCircle2 } from 'lucide-react';
 
 export default function Footer() {
   const pathname = usePathname();
+  const [subscribed, setSubscribed] = React.useState(false);
+  const [emailInput, setEmailInput] = React.useState('');
 
-  // Only display global Footer on public landing page ('/')
-  if (pathname !== '/') return null;
+  // Hide Footer on dashboard and exam pages
+  if (pathname.startsWith('/dashboard') || pathname.startsWith('/exam')) return null;
+
+  const handleSubscribe = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (emailInput.trim()) {
+      setSubscribed(true);
+      setEmailInput('');
+    }
+  };
 
   return (
     <footer className="bg-slate-950 text-slate-300 border-t-4 border-orange-500 pt-12 pb-8 px-4 sm:px-6 lg:px-8">
+      {/* Quick Access & Subscription Banner */}
+      <div className="max-w-7xl mx-auto mb-10 p-6 rounded-3xl bg-slate-900/90 border border-slate-800 flex flex-col md:flex-row items-center justify-between gap-6">
+        <div className="space-y-1 text-left">
+          <span className="px-2.5 py-0.5 rounded-md bg-orange-500/20 text-orange-400 text-[10px] font-black uppercase tracking-wider border border-orange-500/30">
+            OFFICIAL RAJBHASHA NOTIFICATIONS
+          </span>
+          <h3 className="text-base font-black text-white">Subscribe to National LMS Circulars & Exam Dates</h3>
+          <p className="text-xs text-slate-400 font-medium">Get real-time alerts for NEP 2020 scholarships, university exam timetables, and AI updates.</p>
+        </div>
+        {subscribed ? (
+          <div className="px-4 py-2.5 rounded-xl bg-emerald-500/20 border border-emerald-500/40 text-emerald-400 text-xs font-bold flex items-center gap-2">
+            <CheckCircle2 className="w-4 h-4 text-emerald-400" /> You are subscribed to official portal circulars!
+          </div>
+        ) : (
+          <form onSubmit={handleSubscribe} className="flex w-full md:w-auto gap-2">
+            <input
+              type="email"
+              value={emailInput}
+              onChange={(e) => setEmailInput(e.target.value)}
+              placeholder="Enter your official email..."
+              className="px-4 py-2.5 rounded-xl bg-slate-950 border border-slate-700 text-white text-xs placeholder-slate-500 focus:outline-none focus:border-orange-500 font-medium w-full sm:w-64"
+              required
+            />
+            <button
+              type="submit"
+              className="px-5 py-2.5 rounded-xl bg-orange-600 hover:bg-orange-700 text-white font-extrabold text-xs transition shrink-0"
+            >
+              Subscribe
+            </button>
+          </form>
+        )}
+      </div>
+
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 mb-10">
         {/* Col 1: Brand Info & Government Compliance */}
         <div className="lg:col-span-2 space-y-4 text-left">
@@ -41,16 +84,16 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Col 2: Navigation & Languages */}
+        {/* Col 2: Public Main Navigation & Pages */}
         <div className="text-left">
-          <h4 className="text-xs font-black uppercase tracking-wider text-orange-400 mb-4">Quick Links</h4>
+          <h4 className="text-xs font-black uppercase tracking-wider text-orange-400 mb-4">Quick Navigation</h4>
           <ul className="space-y-2 text-xs font-medium">
-            <li><Link href="#indian-languages" className="hover:text-orange-400 transition">🇮🇳 22 Scheduled Languages</Link></li>
-            <li><Link href="#about-us" className="hover:text-orange-400 transition">🏛️ About LMS Platform</Link></li>
-            <li><Link href="#government-news" className="hover:text-orange-400 transition">📰 Government News & Circulars</Link></li>
-            <li><Link href="#how-to-use" className="hover:text-orange-400 transition">📖 How to Use LMS Step-by-Step</Link></li>
-            <li><Link href="#universities" className="hover:text-orange-400 transition">📜 Accredited Central Universities</Link></li>
-            <li><Link href="#free-resources" className="hover:text-orange-400 transition">🎁 Free Videos, Audio & PDFs</Link></li>
+            <li><Link href="/" className="hover:text-orange-400 transition">🏠 LMS Home Portal</Link></li>
+            <li><Link href="/about" className="hover:text-orange-400 transition">🏛️ About Us & Mission</Link></li>
+            <li><Link href="/resources" className="hover:text-orange-400 transition">🎁 Free Resources Hub</Link></li>
+            <li><Link href="/how-to-use" className="hover:text-orange-400 transition">📖 How to Use User Guide</Link></li>
+            <li><Link href="/#indian-languages" className="hover:text-orange-400 transition">🇮🇳 22 Scheduled Languages</Link></li>
+            <li><Link href="/#universities" className="hover:text-orange-400 transition">📜 Accredited Central Universities</Link></li>
           </ul>
         </div>
 

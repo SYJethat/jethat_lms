@@ -1002,7 +1002,7 @@ export default function DashboardIndianLanguagesPage() {
   };
 
   return (
-    <div className="space-y-8 max-w-7xl mx-auto pb-16">
+    <div className="space-y-8 max-w-8xl mx-auto pb-16">
       {/* FULL IN-PAGE COURSE LEARNING WORKSPACE (WHEN COURSE IS ACTIVE) */}
       {activePlayCourse ? (
         <div className="space-y-8 animate-in fade-in duration-200">
@@ -1157,135 +1157,215 @@ export default function DashboardIndianLanguagesPage() {
                 </div>
               </div>
 
-              {/* Video Player Container */}
-              <div className="aspect-video bg-slate-900 rounded-3xl p-8 flex flex-col justify-between text-white relative overflow-hidden shadow-xl border border-slate-800">
-                <div className="flex items-center justify-between text-xs z-10">
-                  <span className="px-3 py-1 rounded-full bg-blue-500/20 text-blue-300 font-bold border border-blue-400/30">
-                    Video 1 of 3: Devanagari Script & Vowels for {activePlayCourse.languageEng} Speakers
-                  </span>
-                  <span className="text-slate-400">Duration: 18 Mins</span>
-                </div>
+              {/* 2-Column Split Layout: Left Video Player & Cards, Right Day-by-Day Curriculum Roadmap */}
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                {/* LEFT SIDE: Video Player & Video Lesson Cards */}
+                <div className="lg:col-span-7 xl:col-span-8 space-y-6">
+                  {/* Video Player Container */}
+                  <div className="aspect-video bg-slate-900 rounded-3xl p-6 sm:p-8 flex flex-col justify-between text-white relative overflow-hidden shadow-xl border border-slate-800">
+                    <div className="flex items-center justify-between text-xs z-10">
+                      <span className="px-3 py-1 rounded-full bg-blue-500/20 text-blue-300 font-bold border border-blue-400/30">
+                        Video 1 of 3: Devanagari Script & Vowels for {activePlayCourse.languageEng} Speakers
+                      </span>
+                      <span className="text-slate-400">Duration: 18 Mins</span>
+                    </div>
 
-                <div className="text-center space-y-3 my-auto z-10">
-                  <div
-                    onClick={() => playAudio(`नमस्ते! इस वीडियो में हम ${activePlayCourse.languageEng} भाषा से हिंदी वर्णमाला का तुलनात्मक अध्ययन करेंगे।`)}
-                    className="w-20 h-20 rounded-full bg-blue-600 hover:bg-blue-500 text-white flex items-center justify-center mx-auto shadow-xl cursor-pointer hover:scale-110 transition"
-                  >
-                    <Play className="w-10 h-10 fill-white ml-1" />
-                  </div>
-                  <h4 className="text-xl font-extrabold text-white">Click Play to Watch Video Lesson 1</h4>
-                  <p className="text-xs text-slate-300">High Definition Video with Native {activePlayCourse.languageEng} Explanations</p>
-                </div>
-
-                <div className="flex items-center justify-between text-xs text-slate-400 z-10 border-t border-white/10 pt-3">
-                  <span>Playback Speed: 1.0x</span>
-                  <span>Subtitles: Hindi & {activePlayCourse.languageEng}</span>
-                </div>
-              </div>
-
-              {/* Day-by-Day Paced Curriculum Box (<30 Mins / Day) */}
-              <div className="p-5 rounded-2xl bg-slate-50 border border-slate-200 space-y-4">
-                <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 border-b border-slate-200 pb-3">
-                  <div>
-                    <span className="text-[10px] font-black uppercase text-blue-600 tracking-wider block">DAY-BY-DAY PACED CURRICULUM • UNDER 30 MINS / DAY</span>
-                    <h4 className="text-base font-black text-slate-900">7-Day Express Daily Schedule Roadmap</h4>
-                  </div>
-                  <span className="px-3 py-1 rounded-full bg-blue-100 text-blue-800 text-xs font-black">
-                    ⚡ 7-Day Fast Track • ~22 Mins / Day
-                  </span>
-                </div>
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-3 text-xs">
-                  {[
-                    { day: 1, title: 'Script & Sound', time: '18 Mins', level: 'L1: Starter', icon: '📖' },
-                    { day: 2, title: 'Greetings & Words', time: '20 Mins', level: 'L1: Starter', icon: '💬' },
-                    { day: 3, title: 'SOV Sentence', time: '25 Mins', level: 'L2: Basic', icon: '🧩' },
-                    { day: 4, title: 'Writing Practice', time: '20 Mins', level: 'L2: Basic', icon: '✍️' },
-                    { day: 5, title: 'Speaking AI', time: '25 Mins', level: 'L3: Fluent', icon: '🗣️' },
-                    { day: 6, title: 'Listening Audio', time: '20 Mins', level: 'L3: Fluent', icon: '🎧' },
-                    { day: 7, title: 'Final Exam', time: '30 Mins', level: 'L4: Master', icon: '📜' }
-                  ].map((item) => (
-                    <div
-                      key={item.day}
-                      onClick={() => setActiveDayLesson(item.day)}
-                      className={`p-3 rounded-2xl border cursor-pointer transition space-y-1 ${
-                        activeDayLesson === item.day
-                          ? 'bg-blue-600 text-white border-blue-600 shadow-md scale-102'
-                          : 'bg-white text-slate-800 border-slate-200 hover:bg-slate-100'
-                      }`}
-                    >
-                      <div className="flex items-center justify-between text-[11px] font-extrabold">
-                        <span>Day {item.day} {item.icon}</span>
-                        <span className={activeDayLesson === item.day ? 'text-blue-100' : 'text-slate-500'}>{item.time}</span>
+                    <div className="text-center space-y-3 my-auto z-10">
+                      <div
+                        onClick={() => playAudio(`नमस्ते! इस वीडियो में हम ${activePlayCourse.languageEng} भाषा से हिंदी वर्णमाला का तुलनात्मक अध्ययन करेंगे।`)}
+                        className="w-20 h-20 rounded-full bg-blue-600 hover:bg-blue-500 text-white flex items-center justify-center mx-auto shadow-xl cursor-pointer hover:scale-110 transition"
+                      >
+                        <Play className="w-10 h-10 fill-white ml-1" />
                       </div>
-                      <h5 className="font-bold text-[11px] line-clamp-1">{item.title}</h5>
-                      <span className={`text-[9px] font-extrabold uppercase block ${activeDayLesson === item.day ? 'text-blue-200' : 'text-blue-600'}`}>
-                        {item.level}
+                      <h4 className="text-xl font-extrabold text-white">Click Play to Watch Video Lesson 1</h4>
+                      <p className="text-xs text-slate-300">High Definition Video with Native {activePlayCourse.languageEng} Explanations</p>
+                    </div>
+
+                    <div className="flex items-center justify-between text-xs text-slate-400 z-10 border-t border-white/10 pt-3">
+                      <span>Playback Speed: 1.0x</span>
+                      <span>Subtitles: Hindi & {activePlayCourse.languageEng}</span>
+                    </div>
+                  </div>
+
+                  {/* 3 Video Cards Grid */}
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                    {(() => {
+                      const prog = getStepProgress(activePlayCourse.id);
+                      const isVideo1Done = prog.video1Done;
+                      const isVideo2Done = prog.video2Done;
+                      const isVideo3Done = prog.video3Done;
+
+                      return (
+                        <>
+                          {/* Video 1: Always Unlocked */}
+                          <div className={`p-4 rounded-2xl border space-y-3 transition ${isVideo1Done ? 'bg-emerald-50/60 border-emerald-200' : 'bg-slate-50 border-slate-200'}`}>
+                            <div className="flex items-center justify-between text-xs font-bold">
+                              <span className="text-blue-600 font-black">Video 1 (Unlocked)</span>
+                              {isVideo1Done && <span className="text-emerald-600 flex items-center gap-1"><CheckCircle2 className="w-3.5 h-3.5" /> Completed</span>}
+                            </div>
+                            <h4 className="text-xs font-bold text-slate-900">Devanagari Alphabet & Phonetics</h4>
+                            <button
+                              onClick={() => updateCourseProgress(activePlayCourse.id, { video1Done: true })}
+                              className={`w-full py-2 rounded-xl text-xs font-bold transition ${isVideo1Done ? 'bg-emerald-600 text-white' : 'bg-blue-600 hover:bg-blue-700 text-white'}`}
+                            >
+                              {isVideo1Done ? '✓ Finished' : 'Mark Video 1 Finished'}
+                            </button>
+                          </div>
+
+                          {/* Video 2: Unlocked only after Video 1 */}
+                          <div className={`p-4 rounded-2xl border space-y-3 transition ${
+                            !isVideo1Done
+                              ? 'bg-slate-100/70 border-slate-200 opacity-60'
+                              : isVideo2Done
+                              ? 'bg-emerald-50/60 border-emerald-200'
+                              : 'bg-slate-50 border-slate-200'
+                          }`}>
+                            <div className="flex items-center justify-between text-xs font-bold">
+                              <span className={isVideo1Done ? 'text-blue-600 font-black' : 'text-slate-400 font-bold'}>
+                                Video 2 {!isVideo1Done && '🔒'}
+                              </span>
+                              {isVideo2Done ? (
+                                <span className="text-emerald-600 flex items-center gap-1"><CheckCircle2 className="w-3.5 h-3.5" /> Completed</span>
+                              ) : !isVideo1Done ? (
+                                <span className="text-slate-400 font-bold text-[10px]">🔒 Locked</span>
+                              ) : null}
+                            </div>
+                            <h4 className="text-xs font-bold text-slate-900">SOV Sentence Construction</h4>
+                            <button
+                              disabled={!isVideo1Done}
+                              onClick={() => updateCourseProgress(activePlayCourse.id, { video2Done: true })}
+                              className={`w-full py-2 rounded-xl text-xs font-bold transition ${
+                                !isVideo1Done
+                                  ? 'bg-slate-200 text-slate-400 cursor-not-allowed border border-slate-300'
+                                  : isVideo2Done
+                                  ? 'bg-emerald-600 text-white'
+                                  : 'bg-blue-600 hover:bg-blue-700 text-white'
+                              }`}
+                            >
+                              {!isVideo1Done ? '🔒 Finish Video 1 First' : isVideo2Done ? '✓ Finished' : 'Mark Video 2 Finished'}
+                            </button>
+                          </div>
+
+                          {/* Video 3: Unlocked only after Video 2 */}
+                          <div className={`p-4 rounded-2xl border space-y-3 transition ${
+                            !isVideo2Done
+                              ? 'bg-slate-100/70 border-slate-200 opacity-60'
+                              : isVideo3Done
+                              ? 'bg-emerald-50/60 border-emerald-200'
+                              : 'bg-slate-50 border-slate-200'
+                          }`}>
+                            <div className="flex items-center justify-between text-xs font-bold">
+                              <span className={isVideo2Done ? 'text-blue-600 font-black' : 'text-slate-400 font-bold'}>
+                                Video 3 {!isVideo2Done && '🔒'}
+                              </span>
+                              {isVideo3Done ? (
+                                <span className="text-emerald-600 flex items-center gap-1"><CheckCircle2 className="w-3.5 h-3.5" /> Completed</span>
+                              ) : !isVideo2Done ? (
+                                <span className="text-slate-400 font-bold text-[10px]">🔒 Locked</span>
+                              ) : null}
+                            </div>
+                            <h4 className="text-xs font-bold text-slate-900">Spoken Conversational Fluency</h4>
+                            <button
+                              disabled={!isVideo2Done}
+                              onClick={() => updateCourseProgress(activePlayCourse.id, { video3Done: true })}
+                              className={`w-full py-2 rounded-xl text-xs font-bold transition ${
+                                !isVideo2Done
+                                  ? 'bg-slate-200 text-slate-400 cursor-not-allowed border border-slate-300'
+                                  : isVideo3Done
+                                  ? 'bg-emerald-600 text-white'
+                                  : 'bg-blue-600 hover:bg-blue-700 text-white'
+                              }`}
+                            >
+                              {!isVideo2Done ? '🔒 Finish Video 2 First' : isVideo3Done ? '✓ Finished' : 'Mark Video 3 Finished'}
+                            </button>
+                          </div>
+                        </>
+                      );
+                    })()}
+                  </div>
+
+                  {/* Proceed to Step 2 Button - Enabled only when all 3 videos finished */}
+                  {(() => {
+                    const prog = getStepProgress(activePlayCourse.id);
+                    const allVideosDone = prog.videosCompleted;
+
+                    return (
+                      <div className="pt-4 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-3">
+                        <span className="text-xs text-slate-500 font-medium">
+                          {!allVideosDone ? '⚠️ Complete Video 1, 2, and 3 sequentially to enable Step 2.' : '✅ All 3 videos completed! Step 2 is now unlocked.'}
+                        </span>
+                        <button
+                          disabled={!allVideosDone}
+                          onClick={() => setCourseStepTab('reading')}
+                          className={`px-6 py-3 rounded-xl font-bold text-xs flex items-center gap-2 transition ${
+                            !allVideosDone
+                              ? 'bg-slate-200 text-slate-400 border border-slate-300 cursor-not-allowed'
+                              : 'bg-blue-600 hover:bg-blue-700 text-white shadow-md'
+                          }`}
+                        >
+                          {!allVideosDone ? '🔒 Finish All 3 Videos First' : 'Proceed to Step 2: Reading Text →'}
+                        </button>
+                      </div>
+                    );
+                  })()}
+                </div>
+
+                {/* RIGHT SIDE: Day-by-Day Paced Curriculum Box & Roadmap */}
+                <div className="lg:col-span-5 xl:col-span-4 space-y-4">
+                  <div className="p-5 rounded-3xl bg-slate-50 border border-slate-200 space-y-4 shadow-2xs">
+                    <div className="space-y-1 border-b border-slate-200 pb-3">
+                      <span className="text-[10px] font-black uppercase text-blue-600 tracking-wider block">DAY-BY-DAY PACED CURRICULUM • UNDER 30 MINS / DAY</span>
+                      <h4 className="text-base font-black text-slate-900">7-Day Express Daily Schedule Roadmap</h4>
+                      <span className="px-2.5 py-0.5 rounded-full bg-blue-100 text-blue-800 text-[11px] font-black inline-block mt-1">
+                        ⚡ 7-Day Fast Track • ~22 Mins / Day
                       </span>
                     </div>
-                  ))}
+
+                    <div className="space-y-2.5 text-xs">
+                      {[
+                        { day: 1, title: 'Script & Sound', time: '18 Mins', level: 'L1: Starter', icon: '📖' },
+                        { day: 2, title: 'Greetings & Words', time: '20 Mins', level: 'L1: Starter', icon: '💬' },
+                        { day: 3, title: 'SOV Sentence', time: '25 Mins', level: 'L2: Basic', icon: '🧩' },
+                        { day: 4, title: 'Writing Practice', time: '20 Mins', level: 'L2: Basic', icon: '✍️' },
+                        { day: 5, title: 'Speaking AI', time: '25 Mins', level: 'L3: Fluent', icon: '🗣️' },
+                        { day: 6, title: 'Listening Audio', time: '20 Mins', level: 'L3: Fluent', icon: '🎧' },
+                        { day: 7, title: 'Final Exam', time: '30 Mins', level: 'L4: Master', icon: '📜' }
+                      ].map((item) => (
+                        <div
+                          key={item.day}
+                          onClick={() => setActiveDayLesson(item.day)}
+                          className={`p-3 rounded-2xl border cursor-pointer transition flex items-center justify-between gap-3 ${
+                            activeDayLesson === item.day
+                              ? 'bg-blue-600 text-white border-blue-600 shadow-md'
+                              : 'bg-white text-slate-800 border-slate-200 hover:bg-slate-100'
+                          }`}
+                        >
+                          <div className="flex items-center gap-3">
+                            <span className={`w-8 h-8 rounded-xl font-black text-xs flex items-center justify-center ${
+                              activeDayLesson === item.day ? 'bg-white/20 text-white' : 'bg-slate-100 text-slate-700'
+                            }`}>
+                              {item.icon}
+                            </span>
+                            <div>
+                              <div className="flex items-center gap-2">
+                                <span className="font-extrabold text-xs">Day {item.day}</span>
+                                <span className={`text-[9px] font-black uppercase px-1.5 py-0.2 rounded ${
+                                  activeDayLesson === item.day ? 'bg-blue-500 text-white' : 'bg-blue-50 text-blue-700'
+                                }`}>
+                                  {item.level}
+                                </span>
+                              </div>
+                              <h5 className="font-bold text-xs">{item.title}</h5>
+                            </div>
+                          </div>
+                          <span className={`text-xs font-mono font-extrabold shrink-0 ${activeDayLesson === item.day ? 'text-blue-100' : 'text-slate-500'}`}>
+                            {item.time}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
                 </div>
-              </div>
-
-              {/* 3 Video Cards Grid */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                {(() => {
-                  const prog = getStepProgress(activePlayCourse.id);
-                  return (
-                    <>
-                      <div className={`p-4 rounded-2xl border space-y-3 transition ${prog.video1Done ? 'bg-emerald-50/60 border-emerald-200' : 'bg-slate-50 border-slate-200'}`}>
-                        <div className="flex items-center justify-between text-xs font-bold">
-                          <span className="text-blue-600">Video 1</span>
-                          {prog.video1Done && <span className="text-emerald-600 flex items-center gap-1"><CheckCircle2 className="w-3.5 h-3.5" /> Completed</span>}
-                        </div>
-                        <h4 className="text-sm font-bold text-slate-900">Devanagari Alphabet & Phonetics</h4>
-                        <button
-                          onClick={() => updateCourseProgress(activePlayCourse.id, { video1Done: true })}
-                          className={`w-full py-2 rounded-xl text-xs font-bold transition ${prog.video1Done ? 'bg-emerald-600 text-white' : 'bg-blue-600 hover:bg-blue-700 text-white'}`}
-                        >
-                          {prog.video1Done ? '✓ Finished' : 'Mark Video 1 Finished'}
-                        </button>
-                      </div>
-
-                      <div className={`p-4 rounded-2xl border space-y-3 transition ${prog.video2Done ? 'bg-emerald-50/60 border-emerald-200' : 'bg-slate-50 border-slate-200'}`}>
-                        <div className="flex items-center justify-between text-xs font-bold">
-                          <span className="text-blue-600">Video 2</span>
-                          {prog.video2Done && <span className="text-emerald-600 flex items-center gap-1"><CheckCircle2 className="w-3.5 h-3.5" /> Completed</span>}
-                        </div>
-                        <h4 className="text-sm font-bold text-slate-900">SOV Sentence Construction</h4>
-                        <button
-                          onClick={() => updateCourseProgress(activePlayCourse.id, { video2Done: true })}
-                          className={`w-full py-2 rounded-xl text-xs font-bold transition ${prog.video2Done ? 'bg-emerald-600 text-white' : 'bg-blue-600 hover:bg-blue-700 text-white'}`}
-                        >
-                          {prog.video2Done ? '✓ Finished' : 'Mark Video 2 Finished'}
-                        </button>
-                      </div>
-
-                      <div className={`p-4 rounded-2xl border space-y-3 transition ${prog.video3Done ? 'bg-emerald-50/60 border-emerald-200' : 'bg-slate-50 border-slate-200'}`}>
-                        <div className="flex items-center justify-between text-xs font-bold">
-                          <span className="text-blue-600">Video 3</span>
-                          {prog.video3Done && <span className="text-emerald-600 flex items-center gap-1"><CheckCircle2 className="w-3.5 h-3.5" /> Completed</span>}
-                        </div>
-                        <h4 className="text-sm font-bold text-slate-900">Spoken Conversational Fluency</h4>
-                        <button
-                          onClick={() => updateCourseProgress(activePlayCourse.id, { video3Done: true })}
-                          className={`w-full py-2 rounded-xl text-xs font-bold transition ${prog.video3Done ? 'bg-emerald-600 text-white' : 'bg-blue-600 hover:bg-blue-700 text-white'}`}
-                        >
-                          {prog.video3Done ? '✓ Finished' : 'Mark Video 3 Finished'}
-                        </button>
-                      </div>
-                    </>
-                  );
-                })()}
-              </div>
-
-              <div className="pt-4 border-t border-slate-100 flex justify-end">
-                <button
-                  onClick={() => setCourseStepTab('reading')}
-                  className="px-6 py-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs flex items-center gap-2 shadow-md"
-                >
-                  Proceed to Step 2: Reading Text →
-                </button>
               </div>
             </div>
           )}

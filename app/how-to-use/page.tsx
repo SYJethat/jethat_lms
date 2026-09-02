@@ -12,11 +12,21 @@ import {
   ChevronDown,
   ChevronUp,
   ArrowRight,
-  ShieldCheck
+  ShieldCheck,
+  UserCheck,
+  Building2,
+  Laptop,
+  Check,
+  Headphones,
+  Send,
+  Sparkles
 } from 'lucide-react';
 
 export default function HowToUsePage() {
   const [openFaqIdx, setOpenFaqIdx] = useState<number | null>(0);
+  const [activePersonaTab, setActivePersonaTab] = useState<'student' | 'teacher' | 'institute'>('student');
+  const [supportMessage, setSupportMessage] = useState('');
+  const [supportSubmitted, setSupportSubmitted] = useState(false);
 
   const guideSteps = [
     {
@@ -65,6 +75,27 @@ export default function HowToUsePage() {
     }
   ];
 
+  const personaGuides = {
+    student: [
+      { step: '1', title: 'Sign In via Student Portal', desc: 'Click LMS Portal Sign In, choose Student Role, and use demo credentials or register.' },
+      { step: '2', title: 'Enroll in 22 Language Modules', desc: 'Browse Devanagari stroke order, SOV grammar, and apply BHASHA2026 coupon.' },
+      { step: '3', title: 'Practice 1v1 AI Video Calls', desc: 'Open AI Tutor Hub, turn on webcam, and speak Hindi out loud with Acharya Devendra.' },
+      { step: '4', title: 'Attempt Online Anti-Cheating Exam', desc: 'Complete timed 15-min assessment and receive instant QR verified central diploma.' }
+    ],
+    teacher: [
+      { step: '1', title: 'Access Faculty Console', desc: 'Switch to Faculty Teacher Console from top menu or login page.' },
+      { step: '2', title: 'Monitor Student Speaking Progress', desc: 'Review AI speech recognition scores, webcam audio logs, and Devanagari handwriting.' },
+      { step: '3', title: 'Schedule Live HD Video Classrooms', desc: 'Host multi-student live video lectures with interactive whiteboard and quiz battles.' },
+      { step: '4', title: 'Approve & Grade Certifications', desc: 'Validate student diploma eligibility and issue government recognized credentials.' }
+    ],
+    institute: [
+      { step: '1', title: 'Campus Admin Workspace', desc: 'Log into Institute Campus Admin portal for institutional oversight.' },
+      { step: '2', title: 'Bulk Register Students & Faculty', desc: 'Import CSV rosters for university departments or school batches.' },
+      { step: '3', title: 'Track NEP 2020 Credit Framework', desc: 'Monitor national education credit distribution and scholarship analytics.' },
+      { step: '4', title: 'Physical Campus Pass Management', desc: 'Issue physical regional campus entry passes and digital identity cards.' }
+    ]
+  };
+
   const faqs = [
     {
       q: 'How do I use the 100% Free Govt Subsidy scholarship coupon BHASHA2026?',
@@ -83,6 +114,14 @@ export default function HowToUsePage() {
       a: 'Yes! Our platform features dedicated Dravidian-Hindi phonetic bridge tracks specially designed for Southern Indian language speakers.'
     }
   ];
+
+  const handleSupportSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (supportMessage.trim()) {
+      setSupportSubmitted(true);
+      setSupportMessage('');
+    }
+  };
 
   return (
     <div className="min-h-screen bg-[#F8FAFC] pb-20 space-y-16">
@@ -104,7 +143,7 @@ export default function HowToUsePage() {
       </section>
 
       {/* Main Content */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
         {/* 4 Steps Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {guideSteps.map((st) => (
@@ -134,6 +173,101 @@ export default function HowToUsePage() {
               </Link>
             </div>
           ))}
+        </div>
+
+        {/* EXTRA SECTION 1: Interactive Persona-Based Walkthrough Selector */}
+        <div className="bg-white rounded-3xl border border-slate-200 p-8 shadow-sm space-y-6 text-left">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-slate-100 pb-4">
+            <div className="space-y-1">
+              <span className="px-3 py-1 rounded-full bg-amber-50 text-amber-700 text-xs font-black uppercase tracking-wider border border-amber-200">
+                ROLE WORKFLOWS
+              </span>
+              <h2 className="text-2xl font-black text-slate-900">Interactive Walkthrough by Role Persona</h2>
+            </div>
+
+            {/* Persona Tabs */}
+            <div className="flex bg-slate-100 p-1 rounded-2xl border border-slate-200 font-extrabold text-xs">
+              <button
+                onClick={() => setActivePersonaTab('student')}
+                className={`px-4 py-2 rounded-xl transition ${
+                  activePersonaTab === 'student'
+                    ? 'bg-orange-600 text-white shadow-sm'
+                    : 'text-slate-600 hover:text-slate-900'
+                }`}
+              >
+                🎓 Student
+              </button>
+              <button
+                onClick={() => setActivePersonaTab('teacher')}
+                className={`px-4 py-2 rounded-xl transition ${
+                  activePersonaTab === 'teacher'
+                    ? 'bg-amber-600 text-white shadow-sm'
+                    : 'text-slate-600 hover:text-slate-900'
+                }`}
+              >
+                👨‍🏫 Faculty
+              </button>
+              <button
+                onClick={() => setActivePersonaTab('institute')}
+                className={`px-4 py-2 rounded-xl transition ${
+                  activePersonaTab === 'institute'
+                    ? 'bg-cyan-600 text-white shadow-sm'
+                    : 'text-slate-600 hover:text-slate-900'
+                }`}
+              >
+                🏛️ Institute Admin
+              </button>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {personaGuides[activePersonaTab].map((pStep, idx) => (
+              <div key={idx} className="p-5 rounded-2xl bg-slate-50 border border-slate-200 space-y-2">
+                <div className="w-8 h-8 rounded-xl bg-slate-900 text-amber-400 font-black text-xs flex items-center justify-center">
+                  {pStep.step}
+                </div>
+                <h4 className="font-extrabold text-sm text-slate-900">{pStep.title}</h4>
+                <p className="text-xs text-slate-500 font-medium leading-relaxed">{pStep.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* EXTRA SECTION 2: Technical Readiness & System Compatibility */}
+        <div className="p-8 rounded-3xl bg-slate-900 text-white space-y-6 shadow-xl border border-slate-800">
+          <div className="space-y-1 text-left">
+            <span className="px-3 py-1 rounded-full bg-cyan-500/20 text-cyan-400 text-xs font-black uppercase tracking-widest border border-cyan-500/30">
+              SYSTEM CHECKLIST
+            </span>
+            <h2 className="text-2xl font-black text-white">Browser & WebCam Technical Readiness Checklist</h2>
+            <p className="text-xs text-slate-400 font-medium">Verify your device meets requirements for 1v1 AI Video tutoring and online exams.</p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 text-left">
+            <div className="p-5 rounded-2xl bg-slate-800/80 border border-slate-700 space-y-2">
+              <div className="flex items-center gap-2 text-orange-400 font-extrabold text-xs">
+                <Laptop className="w-4 h-4" /> Supported Browsers
+              </div>
+              <p className="text-xs text-slate-300 font-medium">Google Chrome v100+, Microsoft Edge, Mozilla Firefox, Apple Safari (iOS/macOS).</p>
+              <span className="text-[10px] font-bold text-emerald-400 flex items-center gap-1"><Check className="w-3 h-3" /> WebRTC Compliant</span>
+            </div>
+
+            <div className="p-5 rounded-2xl bg-slate-800/80 border border-slate-700 space-y-2">
+              <div className="flex items-center gap-2 text-cyan-400 font-extrabold text-xs">
+                <Video className="w-4 h-4" /> WebCam & Microphone
+              </div>
+              <p className="text-xs text-slate-300 font-medium">Built-in or USB Webcam (720p minimum) + Standard Microphone for speech QA.</p>
+              <span className="text-[10px] font-bold text-emerald-400 flex items-center gap-1"><Check className="w-3 h-3" /> Hardware Acceleration</span>
+            </div>
+
+            <div className="p-5 rounded-2xl bg-slate-800/80 border border-slate-700 space-y-2">
+              <div className="flex items-center gap-2 text-amber-400 font-extrabold text-xs">
+                <ShieldCheck className="w-4 h-4" /> Internet Speed
+              </div>
+              <p className="text-xs text-slate-300 font-medium">256 kbps for audio podcasts & quizzes; 1.5 Mbps for 1v1 HD AI Video Call Studio.</p>
+              <span className="text-[10px] font-bold text-emerald-400 flex items-center gap-1"><Check className="w-3 h-3" /> Low-Bandwidth Mode Supported</span>
+            </div>
+          </div>
         </div>
 
         {/* Student FAQs Section */}
@@ -169,6 +303,40 @@ export default function HowToUsePage() {
               );
             })}
           </div>
+        </div>
+
+        {/* EXTRA SECTION 3: 24/7 Learner Support & Help Desk Box */}
+        <div className="bg-gradient-to-r from-orange-600 to-amber-600 text-white rounded-3xl p-8 shadow-xl space-y-4 max-w-4xl mx-auto text-left">
+          <div className="space-y-1">
+            <span className="px-3 py-1 rounded-full bg-white/20 text-white text-xs font-black uppercase tracking-wider inline-flex items-center gap-1">
+              <Headphones className="w-3.5 h-3.5" /> 24/7 LEARNER HELPDESK
+            </span>
+            <h3 className="text-2xl font-black text-white">Have a Question or Technical Issue?</h3>
+            <p className="text-xs text-orange-100 font-medium">Submit your question below or launch our AI Help Desk Assistant for instant answer.</p>
+          </div>
+
+          {supportSubmitted ? (
+            <div className="p-4 rounded-2xl bg-white/15 border border-white/30 text-white text-xs font-bold flex items-center gap-2">
+              <CheckCircle2 className="w-5 h-5 text-emerald-300" /> Ticket submitted! Our student support team will respond within 24 hours.
+            </div>
+          ) : (
+            <form onSubmit={handleSupportSubmit} className="flex flex-col sm:flex-row gap-3">
+              <input
+                type="text"
+                value={supportMessage}
+                onChange={(e) => setSupportMessage(e.target.value)}
+                placeholder="Type your question or issue here..."
+                className="flex-1 px-4 py-3 rounded-2xl bg-white text-slate-900 text-xs placeholder-slate-400 font-medium focus:outline-none"
+                required
+              />
+              <button
+                type="submit"
+                className="px-6 py-3 rounded-2xl bg-slate-950 hover:bg-slate-900 text-white font-extrabold text-xs uppercase tracking-wider transition flex items-center justify-center gap-2 shrink-0 shadow-md"
+              >
+                <Send className="w-4 h-4" /> Send Ticket
+              </button>
+            </form>
+          )}
         </div>
       </section>
     </div>

@@ -88,7 +88,7 @@ export default function StudentDashboard() {
 
   // Default Overview Dashboard View (Enhanced Student Hub with Logo Colors)
   return (
-    <div className="space-y-8 max-w-7xl mx-auto pb-12 animate-in fade-in duration-200">
+    <div className="space-y-8 max-w-8xl mx-auto pb-12 animate-in fade-in duration-200">
       {/* 1. Hero Welcome & Goal Banner (Logo Matched Gradient: Saffron Orange & Dark Slate) */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
         {/* Main Banner (Left 8 Cols) */}

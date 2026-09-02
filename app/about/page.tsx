@@ -15,7 +15,11 @@ import {
   User as UserIcon,
   Sparkles,
   Users,
-  GraduationCap
+  GraduationCap,
+  Star,
+  Check,
+  Lock,
+  Cpu
 } from 'lucide-react';
 
 export default function AboutPage() {
@@ -39,7 +43,7 @@ export default function AboutPage() {
       </section>
 
       {/* Main Content Grid */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
         {/* Mission & Vision Section */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
           <div className="p-8 rounded-3xl bg-white border border-slate-200 shadow-sm space-y-4 text-left">
@@ -95,6 +99,95 @@ export default function AboutPage() {
           </div>
         </div>
 
+        {/* EXTRA SECTION 1: Live Platform Impact & Metrics */}
+        <div className="p-8 rounded-3xl bg-slate-900 text-white shadow-xl space-y-6">
+          <div className="text-center space-y-2">
+            <span className="px-3 py-1 rounded-full bg-orange-500/20 text-orange-400 text-xs font-black uppercase tracking-widest border border-orange-500/30">
+              NATIONAL LMS SCALE & METRICS
+            </span>
+            <h2 className="text-2xl sm:text-3xl font-black text-white">Empowering Millions of Language Learners</h2>
+            <p className="text-xs sm:text-sm text-slate-400 max-w-2xl mx-auto font-medium">Real-time statistics across all 28 Indian States and Union Territories.</p>
+          </div>
+
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 text-center pt-4">
+            <div className="p-6 rounded-2xl bg-slate-800/80 border border-slate-700/80 space-y-1">
+              <Users className="w-6 h-6 text-orange-400 mx-auto mb-2" />
+              <span className="text-3xl sm:text-4xl font-black text-white block">520,000+</span>
+              <span className="text-xs font-bold text-slate-400 uppercase tracking-wider">Active Students</span>
+            </div>
+
+            <div className="p-6 rounded-2xl bg-slate-800/80 border border-slate-700/80 space-y-1">
+              <Globe className="w-6 h-6 text-cyan-400 mx-auto mb-2" />
+              <span className="text-3xl sm:text-4xl font-black text-white block">22</span>
+              <span className="text-xs font-bold text-slate-400 uppercase tracking-wider">Schedule Languages</span>
+            </div>
+
+            <div className="p-6 rounded-2xl bg-slate-800/80 border border-slate-700/80 space-y-1">
+              <Bot className="w-6 h-6 text-amber-400 mx-auto mb-2" />
+              <span className="text-3xl sm:text-4xl font-black text-white block">1.4M+</span>
+              <span className="text-xs font-bold text-slate-400 uppercase tracking-wider">AI Video Hours</span>
+            </div>
+
+            <div className="p-6 rounded-2xl bg-slate-800/80 border border-slate-700/80 space-y-1">
+              <Award className="w-6 h-6 text-emerald-400 mx-auto mb-2" />
+              <span className="text-3xl sm:text-4xl font-black text-white block">380,000+</span>
+              <span className="text-xs font-bold text-slate-400 uppercase tracking-wider">QR Diplomas Issued</span>
+            </div>
+          </div>
+        </div>
+
+        {/* EXTRA SECTION 2: Core Platform Pillars */}
+        <div className="space-y-8 text-center">
+          <div className="space-y-2">
+            <span className="px-3.5 py-1 rounded-full bg-orange-50 text-orange-700 text-xs font-black uppercase tracking-wider border border-orange-200">
+              PEDAGOGICAL PILLARS
+            </span>
+            <h2 className="text-2xl sm:text-3xl font-black text-slate-900">Four Pillars of National LMS Architecture</h2>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 text-left">
+            <div className="p-6 rounded-3xl bg-white border border-slate-200 shadow-xs space-y-3">
+              <div className="w-12 h-12 rounded-2xl bg-orange-100 text-orange-700 flex items-center justify-center font-bold">
+                <GraduationCap className="w-6 h-6" />
+              </div>
+              <h3 className="text-base font-black text-slate-900">NEP 2020 100% Free Access</h3>
+              <p className="text-xs text-slate-500 font-medium leading-relaxed">
+                Zero financial barriers for students. 100% government tuition subsidies for language scholars nationwide.
+              </p>
+            </div>
+
+            <div className="p-6 rounded-3xl bg-white border border-slate-200 shadow-xs space-y-3">
+              <div className="w-12 h-12 rounded-2xl bg-cyan-100 text-cyan-700 flex items-center justify-center font-bold">
+                <Cpu className="w-6 h-6" />
+              </div>
+              <h3 className="text-base font-black text-slate-900">3D Lip-Sync AI Professors</h3>
+              <p className="text-xs text-slate-500 font-medium leading-relaxed">
+                24/7 interactive 1v1 video avatar tutors providing real-time pronunciation and Devanagari grammar instruction.
+              </p>
+            </div>
+
+            <div className="p-6 rounded-3xl bg-white border border-slate-200 shadow-xs space-y-3">
+              <div className="w-12 h-12 rounded-2xl bg-emerald-100 text-emerald-700 flex items-center justify-center font-bold">
+                <Lock className="w-6 h-6" />
+              </div>
+              <h3 className="text-base font-black text-slate-900">Cryptographic QR Verifiability</h3>
+              <p className="text-xs text-slate-500 font-medium leading-relaxed">
+                Tamper-proof certificates backed by central university accreditation and instant QR code verification.
+              </p>
+            </div>
+
+            <div className="p-6 rounded-3xl bg-white border border-slate-200 shadow-xs space-y-3">
+              <div className="w-12 h-12 rounded-2xl bg-amber-100 text-amber-700 flex items-center justify-center font-bold">
+                <Globe className="w-6 h-6" />
+              </div>
+              <h3 className="text-base font-black text-slate-900">Multi-Lingual Bridge Learning</h3>
+              <p className="text-xs text-slate-500 font-medium leading-relaxed">
+                Phonetic bridge tracks specially crafted for Southern, Eastern, and North-Eastern language speakers.
+              </p>
+            </div>
+          </div>
+        </div>
+
         {/* 22 Scheduled Indian Languages Grid */}
         <div className="space-y-6 text-center">
           <div className="space-y-1">
@@ -132,6 +225,59 @@ export default function AboutPage() {
                 <span className="px-2 py-0.5 rounded bg-orange-100 text-orange-800 font-black text-[9px]">
                   {lang.code}
                 </span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* EXTRA SECTION 3: Faculty Leadership & AI Research Team */}
+        <div className="space-y-8 text-center">
+          <div className="space-y-2">
+            <span className="px-3.5 py-1 rounded-full bg-orange-50 text-orange-700 text-xs font-black uppercase tracking-wider border border-orange-200">
+              FACULTY & RESEARCH ADVISORS
+            </span>
+            <h2 className="text-2xl sm:text-3xl font-black text-slate-900">Academic Leadership & AI Architects</h2>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 text-left">
+            {[
+              {
+                name: 'Acharya Devendra Sharma',
+                role: 'Head of Hindi Pedagogy & AI',
+                dept: 'Kendriya Hindi Sansthan',
+                desc: 'Over 25 years in Devanagari linguistics and AI speech synthesis research.',
+                avatar: '👨‍🏫'
+              },
+              {
+                name: 'Dr. Sunita Verma',
+                role: 'Director of NEP Accreditation',
+                dept: 'Ministry of Education Panel',
+                desc: 'Lead architect for national credit framework integration and university diplomas.',
+                avatar: '👩‍🏫'
+              },
+              {
+                name: 'Prof. Rajesh K. Nair',
+                role: 'Dravidian Phonetics Specialist',
+                dept: 'CIIL Mysuru Advisory',
+                desc: 'Pioneer of Southern Indian language to Hindi phonetic mapping models.',
+                avatar: '👨‍🔬'
+              },
+              {
+                name: 'Dr. Ananya Mukherjee',
+                role: 'Chief Exam Systems Officer',
+                dept: 'Cyber Security & AI Integrity',
+                desc: 'Specialist in automated anti-cheating, proctoring algorithms, and QR verification.',
+                avatar: '👩‍💻'
+              }
+            ].map((fac, idx) => (
+              <div key={idx} className="p-6 rounded-3xl bg-white border border-slate-200 shadow-xs space-y-3">
+                <div className="text-4xl">{fac.avatar}</div>
+                <div>
+                  <h4 className="font-extrabold text-sm text-slate-900">{fac.name}</h4>
+                  <span className="text-[10px] font-bold text-orange-600 uppercase block">{fac.role}</span>
+                  <span className="text-[10px] text-slate-400 font-semibold">{fac.dept}</span>
+                </div>
+                <p className="text-xs text-slate-500 font-medium leading-relaxed">{fac.desc}</p>
               </div>
             ))}
           </div>

@@ -123,167 +123,175 @@ export default function DashboardFreeAudioPage() {
   });
 
   return (
-    <div className="space-y-8 max-w-7xl mx-auto pb-16">
-      {/* Hero Banner */}
-      <div className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-purple-950 via-indigo-950 to-slate-900 text-white p-6 sm:p-10 shadow-xl border border-purple-800/40">
-        <div className="relative z-10 space-y-4">
-          <div className="flex items-center gap-3">
-            <span className="px-3 py-1 rounded-full bg-purple-500/20 text-purple-300 text-xs font-black tracking-widest uppercase border border-purple-400/30 flex items-center gap-1.5">
-              <Headphones className="w-3.5 h-3.5 text-purple-400" /> FREE AUDIO PODCAST & LISTENING HUB
-            </span>
-            <span className="px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-300 text-xs font-bold border border-emerald-400/30">
-              Native Voice Audios
-            </span>
-          </div>
+    <div className="space-y-8 max-w-8xl mx-auto pb-16">
+      {/* 2-Column Split Layout: Left Audio Player Console, Right Audio Playlist Sidebar */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        {/* LEFT COLUMN: Main Interactive Audio Player Console */}
+        <div className="lg:col-span-7 xl:col-span-8 space-y-6">
+          <div className="p-6 sm:p-8 rounded-3xl bg-white border border-slate-200 shadow-xs space-y-6">
+            <div className="p-6 sm:p-8 rounded-3xl bg-gradient-to-r from-purple-900 via-indigo-900 to-slate-900 text-white space-y-6 shadow-xl relative overflow-hidden">
+              <div className="flex items-center justify-between">
+                <span className="px-3 py-1 rounded-full bg-white/20 text-white text-xs font-black uppercase tracking-wider">
+                  NOW PLAYING • {activeTrack.category}
+                </span>
+                <span className="text-xs text-purple-200 font-bold flex items-center gap-1">
+                  <Clock className="w-3.5 h-3.5 text-amber-300" /> {activeTrack.duration}
+                </span>
+              </div>
 
-          <h1 className="text-2xl sm:text-4xl font-black tracking-tight leading-tight">
-            मुफ्त ऑडियो पॉडकास्ट एवं श्रवण केंद्र <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-purple-300 to-amber-300">
-              Free Audio Lessons, Dialects & Pronunciation Pods
-            </span>
-          </h1>
-          <p className="text-slate-300 text-xs sm:text-sm max-w-3xl leading-relaxed">
-            Listen to authentic native speech recordings, daily conversation pods, poetry recitations, and Dravidian-Indo-Aryan phonetic accent guides.
-          </p>
-        </div>
-      </div>
+              <div className="space-y-2 text-center sm:text-left">
+                <h3 className="text-xl sm:text-2xl font-black text-white">{activeTrack.titleHindi}</h3>
+                <p className="text-xs text-purple-200 font-medium">{activeTrack.titleEng}</p>
+              </div>
 
-      {/* Main Interactive Audio Player Console */}
-      <div className="p-6 sm:p-8 rounded-3xl bg-white border border-slate-200 shadow-xs space-y-6">
-        <div className="p-6 rounded-3xl bg-gradient-to-r from-purple-900 to-indigo-900 text-white space-y-6 shadow-xl relative overflow-hidden">
-          <div className="flex items-center justify-between">
-            <span className="px-3 py-1 rounded-full bg-white/20 text-white text-xs font-black uppercase">
-              NOW PLAYING • {activeTrack.category}
-            </span>
-            <span className="text-xs text-purple-200 font-bold flex items-center gap-1">
-              <Clock className="w-3.5 h-3.5 text-amber-300" /> {activeTrack.duration}
-            </span>
-          </div>
+              {/* Audio Transcript / Phrase Box */}
+              <div className="p-4.5 rounded-2xl bg-black/40 backdrop-blur-md border border-white/10 text-xs font-semibold space-y-1.5">
+                <span className="text-[10px] text-amber-300 font-black uppercase tracking-wider block">NATIVE AUDIO TRANSCRIPT PHRASE:</span>
+                <p className="text-sm font-bold text-white leading-relaxed">{activeTrack.audioText}</p>
+              </div>
 
-          <div className="space-y-2 text-center sm:text-left">
-            <h3 className="text-xl sm:text-2xl font-black text-white">{activeTrack.titleHindi}</h3>
-            <p className="text-xs text-purple-200 font-medium">{activeTrack.titleEng}</p>
-          </div>
+              {/* Controls Bar */}
+              <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-2 border-t border-white/10">
+                <div className="flex items-center gap-3">
+                  <button
+                    onClick={() => playSpeechAudio(activeTrack.audioText)}
+                    className="p-3.5 rounded-2xl bg-white/10 hover:bg-white/20 text-white transition shadow-2xs"
+                    title="Replay Audio"
+                  >
+                    <RotateCcw className="w-5 h-5" />
+                  </button>
 
-          {/* Audio Transcript / Phrase Box */}
-          <div className="p-4 rounded-2xl bg-black/30 backdrop-blur-md border border-white/10 text-xs font-semibold space-y-1">
-            <span className="text-[10px] text-amber-300 font-black uppercase tracking-wider block">NATIVE AUDIO TRANSCRIPT PHRASE:</span>
-            <p className="text-sm font-bold text-white">{activeTrack.audioText}</p>
-          </div>
+                  <button
+                    onClick={togglePlayPause}
+                    className="w-16 h-16 rounded-full bg-amber-400 hover:bg-amber-300 text-slate-950 flex items-center justify-center shadow-xl cursor-pointer hover:scale-105 transition"
+                  >
+                    {isPlaying ? <Pause className="w-8 h-8 fill-slate-950" /> : <Play className="w-8 h-8 fill-slate-950 ml-1" />}
+                  </button>
 
-          {/* Controls Bar */}
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-2 border-t border-white/10">
-            <div className="flex items-center gap-3">
-              <button
-                onClick={() => playSpeechAudio(activeTrack.audioText)}
-                className="p-3 rounded-2xl bg-white/10 hover:bg-white/20 text-white transition"
-                title="Rewind 10s"
-              >
-                <RotateCcw className="w-5 h-5" />
-              </button>
+                  <button
+                    onClick={() => playSpeechAudio(activeTrack.audioText)}
+                    className="p-3.5 rounded-2xl bg-white/10 hover:bg-white/20 text-white transition shadow-2xs"
+                    title="Forward"
+                  >
+                    <RotateCw className="w-5 h-5" />
+                  </button>
+                </div>
 
-              <button
-                onClick={togglePlayPause}
-                className="w-16 h-16 rounded-full bg-amber-400 hover:bg-amber-300 text-slate-950 flex items-center justify-center shadow-xl cursor-pointer hover:scale-105 transition"
-              >
-                {isPlaying ? <Pause className="w-8 h-8 fill-slate-950" /> : <Play className="w-8 h-8 fill-slate-950 ml-1" />}
-              </button>
-
-              <button
-                onClick={() => playSpeechAudio(activeTrack.audioText)}
-                className="p-3 rounded-2xl bg-white/10 hover:bg-white/20 text-white transition"
-                title="Forward 10s"
-              >
-                <RotateCw className="w-5 h-5" />
-              </button>
+                {/* Speed Selector */}
+                <div className="flex items-center gap-2 text-xs font-bold bg-white/10 p-1.5 rounded-2xl border border-white/10">
+                  <span className="text-purple-200 px-1">Speed:</span>
+                  {[0.8, 1.0, 1.2, 1.5].map((speed) => (
+                    <button
+                      key={speed}
+                      onClick={() => setPlaybackSpeed(speed)}
+                      className={`px-2.5 py-1 rounded-xl transition ${
+                        playbackSpeed === speed ? 'bg-white text-purple-950 font-black shadow-xs' : 'text-white hover:bg-white/20'
+                      }`}
+                    >
+                      {speed}x
+                    </button>
+                  ))}
+                </div>
+              </div>
             </div>
 
-            {/* Speed Selector */}
-            <div className="flex items-center gap-2 text-xs font-bold">
-              <span className="text-purple-200">Speed:</span>
-              {[0.8, 1.0, 1.2, 1.5].map((speed) => (
+            {/* Track Details */}
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 text-xs text-slate-600 font-semibold p-4 rounded-2xl bg-slate-50 border border-slate-200">
+              <span>Narrator: <strong className="text-slate-900">{activeTrack.narrator}</strong></span>
+              <span>Regional Accent: <strong className="text-purple-700">{activeTrack.accent}</strong></span>
+            </div>
+          </div>
+        </div>
+
+        {/* RIGHT COLUMN: Audio Playlist Sidebar & Search */}
+        <div className="lg:col-span-5 xl:col-span-4 space-y-6">
+          <div className="p-6 rounded-3xl bg-white border border-slate-200 shadow-xs space-y-5">
+            {/* Playlist Header */}
+            <div className="flex items-center justify-between border-b border-slate-100 pb-3">
+              <div>
+                <h3 className="font-black text-slate-900 text-base">Audio Playlist (श्रवण सूची)</h3>
+                <span className="text-[11px] font-semibold text-slate-500">
+                  {filteredPlaylist.length} Audio Lessons Available
+                </span>
+              </div>
+              <span className="px-2.5 py-1 rounded-full bg-purple-50 text-purple-700 font-bold text-xs">
+                Native Audio
+              </span>
+            </div>
+
+            {/* Search Input */}
+            <div className="relative">
+              <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-3" />
+              <input
+                type="text"
+                placeholder="Search audio tracks..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="w-full pl-9 pr-3 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-purple-500"
+              />
+            </div>
+
+            {/* Category Filters */}
+            <div className="flex flex-wrap gap-1.5">
+              {['All', 'Daily Conversation', 'Practical Dialogues', 'Phonetic Drill', 'Poetry & Music', 'Travel & Navigation'].map((cat) => (
                 <button
-                  key={speed}
-                  onClick={() => setPlaybackSpeed(speed)}
-                  className={`px-2.5 py-1 rounded-lg transition ${
-                    playbackSpeed === speed ? 'bg-white text-purple-950 font-black' : 'bg-white/10 text-white hover:bg-white/20'
+                  key={cat}
+                  onClick={() => setSelectedCategory(cat)}
+                  className={`px-3 py-1.5 rounded-xl font-extrabold text-[11px] transition ${
+                    selectedCategory === cat
+                      ? 'bg-purple-600 text-white shadow-xs'
+                      : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
                   }`}
                 >
-                  {speed}x
+                  {cat}
                 </button>
               ))}
             </div>
-          </div>
-        </div>
 
-        {/* Track Details */}
-        <div className="flex items-center justify-between text-xs text-slate-600 font-semibold p-4 rounded-2xl bg-slate-50 border border-slate-200">
-          <span>Narrator: <strong className="text-slate-900">{activeTrack.narrator}</strong></span>
-          <span>Regional Accent: <strong className="text-purple-700">{activeTrack.accent}</strong></span>
-        </div>
-      </div>
+            {/* Playlist Cards List */}
+            <div className="space-y-3 max-h-[620px] overflow-y-auto pr-1">
+              {filteredPlaylist.map((track) => {
+                const isActive = activeTrack.id === track.id;
 
-      {/* Playlist Grid */}
-      <div className="space-y-4">
-        <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 bg-white p-3 rounded-2xl border border-slate-200 shadow-xs">
-          <div className="flex flex-wrap items-center gap-2">
-            {['All', 'Daily Conversation', 'Practical Dialogues', 'Phonetic Drill', 'Poetry & Music', 'Travel & Navigation'].map((cat) => (
-              <button
-                key={cat}
-                onClick={() => setSelectedCategory(cat)}
-                className={`px-3.5 py-2 rounded-xl font-bold text-xs transition ${
-                  selectedCategory === cat
-                    ? 'bg-purple-600 text-white shadow-sm'
-                    : 'text-slate-600 hover:bg-slate-100'
-                }`}
-              >
-                {cat}
-              </button>
-            ))}
-          </div>
+                return (
+                  <div
+                    key={track.id}
+                    onClick={() => {
+                      setActiveTrack(track);
+                      playSpeechAudio(track.audioText);
+                    }}
+                    className={`p-3.5 rounded-2xl border cursor-pointer transition-all duration-200 flex items-center justify-between gap-3 shadow-2xs hover:shadow-md ${
+                      isActive ? 'bg-purple-50/90 border-purple-500 ring-2 ring-purple-400/60' : 'bg-white border-slate-200 hover:bg-slate-50'
+                    }`}
+                  >
+                    <div className="flex items-center gap-3 min-w-0">
+                      <button className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 shadow-2xs transition ${
+                        isActive ? 'bg-purple-600 text-white' : 'bg-slate-100 text-slate-700'
+                      }`}>
+                        <Play className="w-4 h-4 fill-current ml-0.5" />
+                      </button>
+                      <div className="min-w-0 flex-1 space-y-0.5">
+                        <div className="flex items-center gap-1.5">
+                          <span className="text-[9px] font-black uppercase text-purple-700 truncate">{track.category}</span>
+                          {isActive && (
+                            <span className="px-1.5 py-0.2 rounded bg-purple-600 text-white font-extrabold text-[8px] shrink-0">
+                              PLAYING
+                            </span>
+                          )}
+                        </div>
+                        <h4 className="font-extrabold text-xs text-slate-900 line-clamp-1 leading-snug">{track.titleHindi}</h4>
+                        <p className="text-[11px] text-slate-500 line-clamp-1">{track.titleEng}</p>
+                      </div>
+                    </div>
 
-          <div className="relative w-full sm:w-64">
-            <Search className="w-4 h-4 text-slate-400 absolute left-3 top-3" />
-            <input
-              type="text"
-              placeholder="Search audio tracks..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-9 pr-3 py-2 rounded-xl bg-slate-50 border border-slate-200 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-purple-500"
-            />
-          </div>
-        </div>
-
-        <div className="space-y-3">
-          {filteredPlaylist.map((track) => (
-            <div
-              key={track.id}
-              onClick={() => {
-                setActiveTrack(track);
-                playSpeechAudio(track.audioText);
-              }}
-              className={`p-4 rounded-2xl border cursor-pointer transition flex items-center justify-between gap-4 ${
-                activeTrack.id === track.id ? 'bg-purple-50 border-purple-500 shadow-xs' : 'bg-white border-slate-200 hover:bg-slate-50'
-              }`}
-            >
-              <div className="flex items-center gap-4">
-                <button className={`w-12 h-12 rounded-2xl flex items-center justify-center shrink-0 shadow-sm transition ${
-                  activeTrack.id === track.id ? 'bg-purple-600 text-white' : 'bg-slate-100 text-slate-700'
-                }`}>
-                  <Play className="w-5 h-5 fill-current ml-0.5" />
-                </button>
-                <div>
-                  <h4 className="font-extrabold text-sm text-slate-900">{track.titleHindi}</h4>
-                  <p className="text-xs text-slate-500">{track.titleEng}</p>
-                </div>
-              </div>
-
-              <div className="text-right shrink-0 text-xs">
-                <span className="font-bold text-purple-700 block">{track.duration}</span>
-                <span className="text-slate-400 text-[10px]">{track.category}</span>
-              </div>
+                    <div className="text-right shrink-0 text-xs">
+                      <span className="font-bold text-purple-700 block">{track.duration}</span>
+                    </div>
+                  </div>
+                );
+              })}
             </div>
-          ))}
+          </div>
         </div>
       </div>
     </div>
