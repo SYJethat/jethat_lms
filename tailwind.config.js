@@ -10,14 +10,22 @@ module.exports = {
     extend: {
       colors: {
         hindi: {
-          saffron: '#FF7722',
+          saffron: '#F15A24',
           gold: '#FFB800',
           indigo: '#4F46E5',
           navy: '#0F172A',
           emerald: '#10B981',
           rose: '#F43F5E',
-          cyan: '#06B6D4',
+          cyan: '#00A8E8',
           violet: '#8B5CF6',
+        },
+        jethat: {
+          orange: '#F15A24',
+          saffron: '#E85D26',
+          cyan: '#00A8E8',
+          teal: '#38B6FF',
+          red: '#A91D22',
+          navy: '#0F172A',
         },
       },
       fontFamily: {

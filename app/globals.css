@@ -10,8 +10,10 @@
   --border-color: #e2e8f0;
   --text-main: #0f172a;
   --text-muted: #64748b;
-  --primary-blue: #2563eb;
-  --saffron: #f97316;
+  --primary-blue: #00a8e8;
+  --primary-cyan: #00a8e8;
+  --saffron: #f15a24;
+  --shield-red: #a91d22;
 }
 
 body {
@@ -59,20 +61,20 @@ body.gigw-high-contrast aside {
 }
 
 .clean-card-hover:hover {
-  box-shadow: 0 10px 25px -5px rgba(37, 99, 235, 0.1), 0 8px 10px -6px rgba(37, 99, 235, 0.05);
+  box-shadow: 0 10px 25px -5px rgba(241, 90, 36, 0.12), 0 8px 10px -6px rgba(0, 168, 232, 0.08);
   border-color: #cbd5e1;
   transform: translateY(-2px);
 }
 
 /* Gradient Text */
 .gradient-text-saffron {
-  background: linear-gradient(135deg, #ea580c 0%, #d97706 100%);
+  background: linear-gradient(135deg, #f15a24 0%, #e85d26 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 .gradient-text-blue {
-  background: linear-gradient(135deg, #1d4ed8 0%, #3b82f6 100%);
+  background: linear-gradient(135deg, #00a8e8 0%, #38b6ff 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }

@@ -777,7 +777,7 @@ export default function DashboardIndianLanguagesPage() {
   const [activeDayLesson, setActiveDayLesson] = useState<number>(1);
   const [selectedCourseModal, setSelectedCourseModal] = useState<IndianLanguageCourse | null>(null);
   const [activePlayCourse, setActivePlayCourse] = useState<IndianLanguageCourse | null>(null);
-  
+
   // Game & Interactive Tool States
   const [selectedCognateLang, setSelectedCognateLang] = useState<string>('tamil');
   const [gameIndex, setGameIndex] = useState(0);
@@ -1055,76 +1055,70 @@ export default function DashboardIndianLanguagesPage() {
               <div className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none border-b border-slate-200">
                 <button
                   onClick={() => setCourseStepTab('videos')}
-                  className={`px-4 py-3 rounded-2xl font-extrabold text-xs transition flex items-center gap-2 whitespace-nowrap ${
-                    courseStepTab === 'videos'
+                  className={`px-4 py-3 rounded-2xl font-extrabold text-xs transition flex items-center gap-2 whitespace-nowrap ${courseStepTab === 'videos'
                       ? 'bg-blue-600 text-white shadow-md'
                       : prog.videosCompleted
-                      ? 'bg-emerald-50 text-emerald-700 border border-emerald-200 font-bold'
-                      : 'bg-white text-slate-700 border border-slate-200 hover:bg-slate-50'
-                  }`}
+                        ? 'bg-emerald-50 text-emerald-700 border border-emerald-200 font-bold'
+                        : 'bg-white text-slate-700 border border-slate-200 hover:bg-slate-50'
+                    }`}
                 >
                   <Play className="w-4 h-4" /> 1. Video Lessons ({prog.videosCompleted ? '✓ 3/3 Done' : '3 Videos'})
                 </button>
 
                 <button
                   onClick={() => setCourseStepTab('reading')}
-                  className={`px-4 py-3 rounded-2xl font-extrabold text-xs transition flex items-center gap-2 whitespace-nowrap ${
-                    courseStepTab === 'reading'
+                  className={`px-4 py-3 rounded-2xl font-extrabold text-xs transition flex items-center gap-2 whitespace-nowrap ${courseStepTab === 'reading'
                       ? 'bg-blue-600 text-white shadow-md'
                       : prog.readingCompleted
-                      ? 'bg-emerald-50 text-emerald-700 border border-emerald-200 font-bold'
-                      : 'bg-white text-slate-700 border border-slate-200 hover:bg-slate-50'
-                  }`}
+                        ? 'bg-emerald-50 text-emerald-700 border border-emerald-200 font-bold'
+                        : 'bg-white text-slate-700 border border-slate-200 hover:bg-slate-50'
+                    }`}
                 >
                   <BookOpen className="w-4 h-4" /> 2. Reading Text ({prog.readingCompleted ? '✓ Completed' : 'Reading Text'})
                 </button>
 
                 <button
                   onClick={() => setCourseStepTab('writing')}
-                  className={`px-4 py-3 rounded-2xl font-extrabold text-xs transition flex items-center gap-2 whitespace-nowrap ${
-                    courseStepTab === 'writing'
+                  className={`px-4 py-3 rounded-2xl font-extrabold text-xs transition flex items-center gap-2 whitespace-nowrap ${courseStepTab === 'writing'
                       ? 'bg-blue-600 text-white shadow-md'
                       : prog.writingCompleted
-                      ? 'bg-emerald-50 text-emerald-700 border border-emerald-200 font-bold'
-                      : 'bg-white text-slate-700 border border-slate-200 hover:bg-slate-50'
-                  }`}
+                        ? 'bg-emerald-50 text-emerald-700 border border-emerald-200 font-bold'
+                        : 'bg-white text-slate-700 border border-slate-200 hover:bg-slate-50'
+                    }`}
                 >
                   <FileText className="w-4 h-4" /> 3. Written Test ({prog.writingCompleted ? '✓ Submitted' : 'Written Exercise'})
                 </button>
 
                 <button
                   onClick={() => setCourseStepTab('guided-learning')}
-                  className={`px-4 py-3 rounded-2xl font-extrabold text-xs transition flex items-center gap-2 whitespace-nowrap ${
-                    courseStepTab === 'guided-learning'
+                  className={`px-4 py-3 rounded-2xl font-extrabold text-xs transition flex items-center gap-2 whitespace-nowrap ${courseStepTab === 'guided-learning'
                       ? 'bg-emerald-600 text-white shadow-md'
                       : 'bg-white text-slate-700 border border-slate-200 hover:bg-slate-50'
-                  }`}
+                    }`}
                 >
                   <Bookmark className="w-4 h-4 text-emerald-500" /> 📖 Guided Study Modules (PDFs)
                 </button>
 
                 <button
                   onClick={() => setCourseStepTab('listening')}
-                  className={`px-4 py-3 rounded-2xl font-extrabold text-xs transition flex items-center gap-2 whitespace-nowrap ${
-                    courseStepTab === 'listening'
+                  className={`px-4 py-3 rounded-2xl font-extrabold text-xs transition flex items-center gap-2 whitespace-nowrap ${courseStepTab === 'listening'
                       ? 'bg-blue-600 text-white shadow-md'
                       : prog.listeningCompleted
-                      ? 'bg-emerald-50 text-emerald-700 border border-emerald-200 font-bold'
-                      : 'bg-white text-slate-700 border border-slate-200 hover:bg-slate-50'
-                  }`}
+                        ? 'bg-emerald-50 text-emerald-700 border border-emerald-200 font-bold'
+                        : 'bg-white text-slate-700 border border-slate-200 hover:bg-slate-50'
+                    }`}
                 >
                   <Volume2 className="w-4 h-4" /> 4. Listening Test ({prog.listeningCompleted ? '✓ Completed' : 'Audio Test'})
                 </button>
 
                 <button
                   onClick={() => setCourseStepTab('exam')}
-                  className={`px-4 py-3 rounded-2xl font-extrabold text-xs transition flex items-center gap-2 whitespace-nowrap ${
-                    courseStepTab === 'exam'
+                  className={`px-4 py-3 rounded-2xl font-extrabold text-xs transition flex items-center gap-2 whitespace-nowrap ${courseStepTab === 'exam'
                       ? 'bg-blue-600 text-white shadow-md'
                       : prog.examCompleted
-                      ? 'bg-emerald-50 text-emerald-700 border border-emerald-200 font-bold'
-                      : 'bg-white text-slate-700 border border-slate-200 hover:bg-slate-50'
-                  }`}
+                        ? 'bg-emerald-50 text-emerald-700 border border-emerald-200 font-bold'
+                        : 'bg-white text-slate-700 border border-slate-200 hover:bg-slate-50'
+                    }`}
                 >
                   <Award className="w-4 h-4" /> 5. Final Exam ({prog.examCompleted ? `✓ Score ${prog.examScore}%` : 'Assessment Exam'})
                 </button>
@@ -1132,13 +1126,12 @@ export default function DashboardIndianLanguagesPage() {
                 <button
                   onClick={() => setCourseStepTab('certificate')}
                   disabled={!prog.allFinished}
-                  className={`px-4 py-3 rounded-2xl font-extrabold text-xs transition flex items-center gap-2 whitespace-nowrap ${
-                    courseStepTab === 'certificate'
+                  className={`px-4 py-3 rounded-2xl font-extrabold text-xs transition flex items-center gap-2 whitespace-nowrap ${courseStepTab === 'certificate'
                       ? 'bg-amber-500 text-slate-900 shadow-md font-black'
                       : prog.allFinished
-                      ? 'bg-amber-100 text-amber-900 border border-amber-300 font-extrabold'
-                      : 'bg-slate-100 text-slate-400 border border-slate-200 cursor-not-allowed'
-                  }`}
+                        ? 'bg-amber-100 text-amber-900 border border-amber-300 font-extrabold'
+                        : 'bg-slate-100 text-slate-400 border border-slate-200 cursor-not-allowed'
+                    }`}
                 >
                   <Award className="w-4 h-4 text-amber-600" /> 6. Official Certificate {!prog.allFinished && '(🔒 Finish 1-5)'}
                 </button>
@@ -1213,13 +1206,12 @@ export default function DashboardIndianLanguagesPage() {
                           </div>
 
                           {/* Video 2: Unlocked only after Video 1 */}
-                          <div className={`p-4 rounded-2xl border space-y-3 transition ${
-                            !isVideo1Done
+                          <div className={`p-4 rounded-2xl border space-y-3 transition ${!isVideo1Done
                               ? 'bg-slate-100/70 border-slate-200 opacity-60'
                               : isVideo2Done
-                              ? 'bg-emerald-50/60 border-emerald-200'
-                              : 'bg-slate-50 border-slate-200'
-                          }`}>
+                                ? 'bg-emerald-50/60 border-emerald-200'
+                                : 'bg-slate-50 border-slate-200'
+                            }`}>
                             <div className="flex items-center justify-between text-xs font-bold">
                               <span className={isVideo1Done ? 'text-blue-600 font-black' : 'text-slate-400 font-bold'}>
                                 Video 2 {!isVideo1Done && '🔒'}
@@ -1234,26 +1226,24 @@ export default function DashboardIndianLanguagesPage() {
                             <button
                               disabled={!isVideo1Done}
                               onClick={() => updateCourseProgress(activePlayCourse.id, { video2Done: true })}
-                              className={`w-full py-2 rounded-xl text-xs font-bold transition ${
-                                !isVideo1Done
+                              className={`w-full py-2 rounded-xl text-xs font-bold transition ${!isVideo1Done
                                   ? 'bg-slate-200 text-slate-400 cursor-not-allowed border border-slate-300'
                                   : isVideo2Done
-                                  ? 'bg-emerald-600 text-white'
-                                  : 'bg-blue-600 hover:bg-blue-700 text-white'
-                              }`}
+                                    ? 'bg-emerald-600 text-white'
+                                    : 'bg-blue-600 hover:bg-blue-700 text-white'
+                                }`}
                             >
                               {!isVideo1Done ? '🔒 Finish Video 1 First' : isVideo2Done ? '✓ Finished' : 'Mark Video 2 Finished'}
                             </button>
                           </div>
 
                           {/* Video 3: Unlocked only after Video 2 */}
-                          <div className={`p-4 rounded-2xl border space-y-3 transition ${
-                            !isVideo2Done
+                          <div className={`p-4 rounded-2xl border space-y-3 transition ${!isVideo2Done
                               ? 'bg-slate-100/70 border-slate-200 opacity-60'
                               : isVideo3Done
-                              ? 'bg-emerald-50/60 border-emerald-200'
-                              : 'bg-slate-50 border-slate-200'
-                          }`}>
+                                ? 'bg-emerald-50/60 border-emerald-200'
+                                : 'bg-slate-50 border-slate-200'
+                            }`}>
                             <div className="flex items-center justify-between text-xs font-bold">
                               <span className={isVideo2Done ? 'text-blue-600 font-black' : 'text-slate-400 font-bold'}>
                                 Video 3 {!isVideo2Done && '🔒'}
@@ -1268,13 +1258,12 @@ export default function DashboardIndianLanguagesPage() {
                             <button
                               disabled={!isVideo2Done}
                               onClick={() => updateCourseProgress(activePlayCourse.id, { video3Done: true })}
-                              className={`w-full py-2 rounded-xl text-xs font-bold transition ${
-                                !isVideo2Done
+                              className={`w-full py-2 rounded-xl text-xs font-bold transition ${!isVideo2Done
                                   ? 'bg-slate-200 text-slate-400 cursor-not-allowed border border-slate-300'
                                   : isVideo3Done
-                                  ? 'bg-emerald-600 text-white'
-                                  : 'bg-blue-600 hover:bg-blue-700 text-white'
-                              }`}
+                                    ? 'bg-emerald-600 text-white'
+                                    : 'bg-blue-600 hover:bg-blue-700 text-white'
+                                }`}
                             >
                               {!isVideo2Done ? '🔒 Finish Video 2 First' : isVideo3Done ? '✓ Finished' : 'Mark Video 3 Finished'}
                             </button>
@@ -1297,11 +1286,10 @@ export default function DashboardIndianLanguagesPage() {
                         <button
                           disabled={!allVideosDone}
                           onClick={() => setCourseStepTab('reading')}
-                          className={`px-6 py-3 rounded-xl font-bold text-xs flex items-center gap-2 transition ${
-                            !allVideosDone
+                          className={`px-6 py-3 rounded-xl font-bold text-xs flex items-center gap-2 transition ${!allVideosDone
                               ? 'bg-slate-200 text-slate-400 border border-slate-300 cursor-not-allowed'
                               : 'bg-blue-600 hover:bg-blue-700 text-white shadow-md'
-                          }`}
+                            }`}
                         >
                           {!allVideosDone ? '🔒 Finish All 3 Videos First' : 'Proceed to Step 2: Reading Text →'}
                         </button>
@@ -1334,24 +1322,21 @@ export default function DashboardIndianLanguagesPage() {
                         <div
                           key={item.day}
                           onClick={() => setActiveDayLesson(item.day)}
-                          className={`p-3 rounded-2xl border cursor-pointer transition flex items-center justify-between gap-3 ${
-                            activeDayLesson === item.day
+                          className={`p-3 rounded-2xl border cursor-pointer transition flex items-center justify-between gap-3 ${activeDayLesson === item.day
                               ? 'bg-blue-600 text-white border-blue-600 shadow-md'
                               : 'bg-white text-slate-800 border-slate-200 hover:bg-slate-100'
-                          }`}
+                            }`}
                         >
                           <div className="flex items-center gap-3">
-                            <span className={`w-8 h-8 rounded-xl font-black text-xs flex items-center justify-center ${
-                              activeDayLesson === item.day ? 'bg-white/20 text-white' : 'bg-slate-100 text-slate-700'
-                            }`}>
+                            <span className={`w-8 h-8 rounded-xl font-black text-xs flex items-center justify-center ${activeDayLesson === item.day ? 'bg-white/20 text-white' : 'bg-slate-100 text-slate-700'
+                              }`}>
                               {item.icon}
                             </span>
                             <div>
                               <div className="flex items-center gap-2">
                                 <span className="font-extrabold text-xs">Day {item.day}</span>
-                                <span className={`text-[9px] font-black uppercase px-1.5 py-0.2 rounded ${
-                                  activeDayLesson === item.day ? 'bg-blue-500 text-white' : 'bg-blue-50 text-blue-700'
-                                }`}>
+                                <span className={`text-[9px] font-black uppercase px-1.5 py-0.2 rounded ${activeDayLesson === item.day ? 'bg-blue-500 text-white' : 'bg-blue-50 text-blue-700'
+                                  }`}>
                                   {item.level}
                                 </span>
                               </div>
@@ -1417,11 +1402,10 @@ export default function DashboardIndianLanguagesPage() {
                   <div className="flex items-center justify-between pt-4 border-t border-slate-100">
                     <button
                       onClick={() => updateCourseProgress(activePlayCourse.id, { readingCompleted: true })}
-                      className={`px-6 py-3 rounded-xl font-bold text-xs transition ${
-                        prog.readingCompleted
+                      className={`px-6 py-3 rounded-xl font-bold text-xs transition ${prog.readingCompleted
                           ? 'bg-emerald-600 text-white'
                           : 'bg-emerald-50 hover:bg-emerald-100 text-emerald-700 border border-emerald-300'
-                      }`}
+                        }`}
                     >
                       {prog.readingCompleted ? '✓ Reading Text Completed' : 'Mark Reading Text as Completed'}
                     </button>
@@ -1490,11 +1474,10 @@ export default function DashboardIndianLanguagesPage() {
                             updateCourseProgress(activePlayCourse.id, { writingCompleted: true });
                             alert('Written test submitted successfully!');
                           }}
-                          className={`px-6 py-3 rounded-xl font-bold text-xs transition ${
-                            prog.writingCompleted
+                          className={`px-6 py-3 rounded-xl font-bold text-xs transition ${prog.writingCompleted
                               ? 'bg-emerald-600 text-white'
                               : 'bg-blue-600 hover:bg-blue-700 text-white shadow-md'
-                          }`}
+                            }`}
                         >
                           {prog.writingCompleted ? '✓ Written Test Submitted' : 'Submit Written Test'}
                         </button>
@@ -1617,11 +1600,10 @@ export default function DashboardIndianLanguagesPage() {
                         <label
                           key={i}
                           onClick={() => updateCourseProgress(activePlayCourse.id, { listeningAnswer: i + 1 })}
-                          className={`p-3 rounded-xl border flex items-center gap-3 cursor-pointer font-bold transition ${
-                            prog.listeningAnswer === i + 1
+                          className={`p-3 rounded-xl border flex items-center gap-3 cursor-pointer font-bold transition ${prog.listeningAnswer === i + 1
                               ? 'bg-purple-50 border-purple-500 text-purple-900'
                               : 'bg-white border-slate-200 text-slate-700 hover:bg-slate-100'
-                          }`}
+                            }`}
                         >
                           <input type="radio" checked={prog.listeningAnswer === i + 1} readOnly className="text-purple-600" />
                           <span>{opt}</span>
@@ -1638,11 +1620,10 @@ export default function DashboardIndianLanguagesPage() {
                             updateCourseProgress(activePlayCourse.id, { listeningCompleted: true });
                             alert('Listening test submitted successfully!');
                           }}
-                          className={`px-6 py-3 rounded-xl font-bold text-xs transition ${
-                            prog.listeningCompleted
+                          className={`px-6 py-3 rounded-xl font-bold text-xs transition ${prog.listeningCompleted
                               ? 'bg-emerald-600 text-white'
                               : 'bg-blue-600 hover:bg-blue-700 text-white shadow-md'
-                          }`}
+                            }`}
                         >
                           {prog.listeningCompleted ? '✓ Listening Test Submitted' : 'Submit Listening Test'}
                         </button>
@@ -1816,7 +1797,7 @@ export default function DashboardIndianLanguagesPage() {
               <div className="flex items-center justify-center gap-3">
                 <button
                   onClick={() => window.print()}
-                  className="px-6 py-3 rounded-2xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs flex items-center gap-2 shadow-md transition"
+                  className="px-6 py-3 rounded-2xl bg-orange-600 hover:bg-orange-700 text-white font-bold text-xs flex items-center gap-2 shadow-md transition"
                 >
                   🖨️ Print Official Certificate
                 </button>
@@ -1835,805 +1816,777 @@ export default function DashboardIndianLanguagesPage() {
         /* NORMAL PAGE TABS & CATALOGUE VIEW */
         <>
           {/* 1. Hero Header Banner */}
-          <div className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-blue-900 via-indigo-900 to-slate-900 text-white p-6 sm:p-10 shadow-xl border border-indigo-700/30">
-            <div className="absolute top-0 right-0 -mt-10 -mr-10 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl pointer-events-none" />
+          <div className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-slate-950 via-slate-900 to-orange-950 text-white p-6 sm:p-10 shadow-xl border border-orange-500/30">
+            <div className="absolute top-0 right-0 -mt-10 -mr-10 w-80 h-80 bg-orange-500/15 rounded-full blur-3xl pointer-events-none" />
+            <div className="absolute bottom-0 left-1/3 -mb-10 w-64 h-64 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none" />
             <div className="relative z-10 space-y-4">
               <div className="flex flex-wrap items-center gap-3">
-                <span className="px-3 py-1 rounded-full bg-blue-500/20 text-blue-300 text-xs font-black tracking-widest uppercase border border-blue-400/30 flex items-center gap-1.5">
-                  <Globe className="w-3.5 h-3.5 text-blue-400" /> 22 Scheduled Indian Languages Portal
+                <span className="px-3 py-1 rounded-full bg-orange-500/20 text-orange-300 text-xs font-black tracking-widest uppercase border border-orange-400/30 flex items-center gap-1.5">
+                  <Globe className="w-3.5 h-3.5 text-orange-400" /> 22 Scheduled Indian Languages Portal
                 </span>
-                <span className="px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-300 text-xs font-bold border border-emerald-400/30">
+                <span className="px-3 py-1 rounded-full bg-cyan-500/20 text-cyan-300 text-xs font-bold border border-cyan-400/30">
                   NEP 2020 & Bhasha Sangam Aligned
                 </span>
               </div>
 
               <div className="space-y-2">
                 <h1 className="text-2xl sm:text-4xl font-black tracking-tight leading-tight">
-                  अपनी मातृभाषा से हिंदी सीखें <br />
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-emerald-300 to-cyan-300">
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 via-amber-300 to-cyan-400">
                     Learn Hindi from 22 Official Indian Languages
                   </span>
                 </h1>
-                <p className="text-slate-300 text-xs sm:text-sm max-w-3xl leading-relaxed">
+                <p className="text-slate-300 text-xs sm:text-sm max-w-4xl leading-relaxed">
                   Explore dedicated Hindi courses crafted for speakers of Tamil, Telugu, Bengali, Marathi, Gujarati, Kannada, Malayalam, Punjabi, Odia, Assamese, Urdu, Sanskrit and more. Register today to track your progress & access interactive AI multi-lingual tools!
                 </p>
               </div>
-
-              {/* Quick Stats bar */}
-              <div className="pt-4 grid grid-cols-2 sm:grid-cols-4 gap-4 border-t border-white/10 text-xs">
-                <div>
-                  <span className="text-slate-400 block text-[11px]">Available Courses</span>
-                  <span className="text-lg font-black text-white">22 Languages</span>
-                </div>
-                <div>
-                  <span className="text-slate-400 block text-[11px]">Total Registered Learners</span>
-                  <span className="text-lg font-black text-amber-300">5.2 Lakh+</span>
-                </div>
-                <div>
-                  <span className="text-slate-400 block text-[11px]">My Enrolled Courses</span>
-                  <span className="text-lg font-black text-emerald-400">{user?.enrolledCourses?.length || 0} Courses</span>
-                </div>
-                <div>
-                  <span className="text-slate-400 block text-[11px]">Learning Methodology</span>
-                  <span className="text-lg font-black text-cyan-300">SOV & Cognate AI Bridge</span>
-                </div>
-              </div>
             </div>
           </div>
 
-      {/* 2. Main Navigation Bar inside Page */}
-      <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 bg-white p-2 rounded-2xl border border-slate-200 shadow-xs">
-        <div className="flex flex-wrap items-center gap-1.5">
-          <button
-            onClick={() => setActiveTab('all')}
-            className={`px-4 py-2.5 rounded-xl font-bold text-xs transition flex items-center gap-2 ${
-              activeTab === 'all'
-                ? 'bg-blue-600 text-white shadow-sm'
-                : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900'
-            }`}
-          >
-            <Globe className="w-4 h-4" /> All 22 Language Courses
-          </button>
-
-          <button
-            onClick={() => setActiveTab('my-courses')}
-            className={`px-4 py-2.5 rounded-xl font-bold text-xs transition flex items-center gap-2 relative ${
-              activeTab === 'my-courses'
-                ? 'bg-blue-600 text-white shadow-sm'
-                : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900'
-            }`}
-          >
-            <BookMarked className="w-4 h-4" /> My Enrolled Courses
-            {enrolledCoursesList.length > 0 && (
-              <span
-                className={`ml-1 px-2 py-0.5 rounded-full text-[10px] font-black ${
-                  activeTab === 'my-courses' ? 'bg-white text-blue-700' : 'bg-blue-600 text-white'
-                }`}
-              >
-                {enrolledCoursesList.length}
-              </span>
-            )}
-          </button>
-
-          <button
-            onClick={() => setActiveTab('ideas')}
-            className={`px-4 py-2.5 rounded-xl font-bold text-xs transition flex items-center gap-2 ${
-              activeTab === 'ideas'
-                ? 'bg-blue-600 text-white shadow-sm'
-                : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900'
-            }`}
-          >
-            <Lightbulb className="w-4 h-4 text-amber-300" /> Innovative Learning Ideas & Tools
-          </button>
-
-          <button
-            onClick={() => setActiveTab('bridge')}
-            className={`px-4 py-2.5 rounded-xl font-bold text-xs transition flex items-center gap-2 ${
-              activeTab === 'bridge'
-                ? 'bg-blue-600 text-white shadow-sm'
-                : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900'
-            }`}
-          >
-            <Layers className="w-4 h-4" /> Cognate & Etymology Bridge
-          </button>
-        </div>
-
-        {/* Search Input */}
-        {activeTab !== 'ideas' && activeTab !== 'bridge' && (
-          <div className="relative w-full sm:w-64">
-            <Search className="w-4 h-4 absolute left-3 top-3 text-slate-400" />
-            <input
-              type="text"
-              placeholder="Search language, state..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-9 pr-4 py-2 rounded-xl bg-slate-50 border border-slate-200 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white transition"
-            />
-          </div>
-        )}
-      </div>
-
-      {/* ------------------------------------------------------------- */}
-      {/* VIEW 1: MY ENROLLED COURSES SECTION ("मेरे पंजीकृत कोर्स") */}
-      {/* ------------------------------------------------------------- */}
-      {activeTab === 'my-courses' && (
-        <div className="space-y-6">
-          <div className="flex items-center justify-between border-b border-slate-200 pb-4">
-            <div>
-              <h2 className="text-xl font-black text-slate-900 flex items-center gap-2">
-                <BookMarked className="w-6 h-6 text-blue-600" /> मेरे पंजीकृत हिंदी कोर्स (My Enrolled Hindi Courses)
-              </h2>
-              <p className="text-xs text-slate-500 font-medium">
-                Track your active Hindi learning courses registered from your regional Indian language.
-              </p>
-            </div>
-
-            <button
-              onClick={() => setActiveTab('all')}
-              className="px-4 py-2 rounded-xl bg-blue-50 hover:bg-blue-100 text-blue-600 font-bold text-xs flex items-center gap-1.5 transition"
-            >
-              + Enroll in New Language Course
-            </button>
-          </div>
-
-          {enrolledCoursesList.length === 0 ? (
-            <div className="p-12 text-center rounded-3xl bg-white border border-slate-200 space-y-4 shadow-xs">
-              <div className="w-16 h-16 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center mx-auto">
-                <Globe className="w-8 h-8" />
-              </div>
-              <div className="space-y-1 max-w-md mx-auto">
-                <h3 className="text-lg font-bold text-slate-900">No Courses Registered Yet</h3>
-                <p className="text-xs text-slate-500">
-                  Select your native language from the 22 Indian languages list below and click &quot;Register / Enroll Now&quot; to begin learning Hindi!
-                </p>
-              </div>
+          {/* 2. Main Navigation Bar inside Page */}
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 bg-white p-2 rounded-2xl border border-slate-200 shadow-xs">
+            <div className="flex flex-wrap items-center gap-1.5">
               <button
                 onClick={() => setActiveTab('all')}
-                className="px-6 py-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs uppercase tracking-wider shadow-md transition"
+                className={`px-4 py-2.5 rounded-xl font-bold text-xs transition flex items-center gap-2 ${activeTab === 'all'
+                    ? 'bg-orange-600 text-white shadow-md shadow-orange-600/20'
+                    : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900'
+                  }`}
               >
-                Browse 22 Language Courses →
+                <Globe className="w-4 h-4" /> All 22 Language Courses
               </button>
-            </div>
-          ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {enrolledCoursesList.map((course) => (
-                <div
-                  key={course.id}
-                  className="rounded-3xl bg-white border border-slate-200 overflow-hidden shadow-xs hover:shadow-md transition flex flex-col justify-between"
-                >
-                  <div className={`p-6 bg-gradient-to-r ${course.bannerGradient} text-white space-y-3 relative`}>
-                    <div className="flex items-center justify-between">
-                      <span className="px-2.5 py-0.5 rounded-full bg-white/20 text-white text-[10px] font-black uppercase tracking-wider backdrop-blur-xs">
-                        {course.languageEng} ({course.languageNative})
-                      </span>
-                      <span className="px-2.5 py-0.5 rounded-full bg-emerald-400 text-slate-900 text-[10px] font-black flex items-center gap-1">
-                        <CheckCircle2 className="w-3 h-3" /> Enrolled
-                      </span>
-                    </div>
 
-                    <div>
-                      <h3 className="text-lg font-black leading-tight text-white">{course.titleHindi}</h3>
-                      <p className="text-xs text-white/80 font-medium mt-1">{course.titleEng}</p>
-                    </div>
-                  </div>
-
-                  <div className="p-6 space-y-5 flex-1 flex flex-col justify-between">
-                    <div className="space-y-3">
-                      {/* Active Module Progress Bar */}
-                      <div>
-                        <div className="flex justify-between text-xs font-bold mb-1.5">
-                          <span className="text-slate-700">Course Progress</span>
-                          <span className="text-blue-600">35% Completed</span>
-                        </div>
-                        <div className="w-full bg-slate-100 rounded-full h-2">
-                          <div className="bg-blue-600 h-2 rounded-full w-1/3 transition-all duration-500" />
-                        </div>
-                      </div>
-
-                      {/* Current Lesson Badge */}
-                      <div className="p-3 rounded-2xl bg-slate-50 border border-slate-200 flex items-center gap-3">
-                        <div className="w-9 h-9 rounded-xl bg-blue-100 text-blue-600 flex items-center justify-center shrink-0">
-                          <Play className="w-4 h-4 fill-blue-600" />
-                        </div>
-                        <div>
-                          <span className="text-[10px] font-bold text-slate-400 uppercase block">Next Active Lesson</span>
-                          <span className="text-xs font-bold text-slate-900 block line-clamp-1">
-                            Lesson 4: Daily Conversation & Greetings in Devanagari
-                          </span>
-                        </div>
-                      </div>
-
-                      {/* Cognate bridge preview */}
-                      <div className="p-3 rounded-2xl bg-amber-50/60 border border-amber-200/60 text-xs">
-                        <span className="text-[10px] font-bold text-amber-700 uppercase block mb-1">
-                          Native Bridge Pair
-                        </span>
-                        <div className="flex items-center justify-between font-bold text-slate-800">
-                          <span>{course.cognateExample.native} ({course.cognateExample.nativePhonetics})</span>
-                          <ArrowRight className="w-3.5 h-3.5 text-amber-600" />
-                          <span className="text-amber-900">{course.cognateExample.hindi}</span>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="pt-4 border-t border-slate-100 flex items-center gap-2">
-                      <button
-                        onClick={() => setActivePlayCourse(course)}
-                        className="flex-1 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs flex items-center justify-center gap-1.5 shadow-sm transition"
-                      >
-                        <Play className="w-4 h-4 fill-white" /> Continue Course
-                      </button>
-
-                      <button
-                        onClick={() => handleUnenroll(course.id)}
-                        className="px-3 py-2.5 rounded-xl bg-rose-50 hover:bg-rose-100 text-rose-600 text-xs font-bold transition"
-                        title="Unenroll course"
-                      >
-                        Unenroll
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          )}
-        </div>
-      )}
-
-      {/* ------------------------------------------------------------- */}
-      {/* VIEW 2: ALL 22 INDIAN LANGUAGE COURSES CATALOGUE */}
-      {/* ------------------------------------------------------------- */}
-      {activeTab === 'all' && (
-        <div className="space-y-6">
-          {/* Category Filter Tabs */}
-          <div className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none">
-            {['All', 'South Indian', 'East & North-East', 'West & Central', 'North & Himalayan', 'Classical & Regional'].map((cat) => (
               <button
-                key={cat}
-                onClick={() => setSelectedCategory(cat)}
-                className={`px-4 py-2 rounded-xl text-xs font-bold whitespace-nowrap transition ${
-                  selectedCategory === cat
-                    ? 'bg-slate-900 text-white shadow-xs'
-                    : 'bg-white text-slate-600 border border-slate-200 hover:bg-slate-100'
-                }`}
+                onClick={() => setActiveTab('my-courses')}
+                className={`px-4 py-2.5 rounded-xl font-bold text-xs transition flex items-center gap-2 relative ${activeTab === 'my-courses'
+                    ? 'bg-orange-600 text-white shadow-md shadow-orange-600/20'
+                    : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900'
+                  }`}
               >
-                {cat}
+                <BookMarked className="w-4 h-4" /> My Enrolled Courses
+                {enrolledCoursesList.length > 0 && (
+                  <span
+                    className={`ml-1 px-2 py-0.5 rounded-full text-[10px] font-black ${activeTab === 'my-courses' ? 'bg-white text-orange-600' : 'bg-orange-600 text-white'
+                      }`}
+                  >
+                    {enrolledCoursesList.length}
+                  </span>
+                )}
               </button>
-            ))}
+
+              <button
+                onClick={() => setActiveTab('ideas')}
+                className={`px-4 py-2.5 rounded-xl font-bold text-xs transition flex items-center gap-2 ${activeTab === 'ideas'
+                    ? 'bg-orange-600 text-white shadow-md shadow-orange-600/20'
+                    : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900'
+                  }`}
+              >
+                <Lightbulb className="w-4 h-4 text-amber-300" /> Innovative Learning Ideas & Tools
+              </button>
+
+              <button
+                onClick={() => setActiveTab('bridge')}
+                className={`px-4 py-2.5 rounded-xl font-bold text-xs transition flex items-center gap-2 ${activeTab === 'bridge'
+                    ? 'bg-orange-600 text-white shadow-md shadow-orange-600/20'
+                    : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900'
+                  }`}
+              >
+                <Layers className="w-4 h-4" /> Cognate & Etymology Bridge
+              </button>
+            </div>
+
+            {/* Search Input */}
+            {activeTab !== 'ideas' && activeTab !== 'bridge' && (
+              <div className="relative w-full sm:w-64">
+                <Search className="w-4 h-4 absolute left-3 top-3 text-slate-400" />
+                <input
+                  type="text"
+                  placeholder="Search language, state..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="w-full pl-9 pr-4 py-2 rounded-xl bg-slate-50 border border-slate-200 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-orange-500 focus:bg-white transition"
+                />
+              </div>
+            )}
           </div>
 
-          {/* Grid of 22 Language Courses */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filteredCourses.map((course) => {
-              const enrolled = isEnrolled(course.id);
+          {/* ------------------------------------------------------------- */}
+          {/* VIEW 1: MY ENROLLED COURSES SECTION ("मेरे पंजीकृत कोर्स") */}
+          {/* ------------------------------------------------------------- */}
+          {activeTab === 'my-courses' && (
+            <div className="space-y-6">
+              <div className="flex items-center justify-between border-b border-slate-200 pb-4">
+                <div>
+                  <h2 className="text-xl font-black text-slate-900 flex items-center gap-2">
+                    <BookMarked className="w-6 h-6 text-orange-600" /> मेरे पंजीकृत हिंदी कोर्स (My Enrolled Hindi Courses)
+                  </h2>
+                  <p className="text-xs text-slate-500 font-medium">
+                    Track your active Hindi learning courses registered from your regional Indian language.
+                  </p>
+                </div>
 
-              return (
-                <div
-                  key={course.id}
-                  className="rounded-3xl bg-white border border-slate-200 overflow-hidden shadow-xs hover:shadow-lg transition-all duration-300 flex flex-col justify-between group"
+                <button
+                  onClick={() => setActiveTab('all')}
+                  className="px-4 py-2 rounded-xl bg-orange-50 hover:bg-orange-100 text-orange-600 font-bold text-xs flex items-center gap-1.5 transition"
                 >
-                  {/* Top Gradient Header */}
-                  <div className={`p-6 bg-gradient-to-r ${course.bannerGradient} text-white space-y-3 relative overflow-hidden`}>
-                    <div className="flex items-center justify-between relative z-10">
-                      <span className="px-2.5 py-0.5 rounded-full bg-black/20 text-white text-[10px] font-black uppercase tracking-wider backdrop-blur-xs">
-                        {course.languageEng} • {course.region}
-                      </span>
-                      <span className="px-2.5 py-0.5 rounded-full bg-white/20 text-white text-[10px] font-bold backdrop-blur-xs">
-                        {course.badge}
-                      </span>
-                    </div>
+                  + Enroll in New Language Course
+                </button>
+              </div>
 
-                    <div className="relative z-10 space-y-1">
-                      <span className="text-2xl font-black block text-amber-200">
-                        {course.languageNative}
-                      </span>
-                      <h3 className="text-base font-black text-white leading-tight">
-                        {course.titleHindi}
-                      </h3>
-                      <p className="text-xs text-white/80 font-medium line-clamp-1">{course.titleEng}</p>
-                    </div>
+              {enrolledCoursesList.length === 0 ? (
+                <div className="p-12 text-center rounded-3xl bg-white border border-slate-200 space-y-4 shadow-xs">
+                  <div className="w-16 h-16 rounded-2xl bg-orange-50 text-orange-600 flex items-center justify-center mx-auto">
+                    <Globe className="w-8 h-8" />
                   </div>
-
-                  {/* Body Content */}
-                  <div className="p-6 space-y-4 flex-1 flex flex-col justify-between">
-                    <p className="text-xs text-slate-600 leading-relaxed font-medium line-clamp-3">
-                      {course.description}
+                  <div className="space-y-1 max-w-md mx-auto">
+                    <h3 className="text-lg font-bold text-slate-900">No Courses Registered Yet</h3>
+                    <p className="text-xs text-slate-500">
+                      Select your native language from the 22 Indian languages list below and click &quot;Register / Enroll Now&quot; to begin learning Hindi!
                     </p>
+                  </div>
+                  <button
+                    onClick={() => setActiveTab('all')}
+                    className="px-6 py-3 rounded-xl bg-orange-600 hover:bg-orange-700 text-white font-bold text-xs uppercase tracking-wider shadow-md transition"
+                  >
+                    Browse 22 Language Courses →
+                  </button>
+                </div>
+              ) : (
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {enrolledCoursesList.map((course) => (
+                    <div
+                      key={course.id}
+                      className="rounded-3xl bg-white border border-slate-200 overflow-hidden shadow-xs hover:shadow-md transition flex flex-col justify-between"
+                    >
+                      <div className={`p-6 bg-gradient-to-r ${course.bannerGradient} text-white space-y-3 relative`}>
+                        <div className="flex items-center justify-between">
+                          <span className="px-2.5 py-0.5 rounded-full bg-white/20 text-white text-[10px] font-black uppercase tracking-wider backdrop-blur-xs">
+                            {course.languageEng} ({course.languageNative})
+                          </span>
+                          <span className="px-2.5 py-0.5 rounded-full bg-emerald-400 text-slate-900 text-[10px] font-black flex items-center gap-1">
+                            <CheckCircle2 className="w-3 h-3" /> Enrolled
+                          </span>
+                        </div>
 
-                    {/* Bridge Cognate Preview Box */}
-                    <div className="p-3.5 rounded-2xl bg-blue-50/70 border border-blue-100 text-xs space-y-1">
-                      <span className="text-[10px] font-extrabold text-blue-600 uppercase block tracking-wider">
-                        Cognate Bridge ({course.languageEng} ➔ Hindi)
-                      </span>
-                      <div className="flex items-center justify-between font-bold text-slate-900">
-                        <span>{course.cognateExample.native} ({course.cognateExample.nativePhonetics})</span>
-                        <ArrowRight className="w-3.5 h-3.5 text-blue-600" />
-                        <span className="text-blue-900">{course.cognateExample.hindi}</span>
+                        <div>
+                          <h3 className="text-lg font-black leading-tight text-white">{course.titleHindi}</h3>
+                          <p className="text-xs text-white/80 font-medium mt-1">{course.titleEng}</p>
+                        </div>
                       </div>
-                      <span className="text-[11px] text-slate-500 block italic">Meaning: {course.cognateExample.meaning}</span>
+
+                      <div className="p-6 space-y-5 flex-1 flex flex-col justify-between">
+                        <div className="space-y-3">
+                          {/* Active Module Progress Bar */}
+                          <div>
+                            <div className="flex justify-between text-xs font-bold mb-1.5">
+                              <span className="text-slate-700">Course Progress</span>
+                              <span className="text-orange-600">35% Completed</span>
+                            </div>
+                            <div className="w-full bg-slate-100 rounded-full h-2">
+                              <div className="bg-gradient-to-r from-orange-500 to-cyan-500 h-2 rounded-full w-1/3 transition-all duration-500" />
+                            </div>
+                          </div>
+
+                          {/* Current Lesson Badge */}
+                          <div className="p-3 rounded-2xl bg-orange-50/60 border border-orange-200/60 flex items-center gap-3">
+                            <div className="w-9 h-9 rounded-xl bg-orange-100 text-orange-600 flex items-center justify-center shrink-0">
+                              <Play className="w-4 h-4 fill-orange-600" />
+                            </div>
+                            <div>
+                              <span className="text-[10px] font-bold text-slate-400 uppercase block">Next Active Lesson</span>
+                              <span className="text-xs font-bold text-slate-900 block line-clamp-1">
+                                Lesson 4: Daily Conversation & Greetings in Devanagari
+                              </span>
+                            </div>
+                          </div>
+
+                          {/* Cognate bridge preview */}
+                          <div className="p-3 rounded-2xl bg-cyan-50/70 border border-cyan-200/70 text-xs">
+                            <span className="text-[10px] font-bold text-cyan-700 uppercase block mb-1">
+                              Native Bridge Pair
+                            </span>
+                            <div className="flex items-center justify-between font-bold text-slate-800">
+                              <span>{course.cognateExample.native} ({course.cognateExample.nativePhonetics})</span>
+                              <ArrowRight className="w-3.5 h-3.5 text-cyan-600" />
+                              <span className="text-cyan-900">{course.cognateExample.hindi}</span>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div className="pt-4 border-t border-slate-100 flex items-center gap-2">
+                          <button
+                            onClick={() => setActivePlayCourse(course)}
+                            className="flex-1 py-2.5 rounded-xl bg-orange-600 hover:bg-orange-700 text-white font-bold text-xs flex items-center justify-center gap-1.5 shadow-sm transition"
+                          >
+                            <Play className="w-4 h-4 fill-white" /> Continue Course
+                          </button>
+
+                          <button
+                            onClick={() => handleUnenroll(course.id)}
+                            className="px-3 py-2.5 rounded-xl bg-rose-50 hover:bg-rose-100 text-rose-600 text-xs font-bold transition"
+                            title="Unenroll course"
+                          >
+                            Unenroll
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          )}
+
+          {/* ------------------------------------------------------------- */}
+          {/* VIEW 2: ALL 22 INDIAN LANGUAGE COURSES CATALOGUE */}
+          {/* ------------------------------------------------------------- */}
+          {activeTab === 'all' && (
+            <div className="space-y-6">
+              {/* Category Filter Tabs */}
+              <div className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none">
+                {['All', 'South Indian', 'East & North-East', 'West & Central', 'North & Himalayan', 'Classical & Regional'].map((cat) => (
+                  <button
+                    key={cat}
+                    onClick={() => setSelectedCategory(cat)}
+                    className={`px-4 py-2 rounded-xl text-xs font-bold whitespace-nowrap transition ${selectedCategory === cat
+                        ? 'bg-orange-600 text-white shadow-md shadow-orange-600/20'
+                        : 'bg-white text-slate-600 border border-slate-200 hover:bg-slate-100'
+                      }`}
+                  >
+                    {cat}
+                  </button>
+                ))}
+              </div>
+
+              {/* Grid of 22 Language Courses */}
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {filteredCourses.map((course) => {
+                  const enrolled = isEnrolled(course.id);
+
+                  return (
+                    <div
+                      key={course.id}
+                      className="rounded-3xl bg-white border border-slate-200 overflow-hidden shadow-xs hover:shadow-lg transition-all duration-300 flex flex-col justify-between group"
+                    >
+                      {/* Top Gradient Header */}
+                      <div className={`p-6 bg-gradient-to-r ${course.bannerGradient} text-white space-y-3 relative overflow-hidden`}>
+                        <div className="flex items-center justify-between relative z-10">
+                          <span className="px-2.5 py-0.5 rounded-full bg-black/20 text-white text-[10px] font-black uppercase tracking-wider backdrop-blur-xs">
+                            {course.languageEng} • {course.region}
+                          </span>
+                          <span className="px-2.5 py-0.5 rounded-full bg-white/20 text-white text-[10px] font-bold backdrop-blur-xs">
+                            {course.badge}
+                          </span>
+                        </div>
+
+                        <div className="relative z-10 space-y-1">
+                          <span className="text-2xl font-black block text-amber-200">
+                            {course.languageNative}
+                          </span>
+                          <h3 className="text-base font-black text-white leading-tight">
+                            {course.titleHindi}
+                          </h3>
+                          <p className="text-xs text-white/80 font-medium line-clamp-1">{course.titleEng}</p>
+                        </div>
+                      </div>
+
+                      {/* Body Content */}
+                      <div className="p-6 space-y-4 flex-1 flex flex-col justify-between">
+                        <p className="text-xs text-slate-600 leading-relaxed font-medium line-clamp-3">
+                          {course.description}
+                        </p>
+
+                        {/* Bridge Cognate Preview Box */}
+                        <div className="p-3.5 rounded-2xl bg-cyan-50/70 border border-cyan-200/70 text-xs space-y-1">
+                          <span className="text-[10px] font-extrabold text-cyan-700 uppercase block tracking-wider">
+                            Cognate Bridge ({course.languageEng} ➔ Hindi)
+                          </span>
+                          <div className="flex items-center justify-between font-bold text-slate-900">
+                            <span>{course.cognateExample.native} ({course.cognateExample.nativePhonetics})</span>
+                            <ArrowRight className="w-3.5 h-3.5 text-cyan-600" />
+                            <span className="text-cyan-900">{course.cognateExample.hindi}</span>
+                          </div>
+                          <span className="text-[11px] text-slate-500 block italic">Meaning: {course.cognateExample.meaning}</span>
+                        </div>
+
+                        {/* Course Stats row */}
+                        <div className="grid grid-cols-3 gap-2 pt-2 border-t border-slate-100 text-center text-[11px]">
+                          <div>
+                            <span className="text-slate-400 block font-medium">Modules</span>
+                            <span className="font-extrabold text-slate-800">{course.totalModules} Units</span>
+                          </div>
+                          <div>
+                            <span className="text-slate-400 block font-medium">Students</span>
+                            <span className="font-extrabold text-slate-800">{(course.totalStudents / 1000).toFixed(1)}k</span>
+                          </div>
+                          <div>
+                            <span className="text-slate-400 block font-medium">Rating</span>
+                            <span className="font-extrabold text-amber-600 flex items-center justify-center gap-0.5">
+                              <Star className="w-3 h-3 fill-amber-500 text-amber-500" /> {course.rating}
+                            </span>
+                          </div>
+                        </div>
+
+                        {/* Action Buttons */}
+                        <div className="pt-3 flex items-center gap-2">
+                          <button
+                            onClick={() => setSelectedCourseModal(course)}
+                            className="px-3.5 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs transition"
+                          >
+                            Syllabus
+                          </button>
+
+                          {enrolled ? (
+                            <button
+                              onClick={() => {
+                                setActiveTab('my-courses');
+                                setActivePlayCourse(course);
+                              }}
+                              className="flex-1 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs flex items-center justify-center gap-1.5 shadow-sm transition"
+                            >
+                              <CheckCircle2 className="w-4 h-4" /> Enrolled • Continue
+                            </button>
+                          ) : (
+                            <button
+                              onClick={() => setCheckoutCourse(course)}
+                              className="flex-1 py-2.5 rounded-xl bg-orange-600 hover:bg-orange-700 text-white font-bold text-xs flex items-center justify-center gap-1.5 shadow-md shadow-orange-600/20 transition hover:scale-102"
+                            >
+                              Register / Enroll Now <ArrowRight className="w-4 h-4" />
+                            </button>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          )}
+
+          {/* ------------------------------------------------------------- */}
+          {/* VIEW 3: INNOVATIVE IDEAS FOR LEARNING LANGUAGES SECTION */}
+          {/* ------------------------------------------------------------- */}
+          {activeTab === 'ideas' && (
+            <div className="space-y-10">
+              <div className="border-b border-slate-200 pb-4">
+                <h2 className="text-xl sm:text-2xl font-black text-slate-900 flex items-center gap-2">
+                  <Lightbulb className="w-7 h-7 text-amber-500 fill-amber-500 animate-pulse" />
+                  भाषा सीखने के नवीन विचार एवं उपकरण (Innovative Ideas for Language Learning)
+                </h2>
+                <p className="text-xs sm:text-sm text-slate-500 font-medium mt-1">
+                  Explore 6 multi-modal, gamified, and AI-powered learning methods designed to bridge any Indian regional language to Hindi fluency.
+                </p>
+              </div>
+
+              {/* Grid of 6 Learning Methodologies */}
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {/* Idea 1: Cognate & Etymology Bridge */}
+                <div className="p-6 rounded-3xl bg-white border border-slate-200 shadow-xs space-y-4 hover:border-orange-300 transition">
+                  <div className="w-12 h-12 rounded-2xl bg-orange-50 text-orange-600 flex items-center justify-center">
+                    <Layers className="w-6 h-6" />
+                  </div>
+                  <div>
+                    <span className="text-[10px] font-black uppercase text-orange-600 tracking-wider">IDEA #1 • LINGUISTIC MAP</span>
+                    <h3 className="text-lg font-bold text-slate-900">Cognate & Etymology Bridge (समानार्थक शब्द सेतु)</h3>
+                    <p className="text-xs text-slate-600 mt-1 leading-relaxed">
+                      Over 60% of Hindi formal words share identical Sanskrit (Tatsama) roots with South Indian, Eastern, and Western Indian languages. Map shared roots to bypass basic vocabulary building!
+                    </p>
+                  </div>
+                  <button
+                    onClick={() => setActiveTab('bridge')}
+                    className="w-full py-2.5 rounded-xl bg-orange-50 hover:bg-orange-100 text-orange-700 font-bold text-xs transition"
+                  >
+                    Try Comparative Cognate Tool →
+                  </button>
+                </div>
+
+                {/* Idea 2: Interactive SOV Sentence Builder */}
+                <div className="p-6 rounded-3xl bg-white border border-slate-200 shadow-xs space-y-4 hover:border-emerald-300 transition">
+                  <div className="w-12 h-12 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center">
+                    <Cpu className="w-6 h-6" />
+                  </div>
+                  <div>
+                    <span className="text-[10px] font-black uppercase text-emerald-600 tracking-wider">IDEA #2 • GAMIFIED SYNTAX</span>
+                    <h3 className="text-lg font-bold text-slate-900">SOV Word Order Puzzle (वाक्य निर्माण खेल)</h3>
+                    <p className="text-xs text-slate-600 mt-1 leading-relaxed">
+                      Unlike English (SVO: I eat rice), Indian languages use Subject-Object-Verb (SOV: Naan Sadham Saapidugiren / Main Chaaval Khaata Hoon). Drag & drop word blocks to build Hindi sentences naturally!
+                    </p>
+                  </div>
+                  <a
+                    href="#sov-game"
+                    className="w-full py-2.5 rounded-xl bg-emerald-50 hover:bg-emerald-100 text-emerald-700 font-bold text-xs text-center block transition"
+                  >
+                    Play Sentence Puzzle Below ↓
+                  </a>
+                </div>
+
+                {/* Idea 3: Bilingual Audio & Speech Companion */}
+                <div className="p-6 rounded-3xl bg-white border border-slate-200 shadow-xs space-y-4 hover:border-purple-300 transition">
+                  <div className="w-12 h-12 rounded-2xl bg-purple-50 text-purple-600 flex items-center justify-center">
+                    <Volume2 className="w-6 h-6" />
+                  </div>
+                  <div>
+                    <span className="text-[10px] font-black uppercase text-purple-600 tracking-wider">IDEA #3 • AUDIO PHONETICS</span>
+                    <h3 className="text-lg font-bold text-slate-900">Bilingual Voice Tutor (द्विभाषी ध्वनि सहायक)</h3>
+                    <p className="text-xs text-slate-600 mt-1 leading-relaxed">
+                      Hear phrases spoken first in your native accent (e.g. Tamil or Bengali) followed by clear Hindi Devanagari pronunciation with instant accent scoring feedback.
+                    </p>
+                  </div>
+                  <a
+                    href="#voice-tutor"
+                    className="w-full py-2.5 rounded-xl bg-purple-50 hover:bg-purple-100 text-purple-700 font-bold text-xs text-center block transition"
+                  >
+                    Test Voice Tutor Below ↓
+                  </a>
+                </div>
+
+                {/* Idea 4: Daily 3D Micro-Flashcards */}
+                <div className="p-6 rounded-3xl bg-white border border-slate-200 shadow-xs space-y-4 hover:border-amber-300 transition">
+                  <div className="w-12 h-12 rounded-2xl bg-amber-50 text-amber-600 flex items-center justify-center">
+                    <FileText className="w-6 h-6" />
+                  </div>
+                  <div>
+                    <span className="text-[10px] font-black uppercase text-amber-600 tracking-wider">IDEA #4 • MEMORY RETENTION</span>
+                    <h3 className="text-lg font-bold text-slate-900">Daily 5-Min Micro-Flashcards (दैनिक शब्द कार्ड)</h3>
+                    <p className="text-xs text-slate-600 mt-1 leading-relaxed">
+                      Flip interactive flashcards daily to learn 5 essential Hindi conversational words mapped directly to your native language daily!
+                    </p>
+                  </div>
+                  <a
+                    href="#flashcards"
+                    className="w-full py-2.5 rounded-xl bg-amber-50 hover:bg-amber-100 text-amber-700 font-bold text-xs text-center block transition"
+                  >
+                    Practice Flashcards Below ↓
+                  </a>
+                </div>
+
+                {/* Idea 5: Cultural Idioms & Proverbs Matcher */}
+                <div className="p-6 rounded-3xl bg-white border border-slate-200 shadow-xs space-y-4 hover:border-rose-300 transition">
+                  <div className="w-12 h-12 rounded-2xl bg-rose-50 text-rose-600 flex items-center justify-center">
+                    <Sparkles className="w-6 h-6" />
+                  </div>
+                  <div>
+                    <span className="text-[10px] font-black uppercase text-rose-600 tracking-wider">IDEA #5 • FOLKLORE & IDIOMS</span>
+                    <h3 className="text-lg font-bold text-slate-900">Cultural Idioms Matcher (लोककथा और मुहावरे)</h3>
+                    <p className="text-xs text-slate-600 mt-1 leading-relaxed">
+                      Learn Hindi proverbs by connecting them to equivalent regional folk wisdom (e.g. Tamil, Bengali & Marathi proverbs mapped to Hindi muhavare).
+                    </p>
+                  </div>
+                  <div className="p-3 rounded-xl bg-rose-50/50 border border-rose-100 text-[11px] font-medium text-slate-700">
+                    &quot;சுவர் இருந்தால் தான் சித்திரம்&quot; ➔ &quot;जान है तो जहान है&quot;
+                  </div>
+                </div>
+
+                {/* Idea 6: Bhasha Sangam Peer Exchange */}
+                <div className="p-6 rounded-3xl bg-white border border-slate-200 shadow-xs space-y-4 hover:border-cyan-300 transition">
+                  <div className="w-12 h-12 rounded-2xl bg-cyan-50 text-cyan-600 flex items-center justify-center">
+                    <UserCheck className="w-6 h-6" />
+                  </div>
+                  <div>
+                    <span className="text-[10px] font-black uppercase text-cyan-600 tracking-wider">IDEA #6 • COMMUNITY PAIRING</span>
+                    <h3 className="text-lg font-bold text-slate-900">Bhasha Sangam Peer Lounge (भाषा संगम मंच)</h3>
+                    <p className="text-xs text-slate-600 mt-1 leading-relaxed">
+                      Connect 1-on-1 with native Hindi speakers who are learning your regional Indian language for tandem language exchange!
+                    </p>
+                  </div>
+                  <button
+                    onClick={() => alert('Bhasha Sangam Peer Room Matchmaker active! Connecting with tandem Hindi practice partners...')}
+                    className="w-full py-2.5 rounded-xl bg-cyan-50 hover:bg-cyan-100 text-cyan-700 font-bold text-xs transition"
+                  >
+                    Join Tandem Lounge →
+                  </button>
+                </div>
+              </div>
+
+              {/* Interactive Demo Showcase 1: SOV Word Order Puzzle */}
+              <div id="sov-game" className="p-6 sm:p-8 rounded-3xl bg-slate-900 text-white space-y-6 shadow-xl">
+                <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-slate-800 pb-4">
+                  <div>
+                    <span className="px-2.5 py-1 rounded-full bg-emerald-500/20 text-emerald-400 text-[10px] font-black uppercase tracking-wider">
+                      INTERACTIVE IDEA DEMO #1
+                    </span>
+                    <h3 className="text-xl font-extrabold text-white mt-1">SOV Word Order Reorder Game</h3>
+                    <p className="text-xs text-slate-400">
+                      Assemble Hindi sentence tokens matching Dravidian/Indo-Aryan sentence structure.
+                    </p>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <span className="text-xs font-bold text-amber-400 bg-amber-400/10 px-3 py-1.5 rounded-full border border-amber-400/20">
+                      Score: {gameScore} XP
+                    </span>
+                  </div>
+                </div>
+
+                {!gameFinished ? (
+                  <div className="space-y-6">
+                    <div className="p-4 rounded-2xl bg-slate-800/80 border border-slate-700 space-y-2">
+                      <span className="text-[11px] font-bold text-emerald-400 uppercase block">
+                        Source Language Sentence ({currentGame.nativeLang})
+                      </span>
+                      <p className="text-base font-bold text-white">{currentGame.nativeSentence}</p>
+                      <p className="text-xs text-slate-400">English: &quot;{currentGame.englishTranslation}&quot;</p>
                     </div>
 
-                    {/* Course Stats row */}
-                    <div className="grid grid-cols-3 gap-2 pt-2 border-t border-slate-100 text-center text-[11px]">
-                      <div>
-                        <span className="text-slate-400 block font-medium">Modules</span>
-                        <span className="font-extrabold text-slate-800">{course.totalModules} Units</span>
-                      </div>
-                      <div>
-                        <span className="text-slate-400 block font-medium">Students</span>
-                        <span className="font-extrabold text-slate-800">{(course.totalStudents / 1000).toFixed(1)}k</span>
-                      </div>
-                      <div>
-                        <span className="text-slate-400 block font-medium">Rating</span>
-                        <span className="font-extrabold text-amber-600 flex items-center justify-center gap-0.5">
-                          <Star className="w-3 h-3 fill-amber-500 text-amber-500" /> {course.rating}
-                        </span>
+                    {/* Target Sentence Dropzone */}
+                    <div className="p-4 rounded-2xl bg-slate-950 border-2 border-dashed border-emerald-500/40 min-h-[70px] flex flex-wrap items-center gap-2">
+                      <span className="text-xs text-slate-500 mr-2">Constructed Hindi Sentence:</span>
+                      {userSentenceTokens.length === 0 ? (
+                        <span className="text-xs italic text-slate-600">Click word blocks below to insert here...</span>
+                      ) : (
+                        userSentenceTokens.map((token, idx) => (
+                          <button
+                            key={idx}
+                            onClick={() => handleRemoveToken(token)}
+                            className="px-3 py-1.5 rounded-xl bg-emerald-600 hover:bg-rose-600 text-white font-bold text-sm flex items-center gap-1.5 shadow-sm transition"
+                          >
+                            {token} <X className="w-3.5 h-3.5" />
+                          </button>
+                        ))
+                      )}
+                    </div>
+
+                    {/* Word Blocks Bank */}
+                    <div className="space-y-2">
+                      <span className="text-xs font-bold text-slate-400 block">Available Word Blocks:</span>
+                      <div className="flex flex-wrap gap-3">
+                        {currentGame.shuffledTokens.map((token, idx) => (
+                          <button
+                            key={idx}
+                            onClick={() => handleAddToken(token)}
+                            disabled={userSentenceTokens.includes(token)}
+                            className={`px-4 py-2 rounded-xl font-bold text-sm transition ${userSentenceTokens.includes(token)
+                                ? 'bg-slate-800 text-slate-600 border border-slate-700 cursor-not-allowed'
+                                : 'bg-orange-600 hover:bg-orange-500 text-white shadow-md'
+                              }`}
+                          >
+                            {token}
+                          </button>
+                        ))}
                       </div>
                     </div>
 
                     {/* Action Buttons */}
-                    <div className="pt-3 flex items-center gap-2">
+                    <div className="flex items-center justify-between pt-2">
+                      <span className="text-xs text-amber-300 font-medium italic">💡 Hint: {currentGame.hint}</span>
                       <button
-                        onClick={() => setSelectedCourseModal(course)}
-                        className="px-3.5 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs transition"
+                        onClick={handleCheckSentence}
+                        disabled={userSentenceTokens.length === 0}
+                        className="px-6 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-900 font-black text-xs uppercase tracking-wider shadow-md transition disabled:opacity-50"
                       >
-                        Syllabus
+                        Check & Listen Audio ✓
                       </button>
-
-                      {enrolled ? (
-                        <button
-                          onClick={() => {
-                            setActiveTab('my-courses');
-                            setActivePlayCourse(course);
-                          }}
-                          className="flex-1 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs flex items-center justify-center gap-1.5 shadow-sm transition"
-                        >
-                          <CheckCircle2 className="w-4 h-4" /> Enrolled • Continue
-                        </button>
-                      ) : (
-                        <button
-                          onClick={() => setCheckoutCourse(course)}
-                          className="flex-1 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs flex items-center justify-center gap-1.5 shadow-md shadow-blue-600/20 transition hover:scale-102"
-                        >
-                          Register / Enroll Now <ArrowRight className="w-4 h-4" />
-                        </button>
-                      )}
                     </div>
                   </div>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      )}
-
-      {/* ------------------------------------------------------------- */}
-      {/* VIEW 3: INNOVATIVE IDEAS FOR LEARNING LANGUAGES SECTION */}
-      {/* ------------------------------------------------------------- */}
-      {activeTab === 'ideas' && (
-        <div className="space-y-10">
-          <div className="border-b border-slate-200 pb-4">
-            <h2 className="text-xl sm:text-2xl font-black text-slate-900 flex items-center gap-2">
-              <Lightbulb className="w-7 h-7 text-amber-500 fill-amber-500 animate-pulse" /> 
-              भाषा सीखने के नवीन विचार एवं उपकरण (Innovative Ideas for Language Learning)
-            </h2>
-            <p className="text-xs sm:text-sm text-slate-500 font-medium mt-1">
-              Explore 6 multi-modal, gamified, and AI-powered learning methods designed to bridge any Indian regional language to Hindi fluency.
-            </p>
-          </div>
-
-          {/* Grid of 6 Learning Methodologies */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {/* Idea 1: Cognate & Etymology Bridge */}
-            <div className="p-6 rounded-3xl bg-white border border-slate-200 shadow-xs space-y-4 hover:border-blue-300 transition">
-              <div className="w-12 h-12 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center">
-                <Layers className="w-6 h-6" />
-              </div>
-              <div>
-                <span className="text-[10px] font-black uppercase text-blue-600 tracking-wider">IDEA #1 • LINGUISTIC MAP</span>
-                <h3 className="text-lg font-bold text-slate-900">Cognate & Etymology Bridge (समानार्थक शब्द सेतु)</h3>
-                <p className="text-xs text-slate-600 mt-1 leading-relaxed">
-                  Over 60% of Hindi formal words share identical Sanskrit (Tatsama) roots with South Indian, Eastern, and Western Indian languages. Map shared roots to bypass basic vocabulary building!
-                </p>
-              </div>
-              <button
-                onClick={() => setActiveTab('bridge')}
-                className="w-full py-2.5 rounded-xl bg-blue-50 hover:bg-blue-100 text-blue-700 font-bold text-xs transition"
-              >
-                Try Comparative Cognate Tool →
-              </button>
-            </div>
-
-            {/* Idea 2: Interactive SOV Sentence Builder */}
-            <div className="p-6 rounded-3xl bg-white border border-slate-200 shadow-xs space-y-4 hover:border-emerald-300 transition">
-              <div className="w-12 h-12 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center">
-                <Cpu className="w-6 h-6" />
-              </div>
-              <div>
-                <span className="text-[10px] font-black uppercase text-emerald-600 tracking-wider">IDEA #2 • GAMIFIED SYNTAX</span>
-                <h3 className="text-lg font-bold text-slate-900">SOV Word Order Puzzle (वाक्य निर्माण खेल)</h3>
-                <p className="text-xs text-slate-600 mt-1 leading-relaxed">
-                  Unlike English (SVO: I eat rice), Indian languages use Subject-Object-Verb (SOV: Naan Sadham Saapidugiren / Main Chaaval Khaata Hoon). Drag & drop word blocks to build Hindi sentences naturally!
-                </p>
-              </div>
-              <a
-                href="#sov-game"
-                className="w-full py-2.5 rounded-xl bg-emerald-50 hover:bg-emerald-100 text-emerald-700 font-bold text-xs text-center block transition"
-              >
-                Play Sentence Puzzle Below ↓
-              </a>
-            </div>
-
-            {/* Idea 3: Bilingual Audio & Speech Companion */}
-            <div className="p-6 rounded-3xl bg-white border border-slate-200 shadow-xs space-y-4 hover:border-purple-300 transition">
-              <div className="w-12 h-12 rounded-2xl bg-purple-50 text-purple-600 flex items-center justify-center">
-                <Volume2 className="w-6 h-6" />
-              </div>
-              <div>
-                <span className="text-[10px] font-black uppercase text-purple-600 tracking-wider">IDEA #3 • AUDIO PHONETICS</span>
-                <h3 className="text-lg font-bold text-slate-900">Bilingual Voice Tutor (द्विभाषी ध्वनि सहायक)</h3>
-                <p className="text-xs text-slate-600 mt-1 leading-relaxed">
-                  Hear phrases spoken first in your native accent (e.g. Tamil or Bengali) followed by clear Hindi Devanagari pronunciation with instant accent scoring feedback.
-                </p>
-              </div>
-              <a
-                href="#voice-tutor"
-                className="w-full py-2.5 rounded-xl bg-purple-50 hover:bg-purple-100 text-purple-700 font-bold text-xs text-center block transition"
-              >
-                Test Voice Tutor Below ↓
-              </a>
-            </div>
-
-            {/* Idea 4: Daily 3D Micro-Flashcards */}
-            <div className="p-6 rounded-3xl bg-white border border-slate-200 shadow-xs space-y-4 hover:border-amber-300 transition">
-              <div className="w-12 h-12 rounded-2xl bg-amber-50 text-amber-600 flex items-center justify-center">
-                <FileText className="w-6 h-6" />
-              </div>
-              <div>
-                <span className="text-[10px] font-black uppercase text-amber-600 tracking-wider">IDEA #4 • MEMORY RETENTION</span>
-                <h3 className="text-lg font-bold text-slate-900">Daily 5-Min Micro-Flashcards (दैनिक शब्द कार्ड)</h3>
-                <p className="text-xs text-slate-600 mt-1 leading-relaxed">
-                  Flip interactive flashcards daily to learn 5 essential Hindi conversational words mapped directly to your native language daily!
-                </p>
-              </div>
-              <a
-                href="#flashcards"
-                className="w-full py-2.5 rounded-xl bg-amber-50 hover:bg-amber-100 text-amber-700 font-bold text-xs text-center block transition"
-              >
-                Practice Flashcards Below ↓
-              </a>
-            </div>
-
-            {/* Idea 5: Cultural Idioms & Proverbs Matcher */}
-            <div className="p-6 rounded-3xl bg-white border border-slate-200 shadow-xs space-y-4 hover:border-rose-300 transition">
-              <div className="w-12 h-12 rounded-2xl bg-rose-50 text-rose-600 flex items-center justify-center">
-                <Sparkles className="w-6 h-6" />
-              </div>
-              <div>
-                <span className="text-[10px] font-black uppercase text-rose-600 tracking-wider">IDEA #5 • FOLKLORE & IDIOMS</span>
-                <h3 className="text-lg font-bold text-slate-900">Cultural Idioms Matcher (लोककथा और मुहावरे)</h3>
-                <p className="text-xs text-slate-600 mt-1 leading-relaxed">
-                  Learn Hindi proverbs by connecting them to equivalent regional folk wisdom (e.g. Tamil, Bengali & Marathi proverbs mapped to Hindi muhavare).
-                </p>
-              </div>
-              <div className="p-3 rounded-xl bg-rose-50/50 border border-rose-100 text-[11px] font-medium text-slate-700">
-                &quot;சுவர் இருந்தால் தான் சித்திரம்&quot; ➔ &quot;जान है तो जहान है&quot;
-              </div>
-            </div>
-
-            {/* Idea 6: Bhasha Sangam Peer Exchange */}
-            <div className="p-6 rounded-3xl bg-white border border-slate-200 shadow-xs space-y-4 hover:border-cyan-300 transition">
-              <div className="w-12 h-12 rounded-2xl bg-cyan-50 text-cyan-600 flex items-center justify-center">
-                <UserCheck className="w-6 h-6" />
-              </div>
-              <div>
-                <span className="text-[10px] font-black uppercase text-cyan-600 tracking-wider">IDEA #6 • COMMUNITY PAIRING</span>
-                <h3 className="text-lg font-bold text-slate-900">Bhasha Sangam Peer Lounge (भाषा संगम मंच)</h3>
-                <p className="text-xs text-slate-600 mt-1 leading-relaxed">
-                  Connect 1-on-1 with native Hindi speakers who are learning your regional Indian language for tandem language exchange!
-                </p>
-              </div>
-              <button
-                onClick={() => alert('Bhasha Sangam Peer Room Matchmaker active! Connecting with tandem Hindi practice partners...')}
-                className="w-full py-2.5 rounded-xl bg-cyan-50 hover:bg-cyan-100 text-cyan-700 font-bold text-xs transition"
-              >
-                Join Tandem Lounge →
-              </button>
-            </div>
-          </div>
-
-          {/* Interactive Demo Showcase 1: SOV Word Order Puzzle */}
-          <div id="sov-game" className="p-6 sm:p-8 rounded-3xl bg-slate-900 text-white space-y-6 shadow-xl">
-            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-slate-800 pb-4">
-              <div>
-                <span className="px-2.5 py-1 rounded-full bg-emerald-500/20 text-emerald-400 text-[10px] font-black uppercase tracking-wider">
-                  INTERACTIVE IDEA DEMO #1
-                </span>
-                <h3 className="text-xl font-extrabold text-white mt-1">SOV Word Order Reorder Game</h3>
-                <p className="text-xs text-slate-400">
-                  Assemble Hindi sentence tokens matching Dravidian/Indo-Aryan sentence structure.
-                </p>
-              </div>
-              <div className="flex items-center gap-3">
-                <span className="text-xs font-bold text-amber-400 bg-amber-400/10 px-3 py-1.5 rounded-full border border-amber-400/20">
-                  Score: {gameScore} XP
-                </span>
-              </div>
-            </div>
-
-            {!gameFinished ? (
-              <div className="space-y-6">
-                <div className="p-4 rounded-2xl bg-slate-800/80 border border-slate-700 space-y-2">
-                  <span className="text-[11px] font-bold text-emerald-400 uppercase block">
-                    Source Language Sentence ({currentGame.nativeLang})
-                  </span>
-                  <p className="text-base font-bold text-white">{currentGame.nativeSentence}</p>
-                  <p className="text-xs text-slate-400">English: &quot;{currentGame.englishTranslation}&quot;</p>
-                </div>
-
-                {/* Target Sentence Dropzone */}
-                <div className="p-4 rounded-2xl bg-slate-950 border-2 border-dashed border-emerald-500/40 min-h-[70px] flex flex-wrap items-center gap-2">
-                  <span className="text-xs text-slate-500 mr-2">Constructed Hindi Sentence:</span>
-                  {userSentenceTokens.length === 0 ? (
-                    <span className="text-xs italic text-slate-600">Click word blocks below to insert here...</span>
-                  ) : (
-                    userSentenceTokens.map((token, idx) => (
-                      <button
-                        key={idx}
-                        onClick={() => handleRemoveToken(token)}
-                        className="px-3 py-1.5 rounded-xl bg-emerald-600 hover:bg-rose-600 text-white font-bold text-sm flex items-center gap-1.5 shadow-sm transition"
-                      >
-                        {token} <X className="w-3.5 h-3.5" />
-                      </button>
-                    ))
-                  )}
-                </div>
-
-                {/* Word Blocks Bank */}
-                <div className="space-y-2">
-                  <span className="text-xs font-bold text-slate-400 block">Available Word Blocks:</span>
-                  <div className="flex flex-wrap gap-3">
-                    {currentGame.shuffledTokens.map((token, idx) => (
-                      <button
-                        key={idx}
-                        onClick={() => handleAddToken(token)}
-                        disabled={userSentenceTokens.includes(token)}
-                        className={`px-4 py-2 rounded-xl font-bold text-sm transition ${
-                          userSentenceTokens.includes(token)
-                            ? 'bg-slate-800 text-slate-600 border border-slate-700 cursor-not-allowed'
-                            : 'bg-blue-600 hover:bg-blue-500 text-white shadow-md'
-                        }`}
-                      >
-                        {token}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Action Buttons */}
-                <div className="flex items-center justify-between pt-2">
-                  <span className="text-xs text-amber-300 font-medium italic">💡 Hint: {currentGame.hint}</span>
-                  <button
-                    onClick={handleCheckSentence}
-                    disabled={userSentenceTokens.length === 0}
-                    className="px-6 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-900 font-black text-xs uppercase tracking-wider shadow-md transition disabled:opacity-50"
-                  >
-                    Check & Listen Audio ✓
-                  </button>
-                </div>
-              </div>
-            ) : (
-              <div className="p-8 text-center space-y-4">
-                <Award className="w-12 h-12 text-amber-400 mx-auto" />
-                <h4 className="text-2xl font-black text-white">Congratulations! Game Completed!</h4>
-                <p className="text-xs text-slate-300">You earned {gameScore} XP building Hindi sentences!</p>
-                <button
-                  onClick={() => {
-                    setGameIndex(0);
-                    setGameFinished(false);
-                    setUserSentenceTokens([]);
-                  }}
-                  className="px-6 py-2.5 rounded-xl bg-blue-600 text-white font-bold text-xs"
-                >
-                  Play Again
-                </button>
-              </div>
-            )}
-          </div>
-
-          {/* Interactive Demo Showcase 2: Voice & Pronunciation Tutor */}
-          <div id="voice-tutor" className="p-6 sm:p-8 rounded-3xl bg-white border border-slate-200 space-y-6 shadow-xs">
-            <div className="flex items-center justify-between border-b border-slate-100 pb-4">
-              <div>
-                <span className="px-2.5 py-1 rounded-full bg-purple-100 text-purple-700 text-[10px] font-black uppercase tracking-wider">
-                  INTERACTIVE IDEA DEMO #2
-                </span>
-                <h3 className="text-xl font-bold text-slate-900 mt-1">Bilingual Voice & Pronunciation Companion</h3>
-                <p className="text-xs text-slate-500">Listen to native audio and test your Hindi voice clarity.</p>
-              </div>
-              <button
-                onClick={() => playAudio('नमस्ते, भारत में आपका स्वागत है')}
-                className="px-4 py-2 rounded-xl bg-purple-50 hover:bg-purple-100 text-purple-700 font-bold text-xs flex items-center gap-2 transition"
-              >
-                <Volume2 className="w-4 h-4" /> Listen Native Model
-              </button>
-            </div>
-
-            <div className="p-6 rounded-2xl bg-slate-50 border border-slate-200 text-center space-y-4">
-              <span className="text-xs font-bold text-slate-400 uppercase tracking-widest block">Practice Target Sentence</span>
-              <h4 className="text-2xl font-black text-slate-900">
-                &quot;नमस्ते! मैं अपनी मातृभाषा से हिंदी सीख रहा हूँ।&quot;
-              </h4>
-              <p className="text-xs text-slate-500 italic">
-                (Namaste! Main apni maatribhasha se Hindi seekh raha hoon)
-              </p>
-
-              <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-4">
-                <button
-                  onClick={handleSimulateSpeaking}
-                  disabled={speakingRecording}
-                  className={`px-6 py-3 rounded-2xl font-black text-xs uppercase tracking-wider flex items-center gap-2 transition shadow-md ${
-                    speakingRecording
-                      ? 'bg-rose-600 text-white animate-pulse'
-                      : 'bg-purple-600 hover:bg-purple-700 text-white'
-                  }`}
-                >
-                  <Volume2 className="w-4 h-4" />
-                  {speakingRecording ? 'Listening to your voice...' : 'Speak & Score Pronunciation'}
-                </button>
-              </div>
-
-              {speakingScore !== null && (
-                <div className="p-4 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-bold animate-in fade-in">
-                  🎉 AI Accuracy Score: <span className="text-lg font-black">{speakingScore}%</span> • Excellent Devanagari vowel clarity!
-                </div>
-              )}
-            </div>
-          </div>
-
-          {/* Interactive Demo Showcase 3: Daily 3D Flashcards */}
-          <div id="flashcards" className="p-6 sm:p-8 rounded-3xl bg-white border border-slate-200 space-y-6 shadow-xs">
-            <div className="flex items-center justify-between border-b border-slate-100 pb-4">
-              <div>
-                <span className="px-2.5 py-1 rounded-full bg-amber-100 text-amber-800 text-[10px] font-black uppercase tracking-wider">
-                  INTERACTIVE IDEA DEMO #3
-                </span>
-                <h3 className="text-xl font-bold text-slate-900 mt-1">Daily 3D Micro Flashcard Deck</h3>
-                <p className="text-xs text-slate-500">Click card to flip and reveal Hindi translation & example.</p>
-              </div>
-              <span className="text-xs font-bold text-slate-500">
-                Card {flashcardIndex + 1} of {FLASHCARDS.length}
-              </span>
-            </div>
-
-            <div className="max-w-md mx-auto">
-              <div
-                onClick={() => setCardFlipped(!cardFlipped)}
-                className="w-full h-64 rounded-3xl bg-gradient-to-br from-amber-500 via-orange-500 to-red-600 text-white p-8 cursor-pointer shadow-xl flex flex-col justify-between transition-transform duration-300 hover:scale-102 relative overflow-hidden"
-              >
-                <div className="flex items-center justify-between text-xs">
-                  <span className="px-2.5 py-1 rounded-full bg-white/20 font-bold backdrop-blur-xs">
-                    {FLASHCARDS[flashcardIndex].category}
-                  </span>
-                  <span className="text-amber-100 text-[11px] font-semibold">Click to Flip 🔄</span>
-                </div>
-
-                {!cardFlipped ? (
-                  <div className="text-center space-y-2 my-auto">
-                    <span className="text-xs text-white/80 block uppercase font-extrabold tracking-widest">
-                      {FLASHCARDS[flashcardIndex].nativeTitle}
-                    </span>
-                    <h3 className="text-3xl font-black">{FLASHCARDS[flashcardIndex].nativeWord}</h3>
-                  </div>
                 ) : (
-                  <div className="text-center space-y-2 my-auto animate-in fade-in">
-                    <span className="text-xs text-amber-200 block uppercase font-black tracking-widest">
-                      Hindi Equivalent
-                    </span>
-                    <h3 className="text-3xl font-black">{FLASHCARDS[flashcardIndex].hindiWord}</h3>
-                    <p className="text-xs text-white/90 font-medium">({FLASHCARDS[flashcardIndex].transliteration})</p>
-                    <p className="text-xs text-amber-100 italic mt-2 bg-black/20 p-2 rounded-xl">
-                      &quot;{FLASHCARDS[flashcardIndex].exampleHindi}&quot;
-                    </p>
+                  <div className="p-8 text-center space-y-4">
+                    <Award className="w-12 h-12 text-amber-400 mx-auto" />
+                    <h4 className="text-2xl font-black text-white">Congratulations! Game Completed!</h4>
+                    <p className="text-xs text-slate-300">You earned {gameScore} XP building Hindi sentences!</p>
+                    <button
+                      onClick={() => {
+                        setGameIndex(0);
+                        setGameFinished(false);
+                        setUserSentenceTokens([]);
+                      }}
+                      className="px-6 py-2.5 rounded-xl bg-orange-600 hover:bg-orange-700 text-white font-bold text-xs"
+                    >
+                      Play Again
+                    </button>
                   </div>
                 )}
+              </div>
 
-                <div className="text-center text-[10px] text-white/70">
-                  {cardFlipped ? 'Showing Hindi Side' : 'Showing Native Language Side'}
+              {/* Interactive Demo Showcase 2: Voice & Pronunciation Tutor */}
+              <div id="voice-tutor" className="p-6 sm:p-8 rounded-3xl bg-white border border-slate-200 space-y-6 shadow-xs">
+                <div className="flex items-center justify-between border-b border-slate-100 pb-4">
+                  <div>
+                    <span className="px-2.5 py-1 rounded-full bg-purple-100 text-purple-700 text-[10px] font-black uppercase tracking-wider">
+                      INTERACTIVE IDEA DEMO #2
+                    </span>
+                    <h3 className="text-xl font-bold text-slate-900 mt-1">Bilingual Voice & Pronunciation Companion</h3>
+                    <p className="text-xs text-slate-500">Listen to native audio and test your Hindi voice clarity.</p>
+                  </div>
+                  <button
+                    onClick={() => playAudio('नमस्ते, भारत में आपका स्वागत है')}
+                    className="px-4 py-2 rounded-xl bg-purple-50 hover:bg-purple-100 text-purple-700 font-bold text-xs flex items-center gap-2 transition"
+                  >
+                    <Volume2 className="w-4 h-4" /> Listen Native Model
+                  </button>
+                </div>
+
+                <div className="p-6 rounded-2xl bg-slate-50 border border-slate-200 text-center space-y-4">
+                  <span className="text-xs font-bold text-slate-400 uppercase tracking-widest block">Practice Target Sentence</span>
+                  <h4 className="text-2xl font-black text-slate-900">
+                    &quot;नमस्ते! मैं अपनी मातृभाषा से हिंदी सीख रहा हूँ।&quot;
+                  </h4>
+                  <p className="text-xs text-slate-500 italic">
+                    (Namaste! Main apni maatribhasha se Hindi seekh raha hoon)
+                  </p>
+
+                  <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-4">
+                    <button
+                      onClick={handleSimulateSpeaking}
+                      disabled={speakingRecording}
+                      className={`px-6 py-3 rounded-2xl font-black text-xs uppercase tracking-wider flex items-center gap-2 transition shadow-md ${speakingRecording
+                          ? 'bg-rose-600 text-white animate-pulse'
+                          : 'bg-purple-600 hover:bg-purple-700 text-white'
+                        }`}
+                    >
+                      <Volume2 className="w-4 h-4" />
+                      {speakingRecording ? 'Listening to your voice...' : 'Speak & Score Pronunciation'}
+                    </button>
+                  </div>
+
+                  {speakingScore !== null && (
+                    <div className="p-4 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-bold animate-in fade-in">
+                      🎉 AI Accuracy Score: <span className="text-lg font-black">{speakingScore}%</span> • Excellent Devanagari vowel clarity!
+                    </div>
+                  )}
                 </div>
               </div>
 
-              <div className="flex items-center justify-between mt-4">
-                <button
-                  onClick={() => {
-                    setFlashcardIndex((prev) => (prev > 0 ? prev - 1 : FLASHCARDS.length - 1));
-                    setCardFlipped(false);
-                  }}
-                  className="px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs"
-                >
-                  ← Previous
-                </button>
+              {/* Interactive Demo Showcase 3: Daily 3D Flashcards */}
+              <div id="flashcards" className="p-6 sm:p-8 rounded-3xl bg-white border border-slate-200 space-y-6 shadow-xs">
+                <div className="flex items-center justify-between border-b border-slate-100 pb-4">
+                  <div>
+                    <span className="px-2.5 py-1 rounded-full bg-amber-100 text-amber-800 text-[10px] font-black uppercase tracking-wider">
+                      INTERACTIVE IDEA DEMO #3
+                    </span>
+                    <h3 className="text-xl font-bold text-slate-900 mt-1">Daily 3D Micro Flashcard Deck</h3>
+                    <p className="text-xs text-slate-500">Click card to flip and reveal Hindi translation & example.</p>
+                  </div>
+                  <span className="text-xs font-bold text-slate-500">
+                    Card {flashcardIndex + 1} of {FLASHCARDS.length}
+                  </span>
+                </div>
 
-                <button
-                  onClick={() => playAudio(FLASHCARDS[flashcardIndex].hindiWord)}
-                  className="p-2 rounded-full bg-amber-50 text-amber-600 hover:bg-amber-100"
-                  title="Play audio"
-                >
-                  <Volume2 className="w-5 h-5" />
-                </button>
+                <div className="max-w-md mx-auto">
+                  <div
+                    onClick={() => setCardFlipped(!cardFlipped)}
+                    className="w-full h-64 rounded-3xl bg-gradient-to-br from-amber-500 via-orange-500 to-red-600 text-white p-8 cursor-pointer shadow-xl flex flex-col justify-between transition-transform duration-300 hover:scale-102 relative overflow-hidden"
+                  >
+                    <div className="flex items-center justify-between text-xs">
+                      <span className="px-2.5 py-1 rounded-full bg-white/20 font-bold backdrop-blur-xs">
+                        {FLASHCARDS[flashcardIndex].category}
+                      </span>
+                      <span className="text-amber-100 text-[11px] font-semibold">Click to Flip 🔄</span>
+                    </div>
 
-                <button
-                  onClick={() => {
-                    setFlashcardIndex((prev) => (prev < FLASHCARDS.length - 1 ? prev + 1 : 0));
-                    setCardFlipped(false);
-                  }}
-                  className="px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs"
-                >
-                  Next Card →
-                </button>
+                    {!cardFlipped ? (
+                      <div className="text-center space-y-2 my-auto">
+                        <span className="text-xs text-white/80 block uppercase font-extrabold tracking-widest">
+                          {FLASHCARDS[flashcardIndex].nativeTitle}
+                        </span>
+                        <h3 className="text-3xl font-black">{FLASHCARDS[flashcardIndex].nativeWord}</h3>
+                      </div>
+                    ) : (
+                      <div className="text-center space-y-2 my-auto animate-in fade-in">
+                        <span className="text-xs text-amber-200 block uppercase font-black tracking-widest">
+                          Hindi Equivalent
+                        </span>
+                        <h3 className="text-3xl font-black">{FLASHCARDS[flashcardIndex].hindiWord}</h3>
+                        <p className="text-xs text-white/90 font-medium">({FLASHCARDS[flashcardIndex].transliteration})</p>
+                        <p className="text-xs text-amber-100 italic mt-2 bg-black/20 p-2 rounded-xl">
+                          &quot;{FLASHCARDS[flashcardIndex].exampleHindi}&quot;
+                        </p>
+                      </div>
+                    )}
+
+                    <div className="text-center text-[10px] text-white/70">
+                      {cardFlipped ? 'Showing Hindi Side' : 'Showing Native Language Side'}
+                    </div>
+                  </div>
+
+                  <div className="flex items-center justify-between mt-4">
+                    <button
+                      onClick={() => {
+                        setFlashcardIndex((prev) => (prev > 0 ? prev - 1 : FLASHCARDS.length - 1));
+                        setCardFlipped(false);
+                      }}
+                      className="px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs"
+                    >
+                      ← Previous
+                    </button>
+
+                    <button
+                      onClick={() => playAudio(FLASHCARDS[flashcardIndex].hindiWord)}
+                      className="p-2 rounded-full bg-amber-50 text-amber-600 hover:bg-amber-100"
+                      title="Play audio"
+                    >
+                      <Volume2 className="w-5 h-5" />
+                    </button>
+
+                    <button
+                      onClick={() => {
+                        setFlashcardIndex((prev) => (prev < FLASHCARDS.length - 1 ? prev + 1 : 0));
+                        setCardFlipped(false);
+                      }}
+                      className="px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs"
+                    >
+                      Next Card →
+                    </button>
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
-        </div>
-      )}
+          )}
 
-      {/* ------------------------------------------------------------- */}
-      {/* VIEW 4: COGNATE & ETYMOLOGY COMPARATIVE BRIDGE TAB */}
-      {/* ------------------------------------------------------------- */}
-      {activeTab === 'bridge' && (
-        <div className="space-y-6">
-          <div className="border-b border-slate-200 pb-4">
-            <h2 className="text-xl font-black text-slate-900 flex items-center gap-2">
-              <Layers className="w-6 h-6 text-blue-600" /> शब्दावली व व्याकरण तुलनात्मक सेतु (Comparative Cognate Bridge)
-            </h2>
-            <p className="text-xs text-slate-500 font-medium">
-              Compare common words across all major Indian language families side-by-side with Hindi.
-            </p>
-          </div>
+          {/* ------------------------------------------------------------- */}
+          {/* VIEW 4: COGNATE & ETYMOLOGY COMPARATIVE BRIDGE TAB */}
+          {/* ------------------------------------------------------------- */}
+          {activeTab === 'bridge' && (
+            <div className="space-y-6">
+              <div className="border-b border-slate-200 pb-4">
+                <h2 className="text-xl font-black text-slate-900 flex items-center gap-2">
+                  <Layers className="w-6 h-6 text-orange-600" /> शब्दावली व व्याकरण तुलनात्मक सेतु (Comparative Cognate Bridge)
+                </h2>
+                <p className="text-xs text-slate-500 font-medium">
+                  Compare common words across all major Indian language families side-by-side with Hindi.
+                </p>
+              </div>
 
-          {/* Comparative Table */}
-          <div className="bg-white rounded-3xl border border-slate-200 overflow-hidden shadow-xs">
-            <div className="overflow-x-auto">
-              <table className="w-full text-left text-xs">
-                <thead className="bg-slate-50 border-b border-slate-200 text-slate-500 font-extrabold uppercase tracking-wider text-[10px]">
-                  <tr>
-                    <th className="p-4">Concept / Meaning</th>
-                    <th className="p-4 bg-blue-50/70 text-blue-900 font-black">Hindi (हिंदी)</th>
-                    <th className="p-4">Sanskrit Root</th>
-                    <th className="p-4">Tamil (தமிழ்)</th>
-                    <th className="p-4">Telugu (తెలుగు)</th>
-                    <th className="p-4">Bengali (বাংলা)</th>
-                    <th className="p-4">Marathi (मराठी)</th>
-                    <th className="p-4 text-center">Audio</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-slate-100 font-semibold text-slate-800">
-                  {COMPARATIVE_COGNATES.map((item, idx) => (
-                    <tr key={idx} className="hover:bg-slate-50/80 transition">
-                      <td className="p-4 font-bold text-slate-900">{item.wordEng}</td>
-                      <td className="p-4 bg-blue-50/40 font-black text-blue-900 text-sm">{item.hindi}</td>
-                      <td className="p-4 text-slate-500 italic">{item.sanskrit}</td>
-                      <td className="p-4">{item.tamil}</td>
-                      <td className="p-4">{item.telugu}</td>
-                      <td className="p-4">{item.bengali}</td>
-                      <td className="p-4">{item.marathi}</td>
-                      <td className="p-4 text-center">
-                        <button
-                          onClick={() => playAudio(item.audioText)}
-                          className="p-2 rounded-xl bg-blue-50 hover:bg-blue-100 text-blue-600 transition"
-                          title="Listen Hindi Audio"
-                        >
-                          <Volume2 className="w-4 h-4" />
-                        </button>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+              {/* Comparative Table */}
+              <div className="bg-white rounded-3xl border border-slate-200 overflow-hidden shadow-xs">
+                <div className="overflow-x-auto">
+                  <table className="w-full text-left text-xs">
+                    <thead className="bg-slate-50 border-b border-slate-200 text-slate-500 font-extrabold uppercase tracking-wider text-[10px]">
+                      <tr>
+                        <th className="p-4">Concept / Meaning</th>
+                        <th className="p-4 bg-orange-50/80 text-orange-900 font-black">Hindi (हिंदी)</th>
+                        <th className="p-4">Sanskrit Root</th>
+                        <th className="p-4">Tamil (தமிழ்)</th>
+                        <th className="p-4">Telugu (తెలుగు)</th>
+                        <th className="p-4">Bengali (বাংলা)</th>
+                        <th className="p-4">Marathi (मराठी)</th>
+                        <th className="p-4 text-center">Audio</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-slate-100 font-semibold text-slate-800">
+                      {COMPARATIVE_COGNATES.map((item, idx) => (
+                        <tr key={idx} className="hover:bg-slate-50/80 transition">
+                          <td className="p-4 font-bold text-slate-900">{item.wordEng}</td>
+                          <td className="p-4 bg-orange-50/40 font-black text-orange-900 text-sm">{item.hindi}</td>
+                          <td className="p-4 text-slate-500 italic">{item.sanskrit}</td>
+                          <td className="p-4">{item.tamil}</td>
+                          <td className="p-4">{item.telugu}</td>
+                          <td className="p-4">{item.bengali}</td>
+                          <td className="p-4">{item.marathi}</td>
+                          <td className="p-4 text-center">
+                            <button
+                              onClick={() => playAudio(item.audioText)}
+                              className="p-2 rounded-xl bg-orange-50 hover:bg-orange-100 text-orange-600 transition"
+                              title="Listen Hindi Audio"
+                            >
+                              <Volume2 className="w-4 h-4" />
+                            </button>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-      )}
+          )}
 
         </>
       )}
@@ -2646,7 +2599,7 @@ export default function DashboardIndianLanguagesPage() {
           <div className="w-full max-w-2xl bg-white border border-slate-200 rounded-3xl p-6 sm:p-8 space-y-6 shadow-2xl animate-in fade-in zoom-in-95 duration-200 text-left">
             <div className="flex items-center justify-between border-b border-slate-100 pb-4">
               <div>
-                <span className="text-[10px] font-black uppercase tracking-widest text-blue-600 block">
+                <span className="text-[10px] font-black uppercase tracking-widest text-orange-600 block">
                   {selectedCourseModal.languageEng} ➔ Hindi Course Overview
                 </span>
                 <h2 className="text-xl sm:text-2xl font-black text-slate-900">
@@ -2681,9 +2634,9 @@ export default function DashboardIndianLanguagesPage() {
             <div className="space-y-2">
               <span className="text-xs font-bold text-slate-700 block">Sample Module Roadmap:</span>
               <div className="space-y-1.5 text-xs font-medium text-slate-600">
-                <div className="p-2.5 rounded-xl bg-blue-50/50 border border-blue-100 flex items-center justify-between">
+                <div className="p-2.5 rounded-xl bg-orange-50/60 border border-orange-100 flex items-center justify-between">
                   <span>Unit 1: Alphabet & Devanagari Sound Comparison</span>
-                  <span className="text-blue-600 font-bold">Free Preview</span>
+                  <span className="text-orange-600 font-bold">Free Preview</span>
                 </div>
                 <div className="p-2.5 rounded-xl bg-slate-50 border border-slate-200 flex items-center justify-between">
                   <span>Unit 2: Subject-Object-Verb (SOV) Sentence Construction</span>
@@ -2722,7 +2675,7 @@ export default function DashboardIndianLanguagesPage() {
                     setSelectedCourseModal(null);
                     setCheckoutCourse(targetCourse);
                   }}
-                  className="px-6 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs shadow-md flex items-center gap-1.5"
+                  className="px-6 py-2.5 rounded-xl bg-orange-600 hover:bg-orange-700 text-white font-bold text-xs shadow-md shadow-orange-600/20 flex items-center gap-1.5"
                 >
                   Proceed to Registration & Payment <ArrowRight className="w-4 h-4" />
                 </button>
@@ -2741,12 +2694,12 @@ export default function DashboardIndianLanguagesPage() {
             {/* Modal Header */}
             <div className="flex items-center justify-between border-b border-slate-100 pb-4">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center font-bold">
+                <div className="w-10 h-10 rounded-2xl bg-orange-50 text-orange-600 flex items-center justify-center font-bold">
                   <CreditCard className="w-5 h-5" />
                 </div>
                 <div>
-                  <span className="text-[10px] font-black uppercase tracking-widest text-blue-600 block">
-                    SECURE REGISTRATION GATEWAY • RAZORPAY
+                  <span className="text-[10px] font-black uppercase tracking-widest text-orange-600 block">
+                    SECURE REGISTRATION GATEWAY • JETHAT BHASHA
                   </span>
                   <h2 className="text-xl sm:text-2xl font-black text-slate-900">
                     Course Payment & Enrollment Checkout
@@ -2784,7 +2737,7 @@ export default function DashboardIndianLanguagesPage() {
                 <div className="p-5 rounded-2xl bg-slate-50 border border-slate-200 text-xs space-y-2 max-w-md mx-auto text-left">
                   <div className="flex justify-between border-b border-slate-200 pb-2 font-bold text-slate-900">
                     <span>Receipt Invoice ID:</span>
-                    <span className="font-mono text-blue-600">{paymentSuccessInvoice}</span>
+                    <span className="font-mono text-orange-600">{paymentSuccessInvoice}</span>
                   </div>
                   <div className="flex justify-between text-slate-600">
                     <span>Course Registered:</span>
@@ -2796,7 +2749,7 @@ export default function DashboardIndianLanguagesPage() {
                   </div>
                   <div className="flex justify-between text-slate-600">
                     <span>Payment Gateway:</span>
-                    <span className="font-semibold text-slate-800">{paymentMethod === 'scholarship' ? 'Govt Bhasha Subsidy (₹0)' : 'UPI / Razorpay'}</span>
+                    <span className="font-semibold text-slate-800">{paymentMethod === 'scholarship' ? 'Govt Bhasha Subsidy (₹0)' : 'UPI / JetHat Pay'}</span>
                   </div>
                   <div className="flex justify-between text-slate-600 pt-1 border-t border-slate-200 font-black text-slate-900">
                     <span>Total Amount Paid:</span>
@@ -2841,15 +2794,14 @@ export default function DashboardIndianLanguagesPage() {
                         setPaymentPlan('standard');
                         if (paymentMethod === 'scholarship') setPaymentMethod('upi');
                       }}
-                      className={`p-3.5 rounded-2xl border-2 cursor-pointer transition space-y-1 ${
-                        paymentPlan === 'standard'
-                          ? 'border-blue-600 bg-blue-50/60 shadow-xs'
+                      className={`p-3.5 rounded-2xl border-2 cursor-pointer transition space-y-1 ${paymentPlan === 'standard'
+                          ? 'border-orange-600 bg-orange-50/60 shadow-xs'
                           : 'border-slate-200 hover:bg-slate-50'
-                      }`}
+                        }`}
                     >
                       <div className="flex items-center justify-between font-extrabold text-slate-900">
                         <span>Standard Batch</span>
-                        <span className="text-blue-600 font-black">₹499</span>
+                        <span className="text-orange-600 font-black">₹499</span>
                       </div>
                       <p className="text-[11px] text-slate-500">Full Course Access + Devanagari Worksheets + NIOS Certificate</p>
                     </div>
@@ -2859,11 +2811,10 @@ export default function DashboardIndianLanguagesPage() {
                         setPaymentPlan('pro');
                         if (paymentMethod === 'scholarship') setPaymentMethod('upi');
                       }}
-                      className={`p-3.5 rounded-2xl border-2 cursor-pointer transition space-y-1 ${
-                        paymentPlan === 'pro'
+                      className={`p-3.5 rounded-2xl border-2 cursor-pointer transition space-y-1 ${paymentPlan === 'pro'
                           ? 'border-purple-600 bg-purple-50/60 shadow-xs'
                           : 'border-slate-200 hover:bg-slate-50'
-                      }`}
+                        }`}
                     >
                       <div className="flex items-center justify-between font-extrabold text-slate-900">
                         <span>Pro AI Tutor</span>
@@ -2877,11 +2828,10 @@ export default function DashboardIndianLanguagesPage() {
                         setPaymentPlan('scholarship');
                         setPaymentMethod('scholarship');
                       }}
-                      className={`p-3.5 rounded-2xl border-2 cursor-pointer transition space-y-1 ${
-                        paymentPlan === 'scholarship'
+                      className={`p-3.5 rounded-2xl border-2 cursor-pointer transition space-y-1 ${paymentPlan === 'scholarship'
                           ? 'border-emerald-600 bg-emerald-50/60 shadow-xs'
                           : 'border-slate-200 hover:bg-slate-50'
-                      }`}
+                        }`}
                     >
                       <div className="flex items-center justify-between font-extrabold text-slate-900">
                         <span>Govt Subsidy</span>
@@ -2903,7 +2853,7 @@ export default function DashboardIndianLanguagesPage() {
                         setCouponCode('BHASHA2026');
                         setCouponApplied(true);
                       }}
-                      className="text-[11px] font-extrabold text-blue-600 hover:underline"
+                      className="text-[11px] font-extrabold text-orange-600 hover:underline"
                     >
                       Use &quot;BHASHA2026&quot; (100% OFF)
                     </button>
@@ -2918,7 +2868,7 @@ export default function DashboardIndianLanguagesPage() {
                         setCouponCode(e.target.value.toUpperCase());
                         if (couponApplied) setCouponApplied(false);
                       }}
-                      className="flex-1 px-3 py-2 rounded-xl bg-white border border-slate-300 text-xs font-mono font-bold uppercase focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      className="flex-1 px-3 py-2 rounded-xl bg-white border border-slate-300 text-xs font-mono font-bold uppercase focus:outline-none focus:ring-2 focus:ring-orange-500"
                     />
                     <button
                       onClick={() => {
@@ -2949,25 +2899,22 @@ export default function DashboardIndianLanguagesPage() {
                     <div className="flex items-center gap-2 border-b border-slate-200 pb-2 text-xs">
                       <button
                         onClick={() => setPaymentMethod('upi')}
-                        className={`px-3 py-2 rounded-xl font-bold transition flex items-center gap-1.5 ${
-                          paymentMethod === 'upi' ? 'bg-blue-600 text-white shadow-xs' : 'text-slate-600 hover:bg-slate-100'
-                        }`}
+                        className={`px-3 py-2 rounded-xl font-bold transition flex items-center gap-1.5 ${paymentMethod === 'upi' ? 'bg-orange-600 text-white shadow-xs' : 'text-slate-600 hover:bg-slate-100'
+                          }`}
                       >
                         <QrCode className="w-3.5 h-3.5" /> UPI / QR Code
                       </button>
                       <button
                         onClick={() => setPaymentMethod('card')}
-                        className={`px-3 py-2 rounded-xl font-bold transition flex items-center gap-1.5 ${
-                          paymentMethod === 'card' ? 'bg-blue-600 text-white shadow-xs' : 'text-slate-600 hover:bg-slate-100'
-                        }`}
+                        className={`px-3 py-2 rounded-xl font-bold transition flex items-center gap-1.5 ${paymentMethod === 'card' ? 'bg-orange-600 text-white shadow-xs' : 'text-slate-600 hover:bg-slate-100'
+                          }`}
                       >
                         <CreditCard className="w-3.5 h-3.5" /> Debit / Credit Card
                       </button>
                       <button
                         onClick={() => setPaymentMethod('netbanking')}
-                        className={`px-3 py-2 rounded-xl font-bold transition flex items-center gap-1.5 ${
-                          paymentMethod === 'netbanking' ? 'bg-blue-600 text-white shadow-xs' : 'text-slate-600 hover:bg-slate-100'
-                        }`}
+                        className={`px-3 py-2 rounded-xl font-bold transition flex items-center gap-1.5 ${paymentMethod === 'netbanking' ? 'bg-orange-600 text-white shadow-xs' : 'text-slate-600 hover:bg-slate-100'
+                          }`}
                       >
                         <ShieldCheck className="w-3.5 h-3.5" /> Net Banking
                       </button>
@@ -2975,7 +2922,7 @@ export default function DashboardIndianLanguagesPage() {
 
                     {/* UPI Payment Pane */}
                     {paymentMethod === 'upi' && (
-                      <div className="p-4 rounded-2xl bg-blue-50/50 border border-blue-100 space-y-4 text-xs">
+                      <div className="p-4 rounded-2xl bg-orange-50/50 border border-orange-100 space-y-4 text-xs">
                         <div className="flex flex-col sm:flex-row items-center gap-4">
                           <img
                             src={`https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=upi://pay?pa=hindi-lms@okaxis&pn=CentralHindiInstitute&am=${paymentPlan === 'pro' ? 1178 : 588}`}
@@ -2983,7 +2930,7 @@ export default function DashboardIndianLanguagesPage() {
                             className="w-28 h-28 rounded-xl border border-slate-300 p-1 bg-white shadow-xs shrink-0"
                           />
                           <div className="space-y-2 text-center sm:text-left">
-                            <span className="text-[10px] font-black uppercase text-blue-700 tracking-wider block">
+                            <span className="text-[10px] font-black uppercase text-orange-700 tracking-wider block">
                               SCAN TO PAY WITH ANY UPI APP
                             </span>
                             <div className="flex flex-wrap items-center justify-center sm:justify-start gap-2">
@@ -3003,7 +2950,7 @@ export default function DashboardIndianLanguagesPage() {
                             value={upiId}
                             onChange={(e) => setUpiId(e.target.value)}
                             placeholder="username@okaxis or mobile@paytm"
-                            className="w-full px-3 py-2 rounded-xl bg-white border border-slate-300 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            className="w-full px-3 py-2 rounded-xl bg-white border border-slate-300 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-orange-500"
                           />
                         </div>
                       </div>
@@ -3018,7 +2965,7 @@ export default function DashboardIndianLanguagesPage() {
                             type="text"
                             placeholder="4111 2222 3333 4444"
                             defaultValue="4532 8901 2234 9812"
-                            className="w-full px-3 py-2 rounded-xl bg-white border border-slate-300 font-mono text-xs focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            className="w-full px-3 py-2 rounded-xl bg-white border border-slate-300 font-mono text-xs focus:outline-none focus:ring-2 focus:ring-orange-500"
                           />
                         </div>
 
@@ -3029,7 +2976,7 @@ export default function DashboardIndianLanguagesPage() {
                               type="text"
                               placeholder="08/28"
                               defaultValue="12/28"
-                              className="w-full px-3 py-2 rounded-xl bg-white border border-slate-300 font-mono text-xs focus:outline-none focus:ring-2 focus:ring-blue-500"
+                              className="w-full px-3 py-2 rounded-xl bg-white border border-slate-300 font-mono text-xs focus:outline-none focus:ring-2 focus:ring-orange-500"
                             />
                           </div>
                           <div>
@@ -3038,7 +2985,7 @@ export default function DashboardIndianLanguagesPage() {
                               type="password"
                               placeholder="123"
                               defaultValue="889"
-                              className="w-full px-3 py-2 rounded-xl bg-white border border-slate-300 font-mono text-xs focus:outline-none focus:ring-2 focus:ring-blue-500"
+                              className="w-full px-3 py-2 rounded-xl bg-white border border-slate-300 font-mono text-xs focus:outline-none focus:ring-2 focus:ring-orange-500"
                             />
                           </div>
                         </div>
@@ -3048,7 +2995,7 @@ export default function DashboardIndianLanguagesPage() {
                           <input
                             type="text"
                             defaultValue={user?.name || 'Aarav Sharma'}
-                            className="w-full px-3 py-2 rounded-xl bg-white border border-slate-300 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            className="w-full px-3 py-2 rounded-xl bg-white border border-slate-300 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-orange-500"
                           />
                         </div>
                       </div>
@@ -3062,7 +3009,7 @@ export default function DashboardIndianLanguagesPage() {
                           {['State Bank of India', 'HDFC Bank', 'ICICI Bank', 'Axis Bank'].map((b, i) => (
                             <button
                               key={i}
-                              className="p-2.5 rounded-xl bg-white border border-slate-200 hover:border-blue-500 font-semibold text-center text-slate-800 transition"
+                              className="p-2.5 rounded-xl bg-white border border-slate-200 hover:border-orange-500 font-semibold text-center text-slate-800 transition"
                             >
                               {b}
                             </button>
@@ -3098,7 +3045,7 @@ export default function DashboardIndianLanguagesPage() {
 
                   <div className="pt-2 border-t border-slate-200 flex justify-between items-center text-sm font-black text-slate-900">
                     <span>Total Payable Amount:</span>
-                    <span className="text-lg text-blue-600 font-mono">
+                    <span className="text-lg text-orange-600 font-mono font-black">
                       {paymentPlan === 'scholarship' || couponApplied ? '₹0 FREE' : paymentPlan === 'pro' ? '₹1,178' : '₹588'}
                     </span>
                   </div>
@@ -3109,7 +3056,7 @@ export default function DashboardIndianLanguagesPage() {
                   <button
                     onClick={handleProcessPayment}
                     disabled={isProcessingPayment}
-                    className="w-full py-4 rounded-2xl bg-blue-600 hover:bg-blue-700 text-white font-extrabold text-sm uppercase tracking-wider shadow-lg shadow-blue-600/30 flex items-center justify-center gap-2 transition hover:scale-101 disabled:opacity-50"
+                    className="w-full py-4 rounded-2xl bg-orange-600 hover:bg-orange-700 text-white font-extrabold text-sm uppercase tracking-wider shadow-lg shadow-orange-600/30 flex items-center justify-center gap-2 transition hover:scale-101 disabled:opacity-50"
                   >
                     {isProcessingPayment ? (
                       <>
