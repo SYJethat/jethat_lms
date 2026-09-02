@@ -76,7 +76,7 @@ export default function Navbar() {
             <img
               src="/logo.png"
               alt="JetHat Cyber Security & Language LMS Logo"
-              className="h-10 sm:h-12 w-auto object-contain transition group-hover:scale-105"
+              className="h-16 sm:h-16 w-auto object-contain transition group-hover:scale-105"
             />
           </Link>
 

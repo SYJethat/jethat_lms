@@ -353,7 +353,7 @@ export default function DashboardSidebar() {
                 <img
                   src="/logo.png"
                   alt="JetHat Cyber Security & Language LMS Logo"
-                  className="h-9 w-auto object-contain transition group-hover:scale-105"
+                  className="h-16 w-auto object-contain transition group-hover:scale-105"
                 />
               ) : (
                 <div className="w-10 h-10 rounded-2xl bg-gradient-to-tr from-orange-600 to-amber-500 text-white font-black flex items-center justify-center text-xs shadow-md">
