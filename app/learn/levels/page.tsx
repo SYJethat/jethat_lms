@@ -66,8 +66,8 @@ export default function LevelsPage() {
 
                 {level.unlocked ? (
                   <Link
-                    href={`/learn/lesson/les_1_1`}
-                    className="px-6 py-3 rounded-xl bg-hindi-saffron hover:bg-amber-600 text-slate-950 font-bold text-xs flex items-center gap-2 transition"
+                    href={`/learn/lesson/${level.lessons[0]?.id || 'les_1_1'}`}
+                    className="px-6 py-3 rounded-xl bg-hindi-saffron hover:bg-amber-500 text-slate-950 font-extrabold text-xs flex items-center gap-2 transition shadow-lg shadow-hindi-saffron/20"
                   >
                     Open Level {level.id} <ArrowRight className="w-4 h-4" />
                   </Link>

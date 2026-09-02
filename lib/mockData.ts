@@ -418,7 +418,45 @@ export const MOCK_LEVELS: LearningLevel[] = [
     coursesCount: 5,
     unlocked: true,
     progress: 50,
-    lessons: [],
+    lessons: [
+      {
+        id: 'les_3_1',
+        levelId: 3,
+        titleHindi: 'वर्तमान काल और दैनिक दिनचर्या (Present Tense & Daily Routine)',
+        titleEng: 'Present Continuous Tense & Daily Schedules',
+        durationMins: 25,
+        xpReward: 60,
+        completed: false,
+        type: 'grammar',
+        content: {
+          introduction: 'Learn how to describe activities happening right now using रहा है / रही है / रहे हैं.',
+          rules: [
+            'Masculine singular: रहा है (e.g. वह पढ़ रहा है)',
+            'Feminine singular: रही है (e.g. वह लिख रही है)',
+            'Plural / Formal: रहे हैं (e.g. वे जा रहे हैं)',
+          ],
+          vocabulary: [
+            { hindi: 'पढ़ना', transliteration: 'Padhna', english: 'To Read / Study', audioText: 'पढ़ना' },
+            { hindi: 'लिखना', transliteration: 'Likhna', english: 'To Write', audioText: 'लिखना' },
+            { hindi: 'खाना', transliteration: 'Khaana', english: 'To Eat / Food', audioText: 'खाना' },
+            { hindi: 'पीना', transliteration: 'Peena', english: 'To Drink', audioText: 'पीना' },
+          ],
+          sampleSentences: [
+            { hindi: 'मैं हिंदी सीख रहा हूँ।', english: 'I am learning Hindi.' },
+            { hindi: 'बच्चे मैदान में खेल रहे हैं।', english: 'Children are playing in the ground.' },
+          ],
+          quizQuestions: [
+            {
+              id: 'q3_1',
+              question: 'Complete the sentence: "वह किताब _______ है।" (She is reading a book)',
+              options: ['पढ़ रहा', 'पढ़ रही', 'पढ़ रहे', 'पढ़ते'],
+              correctAnswer: 1,
+              explanation: 'Since "वह" refers to female singular ("she"), use "पढ़ रही".',
+            },
+          ],
+        },
+      },
+    ],
   },
   {
     id: 4,
@@ -431,7 +469,38 @@ export const MOCK_LEVELS: LearningLevel[] = [
     coursesCount: 6,
     unlocked: true,
     progress: 30,
-    lessons: [],
+    lessons: [
+      {
+        id: 'les_4_1',
+        levelId: 4,
+        titleHindi: 'मुहावरे और लोकोक्तियाँ (Idioms & Proverbs)',
+        titleEng: 'Popular Hindi Idioms & Expressions',
+        durationMins: 30,
+        xpReward: 80,
+        completed: false,
+        type: 'vocab',
+        content: {
+          introduction: 'Idioms add rich expression and cultural nuance to conversational Hindi.',
+          vocabulary: [
+            { hindi: 'नौ दो ग्यारह होना', transliteration: 'Nau do gyarah hona', english: 'To run away / flee', audioText: 'नौ दो ग्यारह होना' },
+            { hindi: 'अंगूठा दिखाना', transliteration: 'Angutha dikhana', english: 'To refuse at last minute', audioText: 'अंगूठा दिखाना' },
+            { hindi: 'ईंट का जवाब पत्थर से देना', transliteration: 'Eent ka jawab patthar se dena', english: 'To give a fitting reply', audioText: 'ईंट का जवाब पत्थर से देना' },
+          ],
+          sampleSentences: [
+            { hindi: 'पुलिस को देखते ही चोर नौ दो ग्यारह हो गया।', english: 'As soon as the thief saw the police, he fled.' },
+          ],
+          quizQuestions: [
+            {
+              id: 'q4_1',
+              question: 'What is the figurative meaning of "नौ दो ग्यारह होना"?',
+              options: ['To add numbers', 'To run away quickly', 'To celebrate', 'To fall asleep'],
+              correctAnswer: 1,
+              explanation: '"नौ दो ग्यारह होना" literally means 9+2=11, but idiomatically means to flee rapidly.',
+            },
+          ],
+        },
+      },
+    ],
   },
   {
     id: 5,
@@ -444,7 +513,38 @@ export const MOCK_LEVELS: LearningLevel[] = [
     coursesCount: 4,
     unlocked: true,
     progress: 0,
-    lessons: [],
+    lessons: [
+      {
+        id: 'les_5_1',
+        levelId: 5,
+        titleHindi: 'प्रेमचंद का साहित्य (Literature of Premchand)',
+        titleEng: 'Premchand Short Stories & Analysis',
+        durationMins: 35,
+        xpReward: 100,
+        completed: false,
+        type: 'vocab',
+        content: {
+          introduction: 'Explore the realism and narrative depth of Munshi Premchand’s literary classics like Godaan and Eidgah.',
+          vocabulary: [
+            { hindi: 'साहित्य', transliteration: 'Sahitya', english: 'Literature', audioText: 'साहित्य' },
+            { hindi: 'उपन्यास', transliteration: 'Upanyas', english: 'Novel', audioText: 'उपन्यास' },
+            { hindi: 'यथार्थवाद', transliteration: 'Yatharthvaad', english: 'Realism', audioText: 'यथार्थवाद' },
+          ],
+          sampleSentences: [
+            { hindi: 'प्रेमचंद को हिंदी उपन्यास का सम्राट माना जाता है।', english: 'Premchand is considered the emperor of Hindi novels.' },
+          ],
+          quizQuestions: [
+            {
+              id: 'q5_1',
+              question: 'Who authored the famous Hindi novel "Godaan"?',
+              options: ['Harivansh Rai Bachchan', 'Munshi Premchand', 'Jaishankar Prasad', 'Mahadevi Varma'],
+              correctAnswer: 1,
+              explanation: 'Godaan was written by Munshi Premchand in 1936.',
+            },
+          ],
+        },
+      },
+    ],
   },
   {
     id: 6,
@@ -457,7 +557,38 @@ export const MOCK_LEVELS: LearningLevel[] = [
     coursesCount: 3,
     unlocked: false,
     progress: 0,
-    lessons: [],
+    lessons: [
+      {
+        id: 'les_6_1',
+        levelId: 6,
+        titleHindi: 'राजभाषा एवं प्रशासनिक शब्दावली (Official Rajbhasha Terminology)',
+        titleEng: 'Official Government Hindi & Administration',
+        durationMins: 40,
+        xpReward: 120,
+        completed: false,
+        type: 'grammar',
+        content: {
+          introduction: 'Master constitutional provisions, official circular drafting, and administrative terminology used in Indian government offices.',
+          vocabulary: [
+            { hindi: 'अधिसूचना', transliteration: 'Adhisuchna', english: 'Notification', audioText: 'अधिसूचना' },
+            { hindi: 'अनुमोदन', transliteration: 'Anumodan', english: 'Approval / Endorsement', audioText: 'अनुमोदन' },
+            { hindi: 'कार्यालय ज्ञापन', transliteration: 'Karyalaya Gyapan', english: 'Office Memorandum', audioText: 'कार्यालय ज्ञापन' },
+          ],
+          sampleSentences: [
+            { hindi: 'यह प्रस्ताव सक्षम अधिकारी के अनुमोदन हेतु प्रस्तुत है।', english: 'This proposal is submitted for the approval of the competent authority.' },
+          ],
+          quizQuestions: [
+            {
+              id: 'q6_1',
+              question: 'What is the English official equivalent of the Hindi term "अधिसूचना"?',
+              options: ['Circular', 'Notification', 'Resolution', 'Memorandum'],
+              correctAnswer: 1,
+              explanation: '"अधिसूचना" translates to "Notification" in Rajbhasha government terminology.',
+            },
+          ],
+        },
+      },
+    ],
   },
   {
     id: 7,
@@ -470,9 +601,69 @@ export const MOCK_LEVELS: LearningLevel[] = [
     coursesCount: 2,
     unlocked: false,
     progress: 0,
-    lessons: [],
+    lessons: [
+      {
+        id: 'les_7_1',
+        levelId: 7,
+        titleHindi: 'द्रुत अनुवाद एवं भाषाविज्ञान (Simultaneous Translation & Linguistics)',
+        titleEng: 'Simultaneous Translation Drills & Phonetics',
+        durationMins: 45,
+        xpReward: 150,
+        completed: false,
+        type: 'speaking',
+        content: {
+          introduction: 'Real-time English-to-Hindi and Hindi-to-English translation strategies for diplomatic and legal conferences.',
+          vocabulary: [
+            { hindi: 'द्विभाषिया', transliteration: 'Dwibhashiya', english: 'Interpreter / Bilingualist', audioText: 'द्विभाषिया' },
+            { hindi: 'ध्वनिविज्ञान', transliteration: 'Dhwanivigyan', english: 'Phonetics', audioText: 'ध्वनिविज्ञान' },
+          ],
+          sampleSentences: [
+            { hindi: 'अंतर्राष्ट्रीय मंच पर सटीक अनुवाद आवश्यक है।', english: 'Accurate translation is essential on international forums.' },
+          ],
+          quizQuestions: [
+            {
+              id: 'q7_1',
+              question: 'What is the term for a person who provides simultaneous oral translation between languages?',
+              options: ['लेखक', 'द्विभाषिया / अनुवादक', 'संपादक', 'प्रकाशक'],
+              correctAnswer: 1,
+              explanation: 'Dwibhashiya (द्विभाषिया) or Anuvadak (अनुवादक) refers to an interpreter/translator.',
+            },
+          ],
+        },
+      },
+    ],
   },
 ];
+
+export function findLessonById(lessonId: string) {
+  let foundLesson: Lesson | null = null;
+  let foundLevel: LearningLevel | null = null;
+  let prevLesson: Lesson | null = null;
+  let nextLesson: Lesson | null = null;
+
+  const allLessons: { lesson: Lesson; level: LearningLevel }[] = [];
+
+  for (const level of MOCK_LEVELS) {
+    for (const les of level.lessons) {
+      allLessons.push({ lesson: les, level });
+    }
+  }
+
+  const index = allLessons.findIndex((item) => item.lesson.id === lessonId);
+
+  if (index !== -1) {
+    foundLesson = allLessons[index].lesson;
+    foundLevel = allLessons[index].level;
+    prevLesson = index > 0 ? allLessons[index - 1].lesson : null;
+    nextLesson = index < allLessons.length - 1 ? allLessons[index + 1].lesson : null;
+  } else {
+    foundLesson = MOCK_LEVELS[0].lessons[0];
+    foundLevel = MOCK_LEVELS[0];
+    nextLesson = MOCK_LEVELS[0].lessons[1] || null;
+  }
+
+  return { lesson: foundLesson, level: foundLevel, prevLesson, nextLesson };
+}
 
 export const MOCK_TEACHERS: VirtualTeacher[] = [
   {
